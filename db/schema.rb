@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140301040538) do
 
   create_table "categories", force: true do |t|
     t.integer  "user_id"
-    t.boolean  "active"
+    t.boolean  "active",      default: true
     t.datetime "inactive_at"
     t.text     "color"
     t.text     "title"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20140301040538) do
 
   create_table "tags", force: true do |t|
     t.integer  "category_id"
-    t.boolean  "active"
-    t.boolean  "routine"
+    t.boolean  "active",           default: true
+    t.integer  "routine",          default: -1
     t.text     "name"
     t.integer  "current_event_id", default: -1
     t.datetime "created_at"
