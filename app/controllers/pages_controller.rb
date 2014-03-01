@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   before_action :get_info
 
   def routines_page
+    @active_sort_tags = @tags.select{|tag| tag.routine != -1}.sort{|tag1, tag2| tag1.routine <=> tag2.routine}
     # Below used just to see what the json looks like
     # render json: {categories: @categories, tags: @tags}
   end

@@ -1,5 +1,7 @@
 <h1>Routine Page</h1>
 
-<% @tags.each do |tag| %>
-  <%= tag.name %>
-<% end %>
+<ul style="list-style-type: none">
+  <% @active_sort_tags.each do |tag| %>
+    <li><%= button_to tag.name %></li>
+  <% end %>
+</ul>
