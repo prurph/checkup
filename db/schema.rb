@@ -11,10 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301034729) do
+ActiveRecord::Schema.define(version: 20140301040538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "active"
+    t.datetime "inactive_at"
+    t.text     "color"
+    t.text     "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
+
+  create_table "events", force: true do |t|
+    t.integer  "tag_id"
+    t.time     "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["tag_id"], name: "index_events_on_tag_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.integer  "category_id"
+    t.boolean  "active"
+    t.boolean  "routine"
+    t.text     "name"
+    t.integer  "current_event_id", default: -1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["category_id"], name: "index_tags_on_category_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
