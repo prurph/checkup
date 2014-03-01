@@ -1,0 +1,16 @@
+<h1>Categories</h1>
+<ul>
+<% @categories.each do |category| %>
+  <li><%= category.title %>
+  <% category.tags.each do |tag| %>
+    <p><%= tag.name %></p>
+  <% end %>
+  </li>
+<% end %>
+</ul>
+
+<% if @events %>
+  <% @events.each do |event| %>
+    <%= event.tag.name %>
+  <% end %>
+<% end %>
