@@ -2,8 +2,6 @@ class PagesController < ApplicationController
   before_action :get_info
 
   def routines_page
-    # Below used just to see what the json looks like
-    # render json: {categories: @categories, tags: @tags}
     @active_sort_tags = @tags.where("routine > -1").order(:routine)
   end
 
@@ -19,16 +17,7 @@ class PagesController < ApplicationController
 
   def update # This is not implemented, just conceptual/naming
     @category = Category.find(params[:categoryId])
-    binding.pry
     render json: @category
-    # @categories = params[:categories]
-    # binding.pry
-    # @categories.each do |json_category|
-    #   rails_category = Category.find_or_create(category: json_category);
-    #   if rails_category.updated_at != json_category.updated_at
-    #     rails_category.update(json_category)
-    #   end
-    # end
     @tags = params[:tags]
     @events = params[:events] if params[:events].present?
   end

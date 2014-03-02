@@ -9,8 +9,9 @@ feature 'Returning user views setup page' do
     @family = create(:category, user: @user, title: "Family")
 
     @tags = []
-    10.times do
-      @tags.push create(:tag, category: [@work, @personal, @family].sample)
+    10.times do |n|
+      @tags.push create(:tag, category: [@work, @personal, @family][n % 3],
+        routine: n)
     end
 
     @first_work_tag     = @work.tags.first

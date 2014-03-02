@@ -1,9 +1,11 @@
 FactoryGirl.define do
-  sequence(:routine) { |n| n }
   sequence(:name) { |n| "#{Faker::Lorem.word} #{n}" }
-  sequence(:email) { |n| "user#{n}@foobar.com" }
+  sequence(:email) { |n| "#{Faker::Internet.email}#{n}" }
   sequence(:color) do |n|
     ["#27ae60", "#2980b9", "#d35400", "#f39c12", "#8e44ad"][(n % 5)]
+  end
+  sequence(:title) do
+    |n| ["Work", "Personal", "Goals", "Family"][n % 4]
   end
 
   factory :user do
@@ -13,7 +15,7 @@ FactoryGirl.define do
 
   factory :category do
     user
-    title { ["Work", "Personal", "Goals", "Family"].sample }
+    title
     active { true }
     inactive_at { nil }
     color
@@ -22,7 +24,6 @@ FactoryGirl.define do
   factory :tag do
     category
     active { true }
-    routine
     name
   end
 

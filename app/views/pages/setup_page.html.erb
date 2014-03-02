@@ -2,6 +2,7 @@
   <% @categories.each do |category| %>
     <div data-category-id="<%= category.id %>">
       <p><%= category.title %></p>
+      <button class="delete-category-btn">Delete Category</button>
       <ul>
         <% category.tags.each do |tag| %>
           <% if tag.active %>
@@ -14,8 +15,8 @@
       </ul>
     </div>
   <% end %>
-  <input type="text" id="new-tag-name" placeholder="Name">
-  <input type="submit" id="new-tag-submit" value="Add Tag">
+  <input type="text" id="new-category-name" placeholder="Name">
+  <input type="submit" id="new-category-submit" value="Add Category">
 </div>
 
 <div id="routine-setup">
