@@ -1,0 +1,28 @@
+<div id="all-categories">
+  <% @categories.each do |category| %>
+    <div data-category-id="category_"<%= category.id %>>
+      <p><%= category.title %></p>
+      <ul>
+        <% category.tags.each do |tag| %>
+          <li data-tag-id="tag-"<%= tag.id %>>
+            <%= tag.name %>
+            <a href="#">Delete Tag</a>
+          </li>
+        <% end %>
+      </ul>
+      <a href="#">Add Tag</a>
+    </div>
+  <% end %>
+</div>
+
+<div id="routine-setup">
+  <ul>
+    <% @tags.each do |tag| %>
+      <% if tag.routine != -1 %>
+        <li data-routine-id="tag-"<%= tag.id %>>
+          <%= tag.id %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
