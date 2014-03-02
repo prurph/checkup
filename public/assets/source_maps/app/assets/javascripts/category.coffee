@@ -1,10 +1,10 @@
-class Category
+class CheckUp.Category
   # Get railsCategory object and create it in JS
   constructor: (railsCategory) ->
     for key, value of railsCategory
       this[key] = value
 
-  updateSelf: (updates={}) ->
+  updateSelfReq: (updates={}) ->
     $.ajax(
       url: "/setup/category/#{this.id}"
       type: 'PATCH'
@@ -14,7 +14,7 @@ class Category
       ).done (response) ->
         console.log(response)
 
-  createCategory: (attrs={}) ->
+  @newCategoryReq: (attrs={}) ->
     $.ajax(
       url: "/setup/category/"
       type: 'POST'
@@ -23,6 +23,9 @@ class Category
         category:    attrs
       ).done (response) ->
         console.log(response)
+
+  @newCategoryClick: ->
+    $ '#new-tag-name'
 
 # This is for debugging
 window.req = ->

@@ -17,7 +17,6 @@ feature 'Returning user views setup page' do
     @first_personal_tag = @personal.tags.first
   end
   scenario 'with only active categories and only routine tags (not fancy)' do
-
     visit setup_path
 
     within('#all-categories') do
@@ -85,7 +84,6 @@ feature 'Returning user views setup page' do
   scenario 'with an inactive tag' do
     @first_work_tag.update(active: false)
     visit setup_path
-    save_and_open_page
 
     within('#all-categories') do
       expect(page).to     have_content "Work"
