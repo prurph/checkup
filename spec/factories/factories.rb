@@ -2,6 +2,9 @@ FactoryGirl.define do
   sequence(:routine) { |n| n }
   sequence(:name) { |n| "#{Faker::Lorem.word} #{n}" }
   sequence(:email) { |n| "user#{n}@foobar.com" }
+  sequence(:color) do |n|
+    ["#27ae60", "#2980b9", "#d35400", "#f39c12", "#8e44ad"][(n % 5)]
+  end
 
   factory :user do
     email
