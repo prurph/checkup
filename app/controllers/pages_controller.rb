@@ -19,7 +19,7 @@ class PagesController < ApplicationController
   def update # This is not implemented, just conceptual/naming
     @category = Category.find(params[:categoryId])
     binding.pry
-    render json: rails_category
+    render json: @category
     # @categories = params[:categories]
     # binding.pry
     # @categories.each do |json_category|

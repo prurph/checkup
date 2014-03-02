@@ -6,15 +6,13 @@ class Category
 
   railsUpdate: (updates={}) ->
     $.ajax(
-      url: '/setup'
-      type: 'POST'
+      url: "/setup/category/#{this.id}"
+      type: 'PATCH'
       dataType: 'json'
       data:
-        categoryId: this.id
         updates:    updates
       ).done (response) ->
         console.log(response)
-        console.log("hey")
 
 
 window.req = ->

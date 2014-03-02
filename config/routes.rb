@@ -1,7 +1,7 @@
 CheckUp::Application.routes.draw do
   devise_for :users
 
-  post '/setup', to: 'pages#update'
+  patch '/setup/category/:id', to: 'categories#update', as: 'update_category_path'
 
   get '/setup',    to: 'pages#setup_page',    as: 'setup_path'
   get '/events',   to: 'pages#events_page',   as: 'events_path', defaults: { events: true }
