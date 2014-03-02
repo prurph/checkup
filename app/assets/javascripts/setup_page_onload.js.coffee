@@ -1,3 +1,3 @@
 $( ->
-  $('a:contains("Add Tag")').click(CheckUp.Category.newCategory)
+  $('a:contains("Add Tag")').click(CheckUp.Category.newCategoryClick)
 )

@@ -4,7 +4,9 @@ class CheckUp.Category
     for key, value of railsCategory
       this[key] = value
 
-  updateSelfReq: (updates={}) ->
+  # This makes an AJAX request to Rails to update a category
+  # Rails returns the JSON of the updated category
+  updateSelfRequest: (updates={}) ->
     $.ajax(
       url: "/setup/category/#{this.id}"
       type: 'PATCH'
@@ -14,7 +16,9 @@ class CheckUp.Category
       ).done (response) ->
         console.log(response)
 
-  @newCategoryReq: (attrs={}) ->
+  # This makes an AJAX request to Rails to create a category
+  # Rails returns the JSON of the newly created category
+  @newCategoryRequest: (attrs={}) ->
     $.ajax(
       url: "/setup/category/"
       type: 'POST'
@@ -24,8 +28,10 @@ class CheckUp.Category
       ).done (response) ->
         console.log(response)
 
+  # This will handle getting the actual input to then pass to the
+  # @newCategoryRequest call
   @newCategoryClick: ->
-    $ '#new-tag-name'
+    $('#new-tag-name').val()
 
 # This is for debugging
 window.req = ->
@@ -34,4 +40,4 @@ window.req = ->
     type: 'GET'
     dataType: 'json'
     ).done (response) ->
-      window.prescott = new Category(response.categories[0])
+      window.prescott = new CheckUp.Category(response.categories[0])

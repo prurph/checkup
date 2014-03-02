@@ -25,7 +25,7 @@ class CheckUp.Category
         console.log(response)
 
   @newCategoryClick: ->
-    $ '#new-tag-name'
+    $('#new-tag-name').val()
 
 # This is for debugging
 window.req = ->
@@ -34,4 +34,4 @@ window.req = ->
     type: 'GET'
     dataType: 'json'
     ).done (response) ->
-      window.prescott = new Category(response.categories[0])
+      window.prescott = new CheckUp.Category(response.categories[0])

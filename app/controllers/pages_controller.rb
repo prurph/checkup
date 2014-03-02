@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def routines_page
     # Below used just to see what the json looks like
     # render json: {categories: @categories, tags: @tags}
+    @active_sort_tags = @tags.where("routine > -1").order(:routine)
   end
 
   def setup_page
