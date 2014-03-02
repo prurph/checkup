@@ -1,10 +1,10 @@
 <div id="all-categories">
   <% @categories.each do |category| %>
-    <div data-category-id="category_"<%= category.id %>>
+    <div data-category-id="<%= category.id %>">
       <p><%= category.title %></p>
       <ul>
         <% category.tags.each do |tag| %>
-          <li data-tag-id="tag-"<%= tag.id %>>
+          <li data-tag-id="<%= tag.id %>">
             <%= tag.name %>
             <a href="#">Delete Tag</a>
           </li>
@@ -19,7 +19,7 @@
   <ul>
     <% @tags.each do |tag| %>
       <% if tag.routine != -1 %>
-        <li data-routine-id="tag-"<%= tag.id %>>
+        <li data-routine-id="<%= tag.id %>">
           <%= tag.id %>
         </li>
       <% end %>
