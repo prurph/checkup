@@ -14,10 +14,10 @@ class Category < ActiveRecord::Base
   def active=(value, time=Time.new)
     if !value
       self.inactive_at = time
-      self.tags.each do |tag|
-        tag[:active] = false
-      end
+      # Update all the child tags to false
+      Tag.where(category: self).update_all(active: false)
     end
     self[:active] = value
+    self.save
   end
 end
