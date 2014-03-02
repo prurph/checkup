@@ -4,17 +4,27 @@ class Category
     for key, value of railsCategory
       this[key] = value
 
-  railsUpdate: (updates={}) ->
+  updateSelf: (updates={}) ->
     $.ajax(
       url: "/setup/category/#{this.id}"
       type: 'PATCH'
       dataType: 'json'
       data:
-        updates:    updates
+        category:    updates
       ).done (response) ->
         console.log(response)
 
+  createCategory: (attrs={}) ->
+    $.ajax(
+      url: "/setup/category/"
+      type: 'POST'
+      dataType: 'json'
+      data:
+        category:    attrs
+      ).done (response) ->
+        console.log(response)
 
+# This is for debugging
 window.req = ->
   $.ajax(
     url: '/setup'
