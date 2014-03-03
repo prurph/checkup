@@ -17,7 +17,6 @@ class PagesController < ApplicationController
 
   def update # This is not implemented, just conceptual/naming
     @category = Category.find(params[:categoryId])
-    binding.pry
     render json: @category
     @tags = params[:tags]
     @events = params[:events] if params[:events].present?
