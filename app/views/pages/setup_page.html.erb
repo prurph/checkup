@@ -3,13 +3,14 @@
     <div data-category-id="<%= category.id %>">
       <p class="category-title"><%= category.title %></p>
       <button class="delete-category-btn">Delete Category</button>
+      <input type="text" class="new-tag-name" placeholder="Name">
       <button class="add-tag-btn">Add Tag</button>
-      <ul>
-        <% category.tags.each do |tag| %>
+      <ul class="category-tag-list">
+        <% category.tags.sort_by(&:name).each do |tag| %>
           <% if tag.active %>
             <li data-tag-id="<%= tag.id %>">
-              <%= tag.name %>
-              <a href="#">Delete Tag</a>
+              <p class="tag-title"><%= tag.name %></p>
+              <button class="delete-tag-btn">Delete Tag</button>
             </li>
           <% end %>
         <% end %>

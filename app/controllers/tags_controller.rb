@@ -30,4 +30,21 @@ class TagsController < ApplicationController
     render json: (event_to_be_active.present?) ? event_to_be_active : event_now_active
   end
 
+  def create
+    tag = Tag.create!(tag_params)
+    render json: tag
+  end
+
+  def update
+    tag = Tag.find(params[:tag][:id])
+    tag.update!(tag_params)
+    render json: tag
+  end
+
+  private
+  def tag_params
+    params.require(:tag).permit(:id, :category_id, :active, :routine, :name,
+      :current_event_id)
+  end
+
 end

@@ -3,6 +3,8 @@ CheckUp::Application.routes.draw do
 
   post '/routines/set-event/:id', to: 'tags#set', as: 'set_tag'
 
+  patch '/setup/tag',      to: 'tags#update',       as: 'update_tag'
+  post  '/setup/tag',      to: 'tags#create',       as: 'new_tag'
   patch '/setup/category', to: 'categories#update', as: 'update_category'
   post  '/setup/category', to: 'categories#create', as: 'new_category'
 
