@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :get_info
 
   def routines_page
-    @active_sort_tags = @tags.where("routine > -1").order(:routine)
+    @active_sort_tags = @tags.where('routine > -1').order(:routine)
   end
 
   def setup_page
