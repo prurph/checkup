@@ -1,59 +1,63 @@
 class CheckUp.Category
   # Get railsCategory object and create it in JS
   constructor: (railsCategory) ->
-    for key, value of railsCategory
+    for own key, value of railsCategory
       this[key] = value
 
-  # This makes an AJAX request to Rails to update a category
-  # Rails returns the JSON of the updated category
-  updateSelfRequest: (updates={}) ->
-    $.ajax(
-      url: "/setup/category/#{this.id}"
-      type: 'PATCH'
-      dataType: 'json'
-      data:
-        category: updates
-      ).done (response) ->
-        console.log(response)
-
-  @updateCategoryRequest: (attrs={}) ->
-    $.ajax(
-      url: "/setup/category/#{attrs.id}"
-      type: 'PATCH'
-      dataType: 'json'
-      data:
-        category: attrs
-      ).done (response) ->
-        console.log(response)
-
-  # This makes an AJAX request to Rails to create a category
-  # Rails returns the JSON of the newly created category
-  @newCategoryRequest: (attrs={}) ->
+  # This is used for all AJAX requests to create/deactivate/update a category
+  # Pass an object of attributes, an HTTP method type ('GET') and a callback
+  @categoryRequest: (attrs={}, type, callback) ->
     $.ajax(
       url: "/setup/category/"
-      type: 'POST'
+      type: type
       dataType: 'json'
       data:
         category: attrs
-      ).done (response) ->
-        console.log(response)
-        $("[data-category-id='#{response.id}']").remove()
-        # LATER ENSURE ROUTINE ALSO GETS REDRAWN TO REMOVE CATEGORY'S TAGS
+      )
+      .done (response) ->
+        if callback
+          callback(response)
+      .fail (error) ->
+        console.log(error)
 
-  # This will handle getting the actual input to then pass to the
-  # @newCategoryRequest call
+  # This makes a request to update the category to active: false
+  # It currently does nothing to deactivate the relevant tags
+  @deactivateCategoryClick: ->
+    categoryId = $(this).attr("data-category-id")
+    callback = (response) -> $("[data-category-id='#{response.id}']").remove()
+
+    if $(event.target).hasClass('delete-category-btn')
+      CheckUp.Category.categoryRequest
+        id: categoryId
+        active: false,
+        'PATCH',
+        callback
+
   @newCategoryClick: ->
     $categoryNameForm = $('#new-category-name')
+    callback = (response) ->
+      newCategory = new CheckUp.Category(response)
+      $categoryDivs = $('[data-category-id]')
+      $categoryDivs.append newCategory.renderNode()
+
     unless $categoryNameForm.val().length <= 3 # Don't submit names < 3 chars
-      CheckUp.Category.newCategoryRequest title: $categoryNameForm.val()
+      CheckUp.Category.categoryRequest
+        title: $categoryNameForm.val(),
+        'POST',
+        callback
       $categoryNameForm.val("")
 
-  @deactivateCategoryClick: ->
-    if $(event.target).hasClass('delete-category-btn')
-      categoryId = $(this).attr("data-category-id")
-      CheckUp.Category.updateCategoryRequest
-        id: categoryId
-        active: false
+  # Use this to render a category node from a CheckUpCategory instance
+  renderNode: ->
+    $categoryDiv  = $('<div/>',
+      'data-category-id': this.id
+      html: "<p>#{this.title}</p>"
+      )
+    $deleteButton = $('<button/>',
+      class: "delete-category-btn"
+      text: "Delete Category"
+      )
+    $categoryDiv.append($deleteButton)
 
 # This is for debugging
 window.req = ->
@@ -63,3 +67,5 @@ window.req = ->
     dataType: 'json'
     ).done (response) ->
       window.prescott = new CheckUp.Category(response.categories[0])
+
+
