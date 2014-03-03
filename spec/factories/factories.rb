@@ -4,8 +4,9 @@ FactoryGirl.define do
   sequence(:color) do |n|
     ["#27ae60", "#2980b9", "#d35400", "#f39c12", "#8e44ad"][(n % 5)]
   end
-  sequence(:title) do
-    |n| ["Work", "Personal", "Goals", "Family"][n % 4]
+
+  sequence(:title) do |n|
+    ["Work", "Personal", "Goals", "Family"][n % 4]
   end
 
   factory :user do

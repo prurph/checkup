@@ -33,6 +33,8 @@ class CheckUp.Category
         'PATCH',
         callback
 
+  # This will handle getting the actual input to then pass to the
+  # @newCategoryRequest call
   @newCategoryClick: ->
     $categoryNameForm = $('#new-category-name')
     callback = (response) ->
@@ -76,6 +78,7 @@ window.req = ->
     type: 'GET'
     dataType: 'json'
     ).done (response) ->
+      debugger
       window.prescott = new CheckUp.Category(response.categories[0])
 
 

@@ -76,6 +76,7 @@ window.req = ->
     type: 'GET'
     dataType: 'json'
     ).done (response) ->
+      debugger
       window.prescott = new CheckUp.Category(response.categories[0])
 
 

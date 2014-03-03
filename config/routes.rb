@@ -1,6 +1,8 @@
 CheckUp::Application.routes.draw do
   devise_for :users
 
+  post '/routines/set-event/:id', to: 'tags#set', as: 'set_tag'
+
   patch '/setup/category', to: 'categories#update', as: 'update_category'
   post  '/setup/category', to: 'categories#create', as: 'new_category'
 
