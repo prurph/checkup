@@ -37,8 +37,9 @@ class CheckUp.Category
     $categoryNameForm = $('#new-category-name')
     callback = (response) ->
       newCategory = new CheckUp.Category(response)
-      $categoryDivs = $('[data-category-id]')
-      $categoryDivs.append newCategory.renderNode()
+      #$categoryDivs = $('[data-category-id]')
+      #$categoryDivs.append newCategory.renderNode()
+      newCategory.attachSorted()
 
     unless $categoryNameForm.val().length <= 3 # Don't submit names < 3 chars
       CheckUp.Category.categoryRequest
@@ -58,6 +59,15 @@ class CheckUp.Category
       text: "Delete Category"
       )
     $categoryDiv.append($deleteButton)
+
+  attachSorted: ->
+    $categoryDivs = $('[data-category-id]')
+    textValue = (index) ->
+      $categoryDivs.eq(index).text()
+    for index in $categoryDivs.length
+      debugger
+      if textValue(index) > this.title
+        $categoryDivs.eq(index).before(this.renderNode())
 
 # This is for debugging
 window.req = ->
