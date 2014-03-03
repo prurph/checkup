@@ -43,11 +43,10 @@ feature 'User views Events page' do
     expect(page).to have_content @first_exercise_tag.name
   end
 
-
   scenario 'page has categories with tags and events' do
-    expect(@first_school_event.duration).should be_between(300, 28800)
-    expect(@first_home_event.duration).should be_between(300, 28800)
-    expect(@first_exercise_event.duration).should be_between(300, 28800)
+    expect(@first_school_event.duration).to be_between(300, 28800)
+    expect(@first_home_event.duration).to be_between(300, 28800)
+    expect(@first_exercise_event.duration).to be_between(300, 28800)
   end
 
 end
