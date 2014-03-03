@@ -20,28 +20,40 @@ class CheckUp.Category
       .fail (error) ->
         console.log(error)
 
+  @categoryClicked: ->
+    debugger
+    if $(event.target).hasClass('delete-category-btn')
+      CheckUp.Category.deactivateCategory($(this))
+    else if $(event.target).hasClass('add-tag-btn')
+      # Insert call to add tag here
+      console.log("placeholder")
+
   # This makes a request to update the category to active: false
   # It currently does nothing to deactivate the relevant tags
-  @deactivateCategoryClick: ->
-    categoryId = $(this).attr("data-category-id")
+  @deactivateCategory: ($categoryNode) ->
+    categoryId = $categoryNode.attr("data-category-id")
     callback = (response) -> $("[data-category-id='#{response.id}']").remove()
-
-    if $(event.target).hasClass('delete-category-btn')
-      CheckUp.Category.categoryRequest
-        id: categoryId
-        active: false,
-        'PATCH',
-        callback
+    CheckUp.Category.categoryRequest
+      id: categoryId
+      active: false,
+      'PATCH',
+      callback
 
   @newCategoryClick: ->
     $categoryNameForm = $('#new-category-name')
+    $allCategoryDivs  = $('[data-category-id]')
+
     callback = (response) ->
       newCategory = new CheckUp.Category(response)
-      #$categoryDivs = $('[data-category-id]')
-      #$categoryDivs.append newCategory.renderNode()
       newCategory.attachSorted()
 
-    unless $categoryNameForm.val().length <= 3 # Don't submit names < 3 chars
+    # Don't even send the AJAX request if the name is < 3 characters or 5
+    # Categories already exist
+    # Put an error handler in here later
+    isCategoryValid = ($form, $existingCategories) ->
+      $form.val().length >= 3 and $existingCategories.length < 5
+
+    if isCategoryValid($categoryNameForm, $allCategoryDivs)
       CheckUp.Category.categoryRequest
         title: $categoryNameForm.val(),
         'POST',
@@ -58,7 +70,12 @@ class CheckUp.Category
       class: "delete-category-btn"
       text: "Delete Category"
       )
-    $categoryDiv.append($deleteButton)
+    $addTagButton = $('<button/>',
+      class: "add-tag-btn"
+      text: "Add Tag"
+      )
+    $categoryDiv.append($deleteButton).append($addTagButton)
+    $categoryDiv.click(CheckUp.Category.categoryClicked.bind($categoryDiv))
 
   attachSorted: ->
     $categoryTitles = $('.category-title')
@@ -72,15 +89,5 @@ class CheckUp.Category
         inserted = true
         break
     $allCategoryDivs.last().after(this.renderNode()) unless inserted
-
-# This is for debugging
-window.req = ->
-  $.ajax(
-    url: '/setup'
-    type: 'GET'
-    dataType: 'json'
-    ).done (response) ->
-      debugger
-      window.prescott = new CheckUp.Category(response.categories[0])
 
 

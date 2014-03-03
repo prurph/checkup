@@ -3,6 +3,7 @@
     <div data-category-id="<%= category.id %>">
       <p class="category-title"><%= category.title %></p>
       <button class="delete-category-btn">Delete Category</button>
+      <button class="add-tag-btn">Add Tag</button>
       <ul>
         <% category.tags.each do |tag| %>
           <% if tag.active %>
