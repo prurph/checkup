@@ -13,6 +13,17 @@ class PagesController < ApplicationController
   end
 
   def events_page
+    # I'll mark here because the data format convert from Javascript to Ruby, besides,
+    # the view_start and view_end must be the format of standard Ruby time format
+    view_start = params[:view_start]
+    view_end = params[:view_end]
+    events = Event.where("created_at BETWEEN :view_start and :view_end OR updated_at BETWEEN :view_start AND :view_end OR (created_at <= :view_start AND updated_at >= :view_end)",
+      {view_start: view_start, view_end: view_end})
+    @events_time_structure = Event.events_time_period(events, view_start, view_end)
+    respond_to do |format|
+      format.json { render json: @events_time_structure }
+      format.html
+    end
   end
 
   def update # This is not implemented, just conceptual/naming
@@ -29,7 +40,7 @@ class PagesController < ApplicationController
   end
 
   def get_info
-    @categories = Category.where(user: current_user, active: true)
+    @categories = Category.where(user: current_user, active: true).order(:title)
     @tags = Tag.where(category_id: @categories, active: true)
     if params[:events].present?
       @events = Event.where(tag_id: @tags)
