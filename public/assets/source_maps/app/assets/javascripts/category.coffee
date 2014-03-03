@@ -24,7 +24,8 @@ class CheckUp.Category
   # It currently does nothing to deactivate the relevant tags
   @deactivateCategoryClick: ->
     categoryId = $(this).attr("data-category-id")
-    callback = (response) -> $("[data-category-id='#{response.id}']").remove()
+    #callback = (response) -> $("[data-category-id='#{response.id}']").remove()
+    callback = -> console.log("hello")
 
     if $(event.target).hasClass('delete-category-btn')
       CheckUp.Category.categoryRequest
@@ -33,8 +34,6 @@ class CheckUp.Category
         'PATCH',
         callback
 
-  # This will handle getting the actual input to then pass to the
-  # @newCategoryRequest call
   @newCategoryClick: ->
     $categoryNameForm = $('#new-category-name')
     callback = (response) ->
