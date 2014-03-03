@@ -20,7 +20,10 @@ class PagesController < ApplicationController
     events = Event.where("created_at BETWEEN :view_start and :view_end OR updated_at BETWEEN :view_start AND :view_end OR (created_at <= :view_start AND updated_at >= :view_end)",
       {view_start: view_start, view_end: view_end})
     @events_time_structure = Event.events_time_period(events, view_start, view_end)
-    render json: @events_time_structure
+    respond_to do |format|
+      format.json { render json: @events_time_structure }
+      format.html
+    end
   end
 
   def update # This is not implemented, just conceptual/naming

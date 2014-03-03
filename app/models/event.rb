@@ -7,13 +7,16 @@ class Event < ActiveRecord::Base
     events_time_tag_structure = {}
     events.each do |event|
       if event.duration != 0
-        events_time_tag_structure[event.tag.name] = [] if !events_time_tag_structure.present?
-        events_time_tag_structure[event.tag.name] << [event.created_at, event.updated_at, Event.event_handler(event, view_start, view_end)]
+        tag_with_id = "#{event.tag.name}_#{event.tag.id}"
+        events_time_tag_structure[tag_with_id] = [] if !events_time_tag_structure.present?
+        events_time_tag_structure[tag_with_id] << [event.created_at, event.updated_at, Event.event_handler(event, view_start, view_end)]
       end
     end
-    events_time_tag_structure.keys.each do |tag|
-      events_time_structure[tag.category.title] = {} if !events_time_structure.present?
-      events_time_structure[tag.category.title][tag] = events_time_tag_structure[tag]
+    events_time_tag_structure.keys.each do |tag_with_id|
+      id = tag_with_id.split('_').last
+      event = Event.find_by_tag_id(id)
+      events_time_structure[event.tag.category.title] = {} if !events_time_structure.present?
+      events_time_structure[event.tag.category.title][event.tag.name] = events_time_tag_structure[tag_with_id]
     end
     events_time_structure
   end
@@ -29,11 +32,11 @@ class Event < ActiveRecord::Base
     view_end_date_format = view_end.strftime("%B %d, %Y")
 
     # starting handle the event time, check if event span muliple days
-    if create_time_date_format > view_start_date_format && end_time_date_format < view_end_date_format
+    if create_time_date_format >= view_start_date_format && end_time_date_format <= view_end_date_format
       return Event.time_convert_to_min(end_time - create_time)
-    elsif create_time_date_format < view_start_date_format && end_time_date_format < view_end_date_format
+    elsif create_time_date_format < view_start_date_format && end_time_date_format <= view_end_date_format
       return Event.time_convert_to_min(end_time - view_start)
-    elsif create_time_date_format > view_start_date_format && end_time_date_format > view_end_date_format
+    elsif create_time_date_format >= view_start_date_format && end_time_date_format > view_end_date_format
       return Event.time_convert_to_min(view_end - create_time)
     else
       return Event.time_convert_to_min(view_end - view_start)
@@ -54,7 +57,7 @@ class Event < ActiveRecord::Base
   # get the time value of each tag
   def self.time_each_tag(events_time_structure, category, tag)
     time = 0
-    events_time_structure[category][tag].each do |tag_key, array|
+    events_time_structure[category][tag].each do |array|
       time += array[2]
     end
     time

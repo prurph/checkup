@@ -2,9 +2,12 @@
 <ul>
 <% @categories.each do |category| %>
   <li><%= category.title %>
+<% binding.pry %>
   Time consuming for category: <%= Event.time_each_category(@events_time_structure, category.title) %>
+  
   <% category.tags.each do |tag| %>
     <p><%= tag.name %></p>
+    
     Time consuming for tag: <%= Event.time_each_tag(@events_time_structure, category.title, tag.name) %>
     <ol>You in Category <%= category.title %> in Tag <%= tag.name %> 
       <% @events_time_structure[category.title][tag.name].each do |array| %>
