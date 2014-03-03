@@ -33,4 +33,4 @@ FactoryGirl.define do
     duration { rand(300...28800) } # 5 minutes - 8 hours in seconds
   end
 end
-# >>>>>>> 6310371f16ae7c06934df0d47f33a8b4d893b083
+
