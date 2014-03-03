@@ -27,9 +27,13 @@ class CheckUp.Tag
       .fail (error) ->
         console.log(error)
 
+  @routineClicked: ->
+    if $(event.target).hasClass('routine-remove-tag-btn')
+      CheckUp.Tag.removeFromRoutine $(event.target)
+
   @deactivateTag: ($eventTarget) ->
     # Find the tag list item based on the click target
-    $tagLi = $eventTarget.parents("[data-tag-id]")
+    $tagLi = $eventTarget.parents('[data-tag-id]')
     tagId = $tagLi.attr("data-tag-id")
     callback = (response) -> $("[data-tag-id='#{response.id}']").remove()
     CheckUp.Tag.tagRequest
@@ -57,6 +61,33 @@ class CheckUp.Tag
         'POST',
         callback
 
+  @addToRoutine: ($eventTarget) ->
+    $tagLi = $eventTarget.parents('[data-tag-id]')
+    tagId = $tagLi.attr('data-tag-id')
+    $routineList = $('data-routine-tag-id')
+    callback = (response) ->
+      newRoutine = new CheckUp.Tag(response)
+      newRoutine.addToRoutine()
+      # Remove the 'Add to Routine' button for this tag
+      $("[data-tag-id='response.id']").find('.routine-add-tag-btn').remove()
+
+    CheckUp.Tag.tagRequest
+      id: tagId
+      routine: $routineList.length, #Set to the end of the routine
+      'PATCH',
+      callback
+
+  @removeFromRoutine: ($eventTarget) ->
+    $tagLi = $eventTarget.parents('[data-routine-tag-id]')
+    tagId = $tagLi.attr('data-routine-tag-id')
+    callback = (response) -> $("[data-routine-tag-id='#{response.id}']").remove()
+
+    CheckUp.Tag.tagRequest
+      id: tagId
+      routine: -1
+      'PATCH'
+      callback
+
   attachToCategory: ->
     $tagLi = $('<li/>',
       'data-tag-id': this.id
@@ -66,7 +97,11 @@ class CheckUp.Tag
       class: 'delete-tag-btn'
       text: 'Delete Tag'
     )
-    $tagLi.append($deleteButton)
+    $addRoutineButton = $('<button/>',
+      class: 'routine-add-tag-btn'
+      text: 'Add to Routine'
+    )
+    $tagLi.append($deleteButton).append($addRoutineButton)
     # Find the matching category and append the tag list item to it in order
     $thisCategory = $("[data-category-id='#{this.category_id}']")
     $tagNames = $thisCategory.find('.tag-title')
@@ -86,3 +121,17 @@ class CheckUp.Tag
           inserted = true
           break
       $categoryTagListItems.last().after($tagLi) unless inserted
+
+  addToRoutine: ->
+    # Adding something to the routine always puts it at the end
+    $lastRoutineLi = $('[data-routine-tag-id]').last()
+    $tagLi = $('<li/>',
+      'data-routine-tag-id': this.id
+      html: "<p class='routine-tag-title'>#{this.name}</p>"
+    )
+    $removeButton = $('<button/>',
+      class: 'routine-remove-tag-btn'
+      text: 'Remove from Routine'
+    )
+    $tagLi.append($removeButton).appendTo($lastRoutineLi)
+

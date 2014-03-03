@@ -11,6 +11,9 @@
             <li data-tag-id="<%= tag.id %>">
               <p class="tag-title"><%= tag.name %></p>
               <button class="delete-tag-btn">Delete Tag</button>
+              <% if tag.routine == -1 %>
+                <button class="routine-add-tag-btn">Add to Routine</button>
+              <% end %>
             </li>
           <% end %>
         <% end %>
@@ -25,9 +28,9 @@
   <ul>
     <% @tags.each do |tag| %>
       <% unless tag.routine == -1 %>
-        <li data-routine-id="<%= tag.id %>">
-          <%= tag.name %>
-          <%= tag.active %>
+        <li data-routine-tag-id="<%= tag.id %>">
+          <p class="routine-tag-title"><%= tag.name %></p>
+          <button class="routine-remove-tag-btn">Remove from Routine</button>
         </li>
       <% end %>
     <% end %>

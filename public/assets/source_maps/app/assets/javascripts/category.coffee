@@ -27,6 +27,8 @@ class CheckUp.Category
       CheckUp.Tag.createTag $(this) # This is the category node to add to
     else if $(event.target).hasClass('delete-tag-btn')
       CheckUp.Tag.deactivateTag $(event.target)
+    else if $(event.target).hasClass('routine-add-tag-btn')
+      CheckUp.Tag.addToRoutine $(event.target)
 
   # This makes a request to update the category to active: false
   # It currently does nothing to deactivate the relevant tags
