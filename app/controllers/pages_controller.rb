@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   end
 
   def get_info
-    @categories = Category.where(user: current_user, active: true)
+    @categories = Category.where(user: current_user, active: true).order(:title)
     @tags = Tag.where(category_id: @categories, active: true)
     if params[:events].present?
       @events = Event.where(tag_id: @tags)

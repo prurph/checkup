@@ -61,13 +61,17 @@ class CheckUp.Category
     $categoryDiv.append($deleteButton)
 
   attachSorted: ->
-    $categoryDivs = $('[data-category-id]')
+    $categoryTitles = $('.category-title')
+    $allCategoryDivs = $('[data-category-id]')
+    inserted = false
     textValue = (index) ->
-      $categoryDivs.eq(index).text()
-    for index in $categoryDivs.length
-      debugger
+      $categoryTitles.eq(index).text()
+    for index in [0..$categoryTitles.length]
       if textValue(index) > this.title
-        $categoryDivs.eq(index).before(this.renderNode())
+        $allCategoryDivs.eq(index).before(this.renderNode())
+        inserted = true
+        break
+    $allCategoryDivs.last().after(this.renderNode()) unless inserted
 
 # This is for debugging
 window.req = ->

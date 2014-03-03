@@ -1,7 +1,7 @@
 <div id="all-categories">
   <% @categories.each do |category| %>
     <div data-category-id="<%= category.id %>">
-      <p><%= category.title %></p>
+      <p class="category-title"><%= category.title %></p>
       <button class="delete-category-btn">Delete Category</button>
       <ul>
         <% category.tags.each do |tag| %>
