@@ -1,0 +1,25 @@
+<h1>Events</h1>
+<ul>
+<% @categories.each do |category| %>
+  <li><%= category.title %>
+  <% category.tags.each do |tag| %>
+    <p><%= tag.name %></p>
+  <% end %>
+  </li>
+<% end %>
+</ul>
+
+<table>
+<% if @events %>
+  <% @events.each do |event| %>
+    <tr>
+      <th>Event Name</th>
+      <th>Event Time</th>
+    </tr>
+    <tr>
+      <td><%= event.tag.name %></td>
+      <td><%= event.duration %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
