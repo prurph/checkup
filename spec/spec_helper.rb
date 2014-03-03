@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rspec'
 require 'capybara/poltergeist'
 
 Capybara.javascript_driver = :poltergeist
@@ -13,6 +14,8 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 FactoryGirl.lint # Make sure the default values for all our factories are valid
 
 RSpec.configure do |config|
+  config.color_enabled = true
+  config.formatter = :documentation
   config.include FactoryGirl::Syntax::Methods
   config.include SessionHelpers
   config.order = 'random'

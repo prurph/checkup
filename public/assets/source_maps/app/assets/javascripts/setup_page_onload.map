@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "",
+  "sourceRoot": "",
+  "sources": [
+    "/assets/source_maps/app/assets/javascripts/setup_page_onload.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;AAAA,EAAA,CAAA,CAAG,SAAA,GAAA;AACD,IAAA,CAAA,CAAE,sBAAF,CAAyB,CAAC,KAA1B,CAAgC,OAAO,CAAC,QAAQ,CAAC,gBAAjD,CAAA,CAAA;WACA,CAAA,CAAE,oBAAF,CAAuB,CAAC,KAAxB,CAA8B,OAAO,CAAC,QAAQ,CAAC,uBAA/C,EAFC;EAAA,CAAH,CAAA,CAAA;AAAA"
+}

@@ -4,8 +4,8 @@ feature 'User views Routine page' do
 	background do
 		user = create(:user)
 		category = create(:category, user: user)
+		create(:tag, name: "tag_can_not_show", category: category)
 		3.times do |i|
-			create(:tag, name: "tag_can_not_show", category: category)
 			create(:tag, routine: i+1, name: "tag_#{i+1}", category: category)
 		end
 		sign_in_as(user)

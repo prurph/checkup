@@ -2,6 +2,6 @@
 
 <ul style="list-style-type: none">
   <% @active_sort_tags.each do |tag| %>
-    <li><%= tag.name %></li>
+    <li class='tags' id="<%=tag.id%>"><%= tag.name %></li>
   <% end %>
 </ul>
