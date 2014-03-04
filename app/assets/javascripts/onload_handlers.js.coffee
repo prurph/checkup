@@ -9,4 +9,6 @@ $( ->
     console.log("Run AJAX function to render event data")
   else if $('body').attr('data-action') == 'routines_page'
     $('#routines-list').click(CheckUp.Routine.routineClicked)
+    # Tack on any saved timers
+    CheckUp.Routine.appendTimers()
 )

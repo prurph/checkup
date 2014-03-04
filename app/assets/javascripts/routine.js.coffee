@@ -1,4 +1,13 @@
 class CheckUp.Routine
+  # This stores displayed timers as tagId(int): timerText
+  window.localStorage.displayedTimers ||= ""
+  @DISPLAYED_TIMERS = JSON.parse(window.localStorage.displayedTimers) || {}
+  @appendTimers: ->
+    unless new Date().getDate == this.DISPLAYED_TIMERS.updatedDate
+      for tagId, timerText of this.DISPLAYED_TIMERS
+        $tagTimer = $("[data-routine-tag-id='#{tagId}']").find('.timer')
+        $tagTimer.text(timerText)
+
   @tagEventRequest: (attrs={}, callback) ->
     $.ajax(
       url: '/routines/tag_event/'
@@ -17,11 +26,11 @@ class CheckUp.Routine
   @routineClicked: (event) ->
     $tagClicked  = $(event.target).parents("[data-routine-tag-id]")
     tagClickedId = $tagClicked.attr("data-routine-tag-id")
-    CheckUp.Routine.toggleTimer $tagClicked
+    CheckUp.Routine.toggleTimer($tagClicked, tagClickedId)
     CheckUp.Routine.tagEventRequest
       id: tagClickedId
 
-  @toggleTimer: ($tagClicked) ->
+  @toggleTimer: ($tagClicked, tagClickedId) ->
     $timer  = $tagClicked.find('.timer')
     $activeTimer = $('[data-timer-id]')
     stringToMin = (timerText) ->
@@ -46,7 +55,10 @@ class CheckUp.Routine
       $timer.addClass('active-tag')
 
       tickTock = setInterval ->
-        startTime += 10
+        startTime += 1
         $timer.text minToString(startTime)
+        CheckUp.Routine.DISPLAYED_TIMERS[tagClickedId] = minToString(startTime)
+        window.localStorage.displayedTimers =
+          JSON.stringify(CheckUp.Routine.DISPLAYED_TIMERS)
       ,60000 # increment by minutes
       $timer.attr('data-timer-id', tickTock)
