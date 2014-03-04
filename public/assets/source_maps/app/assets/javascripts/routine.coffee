@@ -9,8 +9,9 @@ class CheckUp.Routine
     $activeTimer = $('[data-timer-id]')
     stringToMin = (timerText) ->
       matches = timerText.match(/(\d+)/g) || [0]
-      minutes = if matches.length is 2 then (matches[0] * 60 + matches[1]) else
-        matches[0]
+      minutes = if matches.length is 2
+      then parseInt(matches[0] * 60) + parseInt(matches[1])
+      else matches[0]
     minToString = (startTime) ->
       hours = Math.floor (startTime / 60)
       minutes = startTime % 60
@@ -24,11 +25,12 @@ class CheckUp.Routine
     # a different tag
     unless $activeTimer[0] == $timer[0]
       startTime = parseInt (stringToMin $timer.text()) || 0
+      console.log(startTime)
       $timer.text minToString(startTime)
       $timer.addClass('active-tag')
 
       tickTock = setInterval ->
-        startTime += 1
+        startTime += 10
         $timer.text minToString(startTime)
-      , 60000 # increment by minutes
+      , 100 # increment by minutes
       $timer.attr('data-timer-id', tickTock)

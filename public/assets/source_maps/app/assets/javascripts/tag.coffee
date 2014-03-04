@@ -27,7 +27,7 @@ class CheckUp.Tag
       .fail (error) ->
         console.log(error)
 
-  @routineClicked: ->
+  @routineClicked: (event) ->
     event.preventDefault()
     if $(event.target).hasClass('routine-remove-tag-btn')
       CheckUp.Tag.removeFromRoutine $(event.target)
