@@ -8,7 +8,9 @@ class Tag < ActiveRecord::Base
   delegate :color, to: :category
 
   def self.handleRoutine(tag_to_be_active, tag_now_active, event_now_active, event_to_be_active)
-    if tag_to_be_active != tag_now_active && event_now_active.present?
+    if tag_to_be_active == tag_now_active
+      pause
+    elsif event_now_active.present?
       # de-event the active tag
       tag_now_active.current_event_id = -1
       tag_now_active.save!
@@ -18,9 +20,7 @@ class Tag < ActiveRecord::Base
       event_now_active.duration = Event.time_convert_to_min(tag_now_active.updated_at - event_now_active.created_at)
       event_now_active.updated_at = tag_now_active.updated_at
       event_now_active.save!
-    end
-
-    if tag_to_be_active != tag_now_active
+    else 
       event_to_be_active = Event.create(tag: tag_to_be_active)
       # active the to-be-active tag
       tag_to_be_active.current_event_id = event_to_be_active.id

@@ -10,6 +10,7 @@ class CheckUp.Event
         view_end: end
       ).done (response) ->
       CheckUp.Event.renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
+
   @dateClick: ->
     CheckUp.Event.getEventRequest(startTime, endTime)
 
@@ -36,7 +37,6 @@ class CheckUp.Event
       $(".category-#{i}").html("#{category} Time: #{categoryTime} minutes in #{duration} minutes, percentage: #{((categoryTime / duration) * 100).toFixed(2)}%" + $(".category-1").html())
       categoryTime = 0
       i++
-      debugger
     $('#category-time').append("<li>Untracked Time: #{duration - timeAllCategory} minutes, percentage: #{(((duration - timeAllCategory) / duration) * 100).toFixed(2)}%</li>")
 
 
@@ -46,8 +46,6 @@ class CheckUp.Event
   @renderEventTime: (tagArray, category, tag) ->
     for eventArray in tagArray
       $(".#{category}_#{tag}").append("<li>From #{eventArray[0]} To #{eventArray[1]}, duration is #{eventArray[2]} </li>")
-
-
 
 
 
