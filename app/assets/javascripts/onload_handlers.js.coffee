@@ -8,5 +8,5 @@ $( ->
   else if $('body').attr('data-action') == 'events_page'
     console.log("Run AJAX function to render event data")
   else if $('body').attr('data-action') == 'routines_page'
-    $('#routines-list').click(CheckUp.Event.routineClicked)
+    $('#routines-list').click(CheckUp.Routine.routineClicked)
 )
