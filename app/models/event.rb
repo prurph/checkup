@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
     events.each do |event|
       if event.duration != 0
         tag_with_id = "#{event.tag.name}_#{event.tag.id}"
-        events_time_tag_structure[tag_with_id] = [] if !events_time_tag_structure.present?
+        events_time_tag_structure[tag_with_id] = [] if !events_time_tag_structure[tag_with_id].present?
         events_time_tag_structure[tag_with_id] << [event.created_at, event.updated_at, Event.event_handler(event, view_start, view_end)]
       end
     end
@@ -26,11 +26,10 @@ class Event < ActiveRecord::Base
     # find the create time, end time(which is equal to update time) of the specific event
     create_time = event.created_at
     end_time = event.updated_at
-    create_time_date_format = create_time.strftime("%B %d, %Y")
-    end_time_date_format = end_time.strftime("%B %d, %Y")
-    view_start_date_format = view_start.strftime("%B %d, %Y")
-    view_end_date_format = view_end.strftime("%B %d, %Y")
-
+    create_time_date_format = create_time.strftime("%B %d, %Y").to_date
+    end_time_date_format = end_time.strftime("%B %d, %Y").to_date
+    view_start_date_format = view_start.strftime("%B %d, %Y").to_date
+    view_end_date_format = view_end.strftime("%B %d, %Y").to_date
     # starting handle the event time, check if event span muliple days
     if create_time_date_format >= view_start_date_format && end_time_date_format <= view_end_date_format
       return Event.time_convert_to_min(end_time - create_time)
@@ -43,28 +42,28 @@ class Event < ActiveRecord::Base
     end
   end
 
-  # get the time value of each Category
-  def self.time_each_category(events_time_structure, category)
-    time = 0
-    events_time_structure[category].each do |tag, array|
-      array.each do |array_val|
-        time += array_val[2]
-      end
-    end
-    time
-  end
-
-  # get the time value of each tag
-  def self.time_each_tag(events_time_structure, category, tag)
-    time = 0
-    events_time_structure[category][tag].each do |array|
-      time += array[2]
-    end
-    time
-  end
-
   # define method convert sec to min
   def self.time_convert_to_min(time)
     (time / 60).to_i
   end
+
+  # # get the time value of each Category
+  # def self.time_each_category(events_time_structure, category)
+  #   time = 0
+  #   events_time_structure[category].each do |tag, array|
+  #     array.each do |array_val|
+  #       time += array_val[2]
+  #     end
+  #   end
+  #   time
+  # end
+
+  # # get the time value of each tag
+  # def self.time_each_tag(events_time_structure, category, tag)
+  #   time = 0
+  #   events_time_structure[category][tag].each do |array|
+  #     time += array[2]
+  #   end
+  #   time
+  # end
 end

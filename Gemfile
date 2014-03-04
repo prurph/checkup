@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'bootstrap-sass'
 gem 'flat-ui-rails'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'pry-rails'

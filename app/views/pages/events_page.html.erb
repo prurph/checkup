@@ -1,34 +1,9 @@
 <h1>Events</h1>
-<ul>
-<% @categories.each do |category| %>
-  <li><%= category.title %>
-  Time consuming for category: <%= Event.time_each_category(@events_time_structure, category.title) %>
-  
-  <% category.tags.each do |tag| %>
-    <p><%= tag.name %></p>
 
-    Time consuming for tag: <%= Event.time_each_tag(@events_time_structure, category.title, tag.name) %>
-    <ol>You in Category <%= category.title %> in Tag <%= tag.name %> 
-      <% @events_time_structure[category.title][tag.name].each do |array| %>
-        <li>From <%= array[0] %> To <%= array[1] %> this <%= array[2] %> minutes you are doing this stuff</li>
-      <% end %>
-    </ol>
-  <% end %>
-  </li>
-<% end %>
+<ul id='category-time'>
+  <li class='category-1'><ul class='category-1-tag'></ul></li>
+  <li calss='category-2'><ul class='category-2-tag'></ul></li>
+  <li class='category-3'><ul class='category-3-tag'></ul></li>
+  <li class='category-4'><ul class='category-4-tag'></ul></li>
+
 </ul>
-
-<table>
-<% if @events %>
-  <% @events.each do |event| %>
-    <tr>
-      <th>Event Name</th>
-      <th>Event Time</th>
-    </tr>
-    <tr>
-      <td><%= event.tag.name %></td>
-      <td><%= event.duration %></td>
-    </tr>
-  <% end %>
-<% end %>
-</table>

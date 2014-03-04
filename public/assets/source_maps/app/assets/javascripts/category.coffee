@@ -20,13 +20,26 @@ class CheckUp.Category
       .fail (error) ->
         console.log(error)
 
+  @categoryClicked: (event) ->
+    event.preventDefault()
+    if $(event.target).hasClass('delete-category-btn')
+      CheckUp.Category.deactivateCategory $(this)
+    else if $(event.target).hasClass('add-tag-btn')
+      CheckUp.Tag.createTag $(this) # This is the category node to add to
+    else if $(event.target).hasClass('delete-tag-btn')
+      CheckUp.Tag.deactivateTag $(event.target)
+    else if $(event.target).hasClass('routine-add-tag-btn')
+      CheckUp.Tag.addToRoutine $(event.target)
+    return false;
+
   # This makes a request to update the category to active: false
   # It currently does nothing to deactivate the relevant tags
-  @deactivateCategoryClick: ->
-    categoryId = $(this).attr("data-category-id")
+  @deactivateCategory: ($categoryNode) ->
+    categoryId = $categoryNode.attr("data-category-id")
     callback = (response) -> $("[data-category-id='#{response.id}']").remove()
-
-    if $(event.target).hasClass('delete-category-btn')
+    oneCategoryLeft = ->
+      $('[data-category-id]').length == 1
+    unless oneCategoryLeft()
       CheckUp.Category.categoryRequest
         id: categoryId
         active: false,
@@ -34,49 +47,63 @@ class CheckUp.Category
         callback
 
   @newCategoryClick: ->
+    event.preventDefault
     $categoryNameForm = $('#new-category-name')
+    $allCategoryDivs  = $('[data-category-id]')
+
     callback = (response) ->
       newCategory = new CheckUp.Category(response)
-      #$categoryDivs = $('[data-category-id]')
-      #$categoryDivs.append newCategory.renderNode()
       newCategory.attachSorted()
 
-    unless $categoryNameForm.val().length <= 3 # Don't submit names < 3 chars
+    # Don't even send the AJAX request if the name is < 3 characters or 5 cats
+    # already exist
+    # Put an error handler in here later
+    isCategoryValid = ($form, $existingCategories) ->
+      $form.val().length >= 3 and $existingCategories.length < 5
+
+    if isCategoryValid($categoryNameForm, $allCategoryDivs)
       CheckUp.Category.categoryRequest
         title: $categoryNameForm.val(),
         'POST',
         callback
       $categoryNameForm.val("")
+    return false;
 
   # Use this to render a category node from a CheckUpCategory instance
   renderNode: ->
     $categoryDiv  = $('<div/>',
       'data-category-id': this.id
-      html: "<p>#{this.title}</p>"
+      html: "<p class='category-title'>#{this.title}</p>"
       )
     $deleteButton = $('<button/>',
-      class: "delete-category-btn"
-      text: "Delete Category"
+      class: 'btn delete-category-btn'
+      text: 'Delete Category'
       )
-    $categoryDiv.append($deleteButton)
+    $addTagButton = $('<button/>',
+      class: 'btn add-tag-btn'
+      text: 'Add Tag'
+      )
+    $addTagForm = $('<input>',
+      type: 'text'
+      class: 'new-tag-name'
+      placeholder: 'Name'
+      )
+    $tagList = $('<ul/>',
+      class: "category-tag-list"
+      )
+    $categoryDiv.append($deleteButton).append($addTagForm)
+    $categoryDiv.append($addTagButton).append($tagList)
+    $categoryDiv.click(CheckUp.Category.categoryClicked.bind($categoryDiv))
 
   attachSorted: ->
-    $categoryDivs = $('[data-category-id]')
+    $categoryTitles = $('.category-title')
+    $allCategoryDivs = $('[data-category-id]')
+    inserted = false
     textValue = (index) ->
-      $categoryDivs.eq(index).text()
-    for index in $categoryDivs.length
-      debugger
+      $categoryTitles.eq(index).text()
+    for index in [0..$categoryTitles.length]
       if textValue(index) > this.title
-        $categoryDivs.eq(index).before(this.renderNode())
-
-# This is for debugging
-window.req = ->
-  $.ajax(
-    url: '/setup'
-    type: 'GET'
-    dataType: 'json'
-    ).done (response) ->
-      debugger
-      window.prescott = new CheckUp.Category(response.categories[0])
-
-
+        $allCategoryDivs.eq(index).before(this.renderNode())
+        inserted = true
+        break
+    $allCategoryDivs.last().after(this.renderNode()) unless inserted

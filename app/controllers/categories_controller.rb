@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 
   def update
     category = Category.find(params[:category][:id])
-    category.update(category_params)
+    category.update!(category_params)
     render json: category
   end
 
