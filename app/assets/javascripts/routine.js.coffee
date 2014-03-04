@@ -82,5 +82,6 @@ class CheckUp.Routine
         CheckUp.Routine.DISPLAYED_TIMERS.updatedAt = new Date().getDate()
         window.localStorage.displayedTimers =
           JSON.stringify(CheckUp.Routine.DISPLAYED_TIMERS)
-      ,1000 # increment by minutes
+        $timer.text minToString(startTime)
+      ,60000
       $timer.attr('data-timer-id', tickTock)

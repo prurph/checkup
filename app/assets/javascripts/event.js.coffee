@@ -3,7 +3,7 @@ class CheckUp.Event
   @getEventRequest: (start, end) ->
     $.ajax(
       url: "/events"
-      type: 'POST'
+      type: 'GET'
       dataType: 'json'
       data:
         view_start: start
@@ -12,7 +12,15 @@ class CheckUp.Event
       CheckUp.Event.renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
 
   @dateClick: ->
-    CheckUp.Event.getEventRequest(startTime, endTime)
+    CheckUp.Event.reloadInit()
+    timeArray = CheckUp.Event.getStartAndEndTime()
+    if timeArray.length == 2
+      start = timeArray[0].getTime()
+      end = timeArray[1].getTime()
+      CheckUp.Event.getEventRequest(start, end)
+    else
+      alert("You miss something!")
+    CheckUp.Event.categoryListEmpty()
 
   @renderCategoryTime: (structure, start, end) ->
     categoryTime = 0
@@ -23,6 +31,7 @@ class CheckUp.Event
     endTime = new Date(end * 1000)
     timeDiff = endTime.getTime() - startTime.getTime()
     duration = Math.floor(timeDiff / (1000 * 60))
+    $('#category-time').before("<span>Time period: from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}</span><br><span>Duration is: #{Math.ceil(duration / (60 * 24))} days...</span>")
     for category, tagObject of structure
       i = 1
       for tag, tagArray of tagObject
@@ -45,16 +54,48 @@ class CheckUp.Event
     0
   @renderEventTime: (tagArray, category, tag) ->
     for eventArray in tagArray
-      $(".#{category}_#{tag}").append("<li>From #{eventArray[0]} To #{eventArray[1]}, duration is #{eventArray[2]} </li>")
+      time = new Date(eventArray[0])
+      $(".#{category}_#{tag}").append("<li>From #{CheckUp.Event.renderTimeformat(time)} , duration is #{eventArray[2]} minutes </li>")
 
+  @renderTimeformat: (time) ->
+    timeStr = time.toString()
+    timeStr.split("GMT")[0]
 
+  @reloadInit: ->
+    $(".user-data span").remove()
+    $(".user-data br").remove()
+    $("#category-time").empty()
+    $("#category-time").append("<li class='category-1'><ul class='category-1-tag'></ul></li>")
+    $("#category-time").append("<li class='category-2'><ul class='category-2-tag'></ul></li>")
+    $("#category-time").append("<li class='category-3'><ul class='category-3-tag'></ul></li>")
+    $("#category-time").append("<li class='category-4'><ul class='category-4-tag'></ul></li>")
+
+  @categoryListEmpty: ->
+    $("#end-event-input").val("")
+    $("#start-event-input").val("")
+
+  @getStartAndEndTime: ->
+    timeArray = []
+    month = ["Zero", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    startInput = $("#start-event-input").val()
+    endInput = $("#end-event-input").val()
+    if startInput != "" && endInput != ""
+      dateArrayStart = startInput.split('/')
+      dateArrayEnd = endInput.split('/')
+      dateStart = "#{month[parseInt(dateArrayStart[0])]} #{dateArrayStart[1]}, #{dateArrayStart[2]} 00:00:00"
+      dateEnd = "#{month[parseInt(dateArrayEnd[0])]} #{dateArrayEnd[1]}, #{dateArrayEnd[2]} 00:00:00"
+      endTime = new Date(dateEnd)
+      startTime = new Date(dateStart)
+      timeArray.push startTime
+      timeArray.push endTime
+    timeArray
 
   # debugging window request
 window.req = ->
-  time = new Date("March 1, 2014 12:00:00")
-  time2 = new Date("October 13, 2013 11:13:00")
-  end = time.getTime()
-  start = time2.getTime()
+  endTime = new Date("March 4, 2014 11:00:00")
+  startTime = new Date("March 1, 2014 11:13:00")
+  end = endTime.getTime()
+  start = startTime.getTime()
   $.ajax(
     url: '/events'
     type: 'GET'
