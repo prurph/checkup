@@ -1,8 +1,8 @@
 class TagsController < ApplicationController
 
-  def set
+  def tag_event
     # find the now active tag and the user click tag
-    tag_to_be_active = Tag.find(params[:id])
+    tag_to_be_active = Tag.find(tag_params[:id])
     tag_now_active = Tag.where('current_event_id <> -1').first
 
     # find the active event
@@ -12,6 +12,8 @@ class TagsController < ApplicationController
     # check if user click the current active event and if this is the first event user click
     event_to_be_active = Tag.handleRoutine(tag_to_be_active, tag_now_active, event_now_active, event_to_be_active)
 
+    # If user clicked to stop current event only, event_now_active is actually
+    # the paused event
     render json: (event_to_be_active.present?) ? event_to_be_active : event_now_active
   end
 

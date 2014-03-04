@@ -1,8 +1,25 @@
 class CheckUp.Routine
+  @tagEventRequest: (attrs={}, callback) ->
+    $.ajax(
+      url: '/routines/tag_event/'
+      type: 'POST'
+      dataType: 'json'
+      data:
+        tag: attrs
+      )
+      .done (response) ->
+        if callback
+          callback(response)
+        console.log(response)
+      .fail (error) ->
+        console.log(error)
+
   @routineClicked: (event) ->
     $tagClicked  = $(event.target).parents("[data-routine-tag-id]")
     tagClickedId = $tagClicked.attr("data-routine-tag-id")
     CheckUp.Routine.toggleTimer $tagClicked
+    CheckUp.Routine.tagEventRequest
+      id: tagClickedId
 
   @toggleTimer: ($tagClicked) ->
     $timer  = $tagClicked.find('.timer')
@@ -25,7 +42,6 @@ class CheckUp.Routine
     # a different tag
     unless $activeTimer[0] == $timer[0]
       startTime = parseInt (stringToMin $timer.text()) || 0
-      console.log(startTime)
       $timer.text minToString(startTime)
       $timer.addClass('active-tag')
 
