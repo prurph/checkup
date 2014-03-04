@@ -11,7 +11,7 @@ class CheckUp.Routine
         debugger
         if tagCurrentEventId == -1
           $tagTimer.text(timerText)
-        else
+        #else
           $tagTimer.text()
 
   @tagEventRequest: (attrs={}, type, callback) ->
@@ -76,16 +76,12 @@ class CheckUp.Routine
 
       tickTock = setInterval ->
         startTime += 1
-<<<<<<< HEAD
         $timer.text CheckUp.Routine.minToString(startTime)
         CheckUp.Routine.DISPLAYED_TIMERS[tagClickedId] =
           CheckUp.Routine.minToString(startTime)
         CheckUp.Routine.DISPLAYED_TIMERS.updatedAt = new Date().getDate()
         window.localStorage.displayedTimers =
           JSON.stringify(CheckUp.Routine.DISPLAYED_TIMERS)
-      ,1000 # increment by minutes
-=======
         $timer.text minToString(startTime)
-      ,60000 # increment by minutes
->>>>>>> 3069592a29d21ad49bcc48949970fac349ccdbf8
+      ,60000
       $timer.attr('data-timer-id', tickTock)

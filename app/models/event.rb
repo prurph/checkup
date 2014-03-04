@@ -26,16 +26,12 @@ class Event < ActiveRecord::Base
     # find the create time, end time(which is equal to update time) of the specific event
     create_time = event.created_at
     end_time = event.updated_at
-    create_time_date_format = create_time.strftime("%B %d, %Y").to_date
-    end_time_date_format = end_time.strftime("%B %d, %Y").to_date
-    view_start_date_format = view_start.strftime("%B %d, %Y").to_date
-    view_end_date_format = view_end.strftime("%B %d, %Y").to_date
     # starting handle the event time, check if event span muliple days
-    if create_time_date_format >= view_start_date_format && end_time_date_format <= view_end_date_format
+    if create_time >= view_start && end_time <= view_end
       return Event.time_convert_to_min(end_time - create_time)
-    elsif create_time_date_format < view_start_date_format && end_time_date_format <= view_end_date_format
+    elsif create_time < view_start && end_time <= view_end
       return Event.time_convert_to_min(end_time - view_start)
-    elsif create_time_date_format >= view_start_date_format && end_time_date_format > view_end_date_format
+    elsif create_time >= view_start && end_time > view_end
       return Event.time_convert_to_min(view_end - create_time)
     else
       return Event.time_convert_to_min(view_end - view_start)
@@ -46,24 +42,4 @@ class Event < ActiveRecord::Base
   def self.time_convert_to_min(time)
     (time / 60).to_i
   end
-
-  # # get the time value of each Category
-  # def self.time_each_category(events_time_structure, category)
-  #   time = 0
-  #   events_time_structure[category].each do |tag, array|
-  #     array.each do |array_val|
-  #       time += array_val[2]
-  #     end
-  #   end
-  #   time
-  # end
-
-  # # get the time value of each tag
-  # def self.time_each_tag(events_time_structure, category, tag)
-  #   time = 0
-  #   events_time_structure[category][tag].each do |array|
-  #     time += array[2]
-  #   end
-  #   time
-  # end
 end

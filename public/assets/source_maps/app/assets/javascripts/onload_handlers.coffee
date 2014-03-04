@@ -11,11 +11,7 @@ $( ->
 
   else if $('body').attr('data-action') == 'routines_page'
     $('#routines-list').click(CheckUp.Routine.routineClicked)
-<<<<<<< HEAD
     # Append any active timers from today
     CheckUp.Routine.appendTimers()
-=======
-
   $('#category-time-show').click(CheckUp.Event.dateClick)
->>>>>>> 3069592a29d21ad49bcc48949970fac349ccdbf8
 )
