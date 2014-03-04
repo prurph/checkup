@@ -1,10 +1,11 @@
 class CheckUp.Routine
   # This stores displayed timers as tagId(int): timerText
-  window.localStorage.displayedTimers ||= ""
-  @DISPLAYED_TIMERS = JSON.parse(window.localStorage.displayedTimers) || {}
   @appendTimers: ->
-    unless new Date().getDate == this.DISPLAYED_TIMERS.updatedDate
-      for tagId, timerText of this.DISPLAYED_TIMERS
+    CheckUp.Routine.DISPLAYED_TIMERS =
+      JSON.parse(window.localStorage.displayedTimers) || {updatedAt: "0"}
+    # See if the cached timers are from today, and if so append them
+    if new Date().getDate() == (CheckUp.Routine.DISPLAYED_TIMERS.updatedAt)
+      for tagId, timerText of CheckUp.Routine.DISPLAYED_TIMERS
         $tagTimer = $("[data-routine-tag-id='#{tagId}']").find('.timer')
         $tagTimer.text(timerText)
 
@@ -19,7 +20,6 @@ class CheckUp.Routine
       .done (response) ->
         if callback
           callback(response)
-        console.log(response)
       .fail (error) ->
         console.log(error)
 
@@ -28,7 +28,9 @@ class CheckUp.Routine
     tagClickedId = $tagClicked.attr("data-routine-tag-id")
     CheckUp.Routine.toggleTimer($tagClicked, tagClickedId)
     CheckUp.Routine.tagEventRequest
-      id: tagClickedId
+      id: tagClickedId,
+      # Check to see if it's a new day and append timers any time request sent
+      callback: CheckUp.Routine.appendTimers
 
   @toggleTimer: ($tagClicked, tagClickedId) ->
     $timer  = $tagClicked.find('.timer')
@@ -58,7 +60,9 @@ class CheckUp.Routine
         startTime += 1
         $timer.text minToString(startTime)
         CheckUp.Routine.DISPLAYED_TIMERS[tagClickedId] = minToString(startTime)
+        CheckUp.Routine.DISPLAYED_TIMERS.updatedAt = new Date().getDate()
+
         window.localStorage.displayedTimers =
           JSON.stringify(CheckUp.Routine.DISPLAYED_TIMERS)
-      ,60000 # increment by minutes
+      ,1000 # increment by minutes
       $timer.attr('data-timer-id', tickTock)

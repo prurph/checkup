@@ -1,0 +1,28 @@
+<div class="input-group date">
+  <input type="text" class="form-control" id="datepicker-from">
+  <span class="input-group-addon">
+    <i class="glyphicon glyphicon-th"></i>
+  </span>
+</div>
+<div class="input-group date">
+  <input type="text" class="form-control" id="datepicker-to">
+  <span class="input-group-addon">
+    <i class="glyphicon glyphicon-th"></i>
+  </span>
+</div>
+<script>
+  var yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1)
+  $('.input-group.date').datepicker({
+    startDate: "01-01-2014",
+    endDate: yesterday,
+    autoclose: true
+  });
+</script>
+
+
+<!-- <div class="input-daterange input-group" id="datepicker">
+  <input id="from-date" type="text" class="input-sm form-control" name="start" />
+  <span class="input-group-addon">to</span>
+  <input id="to-date" type="text" class="input-sm form-control" name="end" />
+</div> -->

@@ -6,9 +6,10 @@ $( ->
     $(".sortable").sortable()
     $(".sortable").disableSelection()
   else if $('body').attr('data-action') == 'events_page'
-    console.log("Run AJAX function to render event data")
+
+
   else if $('body').attr('data-action') == 'routines_page'
     $('#routines-list').click(CheckUp.Routine.routineClicked)
-    # Tack on any saved timers
+    # Append any active timers from today
     CheckUp.Routine.appendTimers()
 )
