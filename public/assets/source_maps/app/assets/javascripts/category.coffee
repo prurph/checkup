@@ -103,5 +103,3 @@ class CheckUp.Category
         inserted = true
         break
     $allCategoryDivs.last().after(this.renderNode()) unless inserted
-
-

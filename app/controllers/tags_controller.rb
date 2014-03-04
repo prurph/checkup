@@ -41,10 +41,21 @@ class TagsController < ApplicationController
     render json: tag
   end
 
+  def save_routine
+    tag_ids_ordered_by_routine = routine_params
+    tag_ids_ordered_by_routine.each_with_index do |tag_id, routine_value|
+      Tag.find(tag_id).update(routine: routine_value)
+    end
+    render json: { status: "Routine updated" }
+  end
+
   private
   def tag_params
     params.require(:tag).permit(:id, :category_id, :active, :routine, :name,
       :current_event_id)
+  end
+  def routine_params
+    params.require(:tag_ids_ordered_by_routine)
   end
 
 end

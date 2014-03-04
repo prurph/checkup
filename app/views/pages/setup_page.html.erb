@@ -28,7 +28,8 @@
   <ul>
     <% @tags.each do |tag| %>
       <% unless tag.routine == -1 %>
-        <li data-routine-tag-id="<%= tag.id %>">
+        <li data-routine-tag-id="<%= tag.id %>"
+        data-routine-category-id="<%= tag.category.id %>">
           <p class="routine-tag-title"><%= tag.name %></p>
           <button class="routine-remove-tag-btn">Remove from Routine</button>
         </li>
