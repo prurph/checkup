@@ -12,9 +12,9 @@
             <% if tag.active %>
               <li data-tag-id="<%= tag.id %>">
                 <p class="tag-title"><%= tag.name %></p>
-                <button class="delete-tag-btn">Delete Tag</button>
+                <button class="btn delete-tag-btn">Delete Tag</button>
                 <% if tag.routine == -1 %>
-                  <button class="routine-add-tag-btn">Add to Routine</button>
+                  <button class="btn routine-add-tag-btn">Add to Routine</button>
                 <% end %>
               </li>
             <% end %>

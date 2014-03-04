@@ -14,7 +14,7 @@ class CheckUp.Routine
     minToString = (startTime) ->
       hours = Math.floor (startTime / 60)
       minutes = startTime % 60
-      return if hours > 0 then "#{hours} hr #{minutes} min" else
+      if hours > 0 then "#{hours} hr #{minutes} min" else
         "#{minutes} min"
 
     clearTimeout $activeTimer.attr('data-timer-id')

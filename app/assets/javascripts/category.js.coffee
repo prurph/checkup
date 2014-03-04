@@ -20,7 +20,8 @@ class CheckUp.Category
       .fail (error) ->
         console.log(error)
 
-  @categoryClicked: ->
+  @categoryClicked: (event) ->
+    event.preventDefault()
     if $(event.target).hasClass('delete-category-btn')
       CheckUp.Category.deactivateCategory $(this)
     else if $(event.target).hasClass('add-tag-btn')
@@ -29,6 +30,7 @@ class CheckUp.Category
       CheckUp.Tag.deactivateTag $(event.target)
     else if $(event.target).hasClass('routine-add-tag-btn')
       CheckUp.Tag.addToRoutine $(event.target)
+    return false;
 
   # This makes a request to update the category to active: false
   # It currently does nothing to deactivate the relevant tags
@@ -45,6 +47,7 @@ class CheckUp.Category
         callback
 
   @newCategoryClick: ->
+    event.preventDefault
     $categoryNameForm = $('#new-category-name')
     $allCategoryDivs  = $('[data-category-id]')
 
@@ -64,6 +67,7 @@ class CheckUp.Category
         'POST',
         callback
       $categoryNameForm.val("")
+    return false;
 
   # Use this to render a category node from a CheckUpCategory instance
   renderNode: ->
@@ -72,11 +76,11 @@ class CheckUp.Category
       html: "<p class='category-title'>#{this.title}</p>"
       )
     $deleteButton = $('<button/>',
-      class: 'delete-category-btn'
+      class: 'btn delete-category-btn'
       text: 'Delete Category'
       )
     $addTagButton = $('<button/>',
-      class: 'add-tag-btn'
+      class: 'btn add-tag-btn'
       text: 'Add Tag'
       )
     $addTagForm = $('<input>',

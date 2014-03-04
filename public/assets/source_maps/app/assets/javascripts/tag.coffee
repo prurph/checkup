@@ -28,8 +28,10 @@ class CheckUp.Tag
         console.log(error)
 
   @routineClicked: ->
+    event.preventDefault()
     if $(event.target).hasClass('routine-remove-tag-btn')
       CheckUp.Tag.removeFromRoutine $(event.target)
+      return false
 
   @deactivateTag: ($eventTarget) ->
     # Find the tag list item based on the click target
@@ -84,7 +86,7 @@ class CheckUp.Tag
     tagId = $tagLi.attr('data-routine-tag-id')
     # Refactor the below if time it's repeated in attachToCategory
     $addRoutineButton = $('<button/>',
-      class: 'routine-add-tag-btn',
+      class: 'btn routine-add-tag-btn',
       text: 'Add to Routine'
     )
     callback = (response) ->
@@ -123,11 +125,11 @@ class CheckUp.Tag
       html: "<p class='tag-title'>#{this.name}</p>"
     )
     $deleteButton = $('<button/>',
-      class: 'delete-tag-btn'
+      class: 'btn delete-tag-btn'
       text: 'Delete Tag'
     )
     $addRoutineButton = $('<button/>',
-      class: 'routine-add-tag-btn'
+      class: 'btn routine-add-tag-btn'
       text: 'Add to Routine'
     )
     $tagLi.append($deleteButton).append($addRoutineButton)
@@ -160,7 +162,7 @@ class CheckUp.Tag
       html: "<p class='routine-tag-title'>#{this.name}</p>"
     )
     $removeButton = $('<button/>',
-      class: 'routine-remove-tag-btn'
+      class: 'btn routine-remove-tag-btn'
       text: 'Remove from Routine'
     )
     $tagLi.append($removeButton).appendTo($routineUl)
