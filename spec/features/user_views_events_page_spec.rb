@@ -30,19 +30,6 @@ feature 'User views Events page' do
   end
 
 
-  scenario 'page has categories' do
-    expect(page).to have_content "School"
-    expect(page).to have_content "Home"
-    expect(page).to have_content "Exercise"
-    expect(page).to_not have_content "Work"
-  end
-
-  scenario 'page has categories with tags' do
-    expect(page).to have_content @first_school_tag.name
-    expect(page).to have_content @first_home_tag.name
-    expect(page).to have_content @first_exercise_tag.name
-  end
-
   scenario 'page has categories with tags and events' do
     expect(@first_school_event.duration).to be_between(300, 28800)
     expect(@first_home_event.duration).to be_between(300, 28800)
