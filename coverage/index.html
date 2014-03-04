@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-03-04T16:09:16-05:00">2014-03-04T16:09:16-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-03-04T16:20:26-05:00">2014-03-04T16:20:26-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -103,7 +103,7 @@
       <tr>
         <td class="strong"><a href="#75eac2a3cdb529e24e78e8941cfc689dd94061e7" class="src_link" title="app/models/tag.rb">app/models/tag.rb</a></td>
         <td class="red strong">38.89 %</td>
-        <td>31</td>
+        <td>25</td>
         <td>18</td>
         <td>7</td>
         <td>11</td>
@@ -1291,124 +1291,88 @@
         <li class="missed" data-hits="0" data-linenumber="11">
           
           
-          <code class="ruby">    if tag_to_be_active != tag_now_active &amp;&amp; event_now_active.present?</code>
+          <code class="ruby">    if event_now_active.present?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
-          
-          
-          <code class="ruby">      # de-event the active tag</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="13">
+        <li class="missed" data-hits="0" data-linenumber="12">
           
           
           <code class="ruby">      tag_now_active.current_event_id = -1</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="14">
+        <li class="missed" data-hits="0" data-linenumber="13">
           
           
           <code class="ruby">      tag_now_active.save!</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="15">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="16">
-          
-          
-          <code class="ruby">      # set the duration of current event, this gives the minutes of time in event duration</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="17">
-          
-          
-          <code class="ruby">      # update the update time for event for handling the different day of event</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="18">
+        <li class="missed" data-hits="0" data-linenumber="14">
           
           
           <code class="ruby">      event_now_active.duration = Event.time_convert_to_min(tag_now_active.updated_at - event_now_active.created_at)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="19">
+        <li class="missed" data-hits="0" data-linenumber="15">
           
           
           <code class="ruby">      event_now_active.updated_at = tag_now_active.updated_at</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="20">
+        <li class="missed" data-hits="0" data-linenumber="16">
           
           
           <code class="ruby">      event_now_active.save!</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="missed" data-hits="0" data-linenumber="18">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    unless tag_to_be_active == tag_now_active</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="23">
-          
-          
-          <code class="ruby">    if tag_to_be_active != tag_now_active</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="24">
+        <li class="missed" data-hits="0" data-linenumber="19">
           
           
           <code class="ruby">      event_to_be_active = Event.create(tag: tag_to_be_active)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
-          
-          
-          <code class="ruby">      # active the to-be-active tag</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="26">
+        <li class="missed" data-hits="0" data-linenumber="20">
           
           
           <code class="ruby">      tag_to_be_active.current_event_id = event_to_be_active.id</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="27">
+        <li class="missed" data-hits="0" data-linenumber="21">
           
           
           <code class="ruby">      tag_to_be_active.save!</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="29">
+        <li class="missed" data-hits="0" data-linenumber="23">
           
           
           <code class="ruby">    event_to_be_active</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">end</code>

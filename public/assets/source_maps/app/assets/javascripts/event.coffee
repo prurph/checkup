@@ -89,3 +89,21 @@ class CheckUp.Event
       timeArray.push startTime
       timeArray.push endTime
     timeArray
+
+  # debugging window request
+window.req = ->
+  endTime = new Date("March 4, 2014 11:00:00")
+  startTime = new Date("March 1, 2014 11:13:00")
+  end = endTime.getTime()
+  start = startTime.getTime()
+  $.ajax(
+    url: '/events'
+    type: 'GET'
+    dataType: 'json'
+    data:
+        view_start: start
+        view_end: end
+    ).done (response) ->
+      debugger
+      CheckUp.Event.renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
+

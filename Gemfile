@@ -48,4 +48,4 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
