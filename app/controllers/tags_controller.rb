@@ -44,5 +44,4 @@ class TagsController < ApplicationController
   def routine_params
     params.require(:tag_ids_ordered_by_routine)
   end
-
 end
