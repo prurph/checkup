@@ -14,27 +14,27 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-03-04T11:48:56-05:00">2014-03-04T11:48:56-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-03-04T16:09:16-05:00">2014-03-04T16:09:16-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">82.3%</span></span>
+    (<span class="covered_percent"><span class="yellow">88.61%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.47
+         2.78
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>14</b> files in total.
-    <b>226</b> relevant lines. 
-    <span class="green"><b>186</b> lines covered</span> and
-    <span class="red"><b>40</b> lines missed </span>
+    <b>237</b> relevant lines. 
+    <span class="green"><b>210</b> lines covered</span> and
+    <span class="red"><b>27</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -87,17 +87,17 @@
         <td>14</td>
         <td>12</td>
         <td>2</td>
-        <td>9.9</td>
+        <td>11.4</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#fb3ac824e6740f4e0d619082a877b31a117b6395" class="src_link" title="app/models/event.rb">app/models/event.rb</a></td>
-        <td class="red strong">36.36 %</td>
-        <td>69</td>
-        <td>33</td>
-        <td>12</td>
+        <td class="red strong">72.41 %</td>
+        <td>65</td>
+        <td>29</td>
         <td>21</td>
-        <td>0.4</td>
+        <td>8</td>
+        <td>1.3</td>
       </tr>
       
       <tr>
@@ -107,7 +107,7 @@
         <td>18</td>
         <td>7</td>
         <td>11</td>
-        <td>3.5</td>
+        <td>3.8</td>
       </tr>
       
       <tr>
@@ -143,11 +143,11 @@
       <tr>
         <td class="strong"><a href="#52e8aa47a6fe0eceeb08bd8ce603537c1fa15b66" class="src_link" title="spec/models/event_spec.rb">spec/models/event_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>26</td>
-        <td>8</td>
-        <td>8</td>
+        <td>41</td>
+        <td>23</td>
+        <td>23</td>
         <td>0</td>
-        <td>1.4</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
@@ -177,7 +177,7 @@
         <td>11</td>
         <td>10</td>
         <td>1</td>
-        <td>5.3</td>
+        <td>6.4</td>
       </tr>
       
       <tr>
@@ -694,8 +694,8 @@
           <code class="ruby">  validates :title, uniqueness: { scope: [:user, :active] },</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="12">
-          <span class="hits">52</span>
+        <li class="covered" data-hits="62" data-linenumber="12">
+          <span class="hits">62</span>
           
           <code class="ruby">    unless: Proc.new { |category| !category.active }</code>
         </li>
@@ -748,8 +748,8 @@
           <code class="ruby">  def active=(value, time=Time.new)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="21">
-          <span class="hits">26</span>
+        <li class="covered" data-hits="30" data-linenumber="21">
+          <span class="hits">30</span>
           
           <code class="ruby">    if !value</code>
         </li>
@@ -778,14 +778,14 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="26">
-          <span class="hits">26</span>
+        <li class="covered" data-hits="30" data-linenumber="26">
+          <span class="hits">30</span>
           
           <code class="ruby">    self[:active] = value</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="27">
-          <span class="hits">26</span>
+        <li class="covered" data-hits="30" data-linenumber="27">
+          <span class="hits">30</span>
           
           <code class="ruby">    self.save</code>
         </li>
@@ -809,11 +809,11 @@
         <div class="source_table" id="fb3ac824e6740f4e0d619082a877b31a117b6395">
   <div class="header">
     <h3>app/models/event.rb</h3>
-    <h4><span class="red">36.36 %</span> covered</h4>
+    <h4><span class="red">72.41 %</span> covered</h4>
     <div>
-      <b>33</b> relevant lines. 
-      <span class="green"><b>12</b> lines covered</span> and
-      <span class="red"><b>21</b> lines missed.</span>
+      <b>29</b> relevant lines. 
+      <span class="green"><b>21</b> lines covered</span> and
+      <span class="red"><b>8</b> lines missed.</span>
     </div>
   </div>
   
@@ -976,259 +976,235 @@
           <code class="ruby">    # find the create time, end time(which is equal to update time) of the specific event</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="27">
-          
+        <li class="covered" data-hits="4" data-linenumber="27">
+          <span class="hits">4</span>
           
           <code class="ruby">    create_time = event.created_at</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="28">
-          
+        <li class="covered" data-hits="4" data-linenumber="28">
+          <span class="hits">4</span>
           
           <code class="ruby">    end_time = event.updated_at</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="29">
-          
-          
-          <code class="ruby">    create_time_date_format = create_time.strftime(&quot;%B %d, %Y&quot;).to_date</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="30">
-          
-          
-          <code class="ruby">    end_time_date_format = end_time.strftime(&quot;%B %d, %Y&quot;).to_date</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="31">
-          
-          
-          <code class="ruby">    view_start_date_format = view_start.strftime(&quot;%B %d, %Y&quot;).to_date</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="32">
-          
-          
-          <code class="ruby">    view_end_date_format = view_end.strftime(&quot;%B %d, %Y&quot;).to_date</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="33">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">    # starting handle the event time, check if event span muliple days</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="34">
+        <li class="covered" data-hits="4" data-linenumber="30">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">    if create_time_date_format &gt;= view_start_date_format &amp;&amp; end_time_date_format &lt;= view_end_date_format</code>
+          <code class="ruby">    if create_time &gt;= view_start &amp;&amp; end_time &lt;= view_end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="35">
-          
+        <li class="covered" data-hits="1" data-linenumber="31">
+          <span class="hits">1</span>
           
           <code class="ruby">      return Event.time_convert_to_min(end_time - create_time)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="36">
+        <li class="covered" data-hits="3" data-linenumber="32">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby">    elsif create_time_date_format &lt; view_start_date_format &amp;&amp; end_time_date_format &lt;= view_end_date_format</code>
+          <code class="ruby">    elsif create_time &lt; view_start &amp;&amp; end_time &lt;= view_end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="37">
-          
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
           
           <code class="ruby">      return Event.time_convert_to_min(end_time - view_start)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="38">
+        <li class="covered" data-hits="2" data-linenumber="34">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">    elsif create_time_date_format &gt;= view_start_date_format &amp;&amp; end_time_date_format &gt; view_end_date_format</code>
+          <code class="ruby">    elsif create_time &gt;= view_start &amp;&amp; end_time &gt; view_end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
-          
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
           
           <code class="ruby">      return Event.time_convert_to_min(view_end - create_time)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="never" data-hits="" data-linenumber="36">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="41">
-          
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
           
           <code class="ruby">      return Event.time_convert_to_min(view_end - view_start)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="39">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="44">
+        <li class="never" data-hits="" data-linenumber="40">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="45">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">  # define method convert sec to min</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="46">
+        <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
           <code class="ruby">  def self.time_convert_to_min(time)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="47">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="43">
+          <span class="hits">5</span>
           
           <code class="ruby">    (time / 60).to_i</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="48">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="49">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="50">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby">  # # get the time value of each Category</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="47">
           
           
           <code class="ruby">  # def self.time_each_category(events_time_structure, category)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby">  #   time = 0</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="49">
           
           
           <code class="ruby">  #   events_time_structure[category].each do |tag, array|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="54">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">  #     array.each do |array_val|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="55">
+        <li class="never" data-hits="" data-linenumber="51">
           
           
           <code class="ruby">  #       time += array_val[2]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="56">
+        <li class="never" data-hits="" data-linenumber="52">
           
           
           <code class="ruby">  #     end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
           <code class="ruby">  #   end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">  #   time</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby">  # end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="56">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby">  # # get the time value of each tag</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="58">
           
           
           <code class="ruby">  # def self.time_each_tag(events_time_structure, category, tag)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="never" data-hits="" data-linenumber="59">
           
           
           <code class="ruby">  #   time = 0</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="64">
+        <li class="never" data-hits="" data-linenumber="60">
           
           
           <code class="ruby">  #   events_time_structure[category][tag].each do |array|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="65">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">  #     time += array[2]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="never" data-hits="" data-linenumber="62">
           
           
           <code class="ruby">  #   end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="never" data-hits="" data-linenumber="63">
           
           
           <code class="ruby">  #   time</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
+        <li class="never" data-hits="" data-linenumber="64">
           
           
           <code class="ruby">  # end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="never" data-hits="" data-linenumber="65">
           
           
           <code class="ruby">end</code>
@@ -1282,8 +1258,8 @@
           <code class="ruby">  validates :name, uniqueness: { scope: [:category, :active] },</code>
         </li>
       
-        <li class="covered" data-hits="57" data-linenumber="6">
-          <span class="hits">57</span>
+        <li class="covered" data-hits="63" data-linenumber="6">
+          <span class="hits">63</span>
           
           <code class="ruby">    unless: Proc.new { |category| !category.active }</code>
         </li>
@@ -2311,8 +2287,8 @@
     <h3>spec/models/event_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>8</b> relevant lines. 
-      <span class="green"><b>8</b> lines covered</span> and
+      <b>23</b> relevant lines. 
+      <span class="green"><b>23</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2356,121 +2332,211 @@
           <code class="ruby">  before(:each) do</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="7">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="6" data-linenumber="7">
+          <span class="hits">6</span>
           
-          <code class="ruby">    @user = User.new(email: &quot;bob@email.com&quot;, password: &quot;password&quot;)</code>
+          <code class="ruby">    @user = User.create(email: &quot;bob@email.com&quot;, password: &quot;password&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="8">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="6" data-linenumber="8">
+          <span class="hits">6</span>
           
-          <code class="ruby">    @category = Category.new(user: @user, title: &quot;Personal&quot;, active: true)</code>
+          <code class="ruby">    @category = Category.create(user: @user, title: &quot;Personal&quot;, active: true)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="covered" data-hits="6" data-linenumber="9">
+          <span class="hits">6</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    @tag = Tag.create(category: @category)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="covered" data-hits="6" data-linenumber="10">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    @view_start = Time.utc(2014, 03, 04, 0, 0, 0)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="11">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    @view_end = Time.utc(2014, 03, 05, 0, 0, 0)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="12">
+        <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
           <code class="ruby">  it &#39;should convert time into minutes&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="13">
+        <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
           <code class="ruby">    expect(Event.time_convert_to_min(3600)).to eq 60</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # it &#39;&#39;</code>
+          <code class="ruby">  it &#39;should calculate event duration where event is within the view period&#39; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #   @event = Event.new(category: @category)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby">  #   create_time = event.created_at</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
-          <code class="ruby">  #   end_time = event.updated_at</code>
+          <code class="ruby">    @event = Event.create(tag: @tag, created_at: Time.utc(2014, 03, 04, 5, 0, 0), updated_at: Time.utc(2014, 03, 04, 7, 0, 0))</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
           
           
-          <code class="ruby">  #   create_time_date_format = create_time.strftime(&quot;%B %d, %Y&quot;)</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #   end_time_date_format = end_time.strftime(&quot;%B %d, %Y&quot;)</code>
+          <code class="ruby">    expect(Event.event_handler(@event, @view_start, @view_end)).to eq 120</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
           
           
-          <code class="ruby">  #   view_start_date_format = view_start.strftime(&quot;%B %d, %Y&quot;)</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">  #   view_end_date_format = view_end.strftime(&quot;%B %d, %Y&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="24">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
           
+          <code class="ruby">  it &#39;should calculate event duration where event starts outside the view period and ends inside the view period&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
           
-          <code class="ruby"></code>
+          <code class="ruby">    @event = Event.create(tag: @tag, created_at: Time.utc(2014, 03, 03, 22, 0, 0), updated_at: Time.utc(2014, 03, 04, 5, 0, 0))</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    expect(Event.event_handler(@event, @view_start, @view_end)).to eq 300</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="30">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &#39;should calculate event duration where event starts inside the view period and ends outside the view period&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="31">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @event = Event.create(tag: @tag, created_at: Time.utc(2014, 03, 04, 20, 0, 0), updated_at: Time.utc(2014, 03, 05, 8, 0, 0))</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    expect(Event.event_handler(@event, @view_start, @view_end)).to eq 240</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="36">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &#39;should calculate event duration where event starts and ends outside the period&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @event = Event.create(tag: @tag, created_at: Time.utc(2014, 03, 03, 15, 0, 0), updated_at: Time.utc(2014, 03, 07, 12, 0, 0))</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="39">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    expect(Event.event_handler(@event, @view_start, @view_end)).to eq 1440</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">end</code>
@@ -2740,8 +2806,8 @@
           <code class="ruby">  config.before(:each) do</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="7">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="21" data-linenumber="7">
+          <span class="hits">21</span>
           
           <code class="ruby">    DatabaseCleaner.strategy = :transaction</code>
         </li>
@@ -2788,8 +2854,8 @@
           <code class="ruby">  config.before(:each) do</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="15">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="21" data-linenumber="15">
+          <span class="hits">21</span>
           
           <code class="ruby">    DatabaseCleaner.start</code>
         </li>
@@ -2812,8 +2878,8 @@
           <code class="ruby">  config.after(:each) do</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="19">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="21" data-linenumber="19">
+          <span class="hits">21</span>
           
           <code class="ruby">    DatabaseCleaner.clean</code>
         </li>
