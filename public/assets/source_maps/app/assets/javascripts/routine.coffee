@@ -32,5 +32,5 @@ class CheckUp.Routine
       tickTock = setInterval ->
         startTime += 10
         $timer.text minToString(startTime)
-      , 100 # increment by minutes
+      ,60000 # increment by minutes
       $timer.attr('data-timer-id', tickTock)
