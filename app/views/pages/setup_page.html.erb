@@ -5,7 +5,7 @@
       <div data-category-id="<%= category.id %>">
         <p class="category-title"><%= category.title %></p>
         <button class="btn delete-category-btn">Delete Category</button>
-        <input type="text" class="new-tag-name" placeholder="Name">
+        <input type="text" class="new-tag-name" placeholder="Tag Name">
         <button class="btn add-tag-btn">Add Tag</button>
         <ul class="category-tag-list">
           <% category.tags.sort_by(&:name).each do |tag| %>
@@ -22,7 +22,7 @@
         </ul>
       </div>
     <% end %>
-    <input type="text" id="new-category-name" placeholder="Name">
+    <input type="text" id="new-category-name" placeholder="Category Name">
     <input type="submit" id="new-category-submit" value="Add Category">
   </div>
 

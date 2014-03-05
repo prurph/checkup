@@ -2,7 +2,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_group 'Controllers', 'app/controllers'
+end
 
 require 'rspec/rails'
 require 'rspec/autorun'
