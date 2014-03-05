@@ -14,7 +14,7 @@ class Category < ActiveRecord::Base
   def deactivate(time=Time.new)
     self.active = false
     self.inactive_at = time
-    self.color = "#7f8c8d"
+    self.color = "127,140,141"
     Tag.where(category: self).update_all(active: false)
     self.save
   end
