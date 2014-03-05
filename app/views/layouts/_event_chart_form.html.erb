@@ -1,0 +1,6 @@
+
+<% g = Gruff::Pie.new %>
+<%= g.title = "Visual Pie Graph Test" %>
+<%= g.data 'Fries', 20 %>
+<%= g.data 'Hamburgers', 50 %>
+<%= g.write("/app/assets/images/pie_keynote.png") %>
