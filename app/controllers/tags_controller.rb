@@ -14,7 +14,14 @@ class TagsController < ApplicationController
 
     # If user clicked to stop current event only, event_now_active is actually
     # the paused event
-    render json: (event_to_be_active.present?) ? event_to_be_active : event_now_active
+    if event_to_be_active.present?
+      render json:
+        { event: event_to_be_active, status: "Replaced active event." }
+    else
+      render json:
+        { event: event_now_active,
+          status: "Stopped existing event. No currently active event." }
+    end
   end
 
   def create
@@ -44,5 +51,4 @@ class TagsController < ApplicationController
   def routine_params
     params.require(:tag_ids_ordered_by_routine)
   end
-
 end

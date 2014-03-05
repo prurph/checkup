@@ -1,6 +1,7 @@
 CheckUp::Application.routes.draw do
   devise_for :users
 
+  get   '/routines/get_event', to: 'events#show', as: 'event_show'
   post  '/routines/tag_event', to: 'tags#tag_event', as: 'tag_event'
 
   patch '/setup/tag',      to: 'tags#update',       as: 'update_tag'
