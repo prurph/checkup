@@ -4,7 +4,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require bootstrap-datepicker
 //= require_tree .
 
 // Function.prototype.bind polyfill for PhantomJS and maybe older browsers
