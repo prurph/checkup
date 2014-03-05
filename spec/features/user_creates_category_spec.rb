@@ -6,12 +6,12 @@ feature 'User can add and view categories on Setup page', :js do
     @default_category = create(:category, user: @user)
     sign_in_as(@user)
     visit '/setup'
-    fill_in('Category Name', with: 'School')
-    click_button 'Add Category'
-    save_and_open_page
   end
 
-  scenario 'successfully views categories' do
+  scenario 'successfully adds a category' do
+    fill_in('Category Name', with: 'School')
+    click_button 'Add Category'
+
     expect(page).to have_content 'School'
     expect(page).to_not have_content 'Muffins'
   end

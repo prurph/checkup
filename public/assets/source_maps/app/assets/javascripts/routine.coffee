@@ -9,13 +9,6 @@ class CheckUp.Routine
       for tagId, timerText of CheckUp.Routine.DISPLAYED_TIMERS
         $tagTimer = $("[data-routine-tag-id='#{tagId}']").find('.timer')
         tagCurrentEventId = $tagTimer.attr("data-routine-current-event-id")
-<<<<<<< HEAD
-        debugger
-        if tagCurrentEventId == -1
-          $tagTimer.text(timerText)
-        #else
-          $tagTimer.text()
-=======
         if not tagCurrentEventId?
           delete CheckUp.Routine.DISPLAYED_TIMERS[tagId]
         # If there is an ongoing event, get the data from Rails
@@ -38,7 +31,6 @@ class CheckUp.Routine
             )
         else
           $tagTimer.text(timerText)
->>>>>>> 1026d8b152bd5e8a21de0e161de4430862ca7e9d
 
   @eventRequest: (attrs={}, callback) ->
     $.ajax(
@@ -113,10 +105,5 @@ class CheckUp.Routine
         CheckUp.Routine.DISPLAYED_TIMERS.updatedAt = new Date().getDate()
         window.localStorage.displayedTimers =
           JSON.stringify(CheckUp.Routine.DISPLAYED_TIMERS)
-<<<<<<< HEAD
-        $timer.text minToString(startTime)
-      ,60000
-=======
       ,60000 # increment by minutes
->>>>>>> 1026d8b152bd5e8a21de0e161de4430862ca7e9d
       $timer.attr('data-timer-id', tickTock)
