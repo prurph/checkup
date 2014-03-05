@@ -1,5 +1,6 @@
 class CheckUp.Event
 
+  # the start and end time must in timestamp format, use (new Date).getTime()
   @getEventRequest: (start, end) ->
     $.ajax(
       url: "/events"
@@ -9,7 +10,6 @@ class CheckUp.Event
         view_start: start
         view_end: end
       ).done (response) ->
-      debugger
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
       #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
