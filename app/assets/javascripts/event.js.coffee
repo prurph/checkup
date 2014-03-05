@@ -12,6 +12,7 @@ class CheckUp.Event
       ).done (response) ->
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
+      CheckUp.drawEvent.drawCategoryBars()
       #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
 
   @dateClick: ->
@@ -52,7 +53,6 @@ class CheckUp.Event
     timeDiff = endTime.getTime() - startTime.getTime()
     duration = Math.floor(timeDiff / (1000 * 60))
     categoryTimes["untracked"] = duration - totalDuration
-    debugger
     categoryTimes
 
 

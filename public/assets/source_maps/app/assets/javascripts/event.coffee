@@ -10,9 +10,9 @@ class CheckUp.Event
         view_start: start
         view_end: end
       ).done (response) ->
-      CheckUp.Event.renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
+      CheckUp.drawEvent.drawCategoryBars()
       #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
 
   @dateClick: ->
@@ -53,7 +53,6 @@ class CheckUp.Event
     timeDiff = endTime.getTime() - startTime.getTime()
     duration = Math.floor(timeDiff / (1000 * 60))
     categoryTimes["untracked"] = duration - totalDuration
-    debugger
     categoryTimes
 
 
@@ -71,8 +70,6 @@ class CheckUp.Event
     day = "day"
     days = "days"
     $('#category-time').before("<span>Tracing from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}...</span><br><span>Duration is: #{dayDuration} #{if (dayDuration < 2) then day else days}...</span>")
-    for category, tagObject of structure
-      i = 1
     i = 1
     for category, tagObject of structure
       for tag, tagArray of tagObject
@@ -158,6 +155,7 @@ class CheckUp.Event
     $('#cal-1').hide()
     $('#cal-2').hide()
 
+
   # debugging window request
 window.req = ->
   endTime = new Date("March 4, 2014 11:00:00")
@@ -173,3 +171,5 @@ window.req = ->
         view_end: end
     ).done (response) ->
       debugger
+      CheckUp.Event.getEventRequest(response.structure, response.viewStart, response.viewEnd)
+
