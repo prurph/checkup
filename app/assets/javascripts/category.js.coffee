@@ -4,6 +4,16 @@ class CheckUp.Category
     for own key, value of railsCategory
       this[key] = value
 
+  @getCategoryColor: ->
+    $.ajax(
+      url: "/setup/color"
+      type: "GET"
+      dataType: 'json'
+      )
+      .done (colors) ->
+        CheckUp.Category.colors = colors
+
+
   # This is used for all AJAX requests to create/deactivate/update a category
   # Pass an object of attributes, an HTTP method type ('GET') and a callback
   @categoryRequest: (attrs={}, type, callback) ->
