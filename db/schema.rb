@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20140301040538) do
   create_table "events", force: true do |t|
     t.integer  "tag_id"
     t.integer  "duration",   default: 0
+    t.datetime "started_at"
+    t.datetime "ended_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

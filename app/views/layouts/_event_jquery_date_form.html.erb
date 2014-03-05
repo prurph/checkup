@@ -1,0 +1,44 @@
+
+<div id="cal-1" class="input-group date">
+  <input type="text" id="from" name="from" placeholder="From">
+</div>
+<div id="cal-2" class="input-group date">
+  <input type="text" id="to" name="to" placeholder="To">
+</div>
+
+
+<script>
+  $(function() {
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      maxDate: -1,
+      showOn: "both",
+      buttonImage: "<%= asset_path('calendar.gif') %>",
+      buttonImageOnly: true,
+      buttonId: 'button-1',
+      autoclose: true,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      maxDate: -1,
+      showOn: "both",
+      buttonImage: "<%= asset_path('calendar.gif') %>",
+      buttonImageOnly: true,
+      autoclose: true,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+</script>

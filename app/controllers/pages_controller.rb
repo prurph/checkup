@@ -17,7 +17,7 @@ class PagesController < ApplicationController
     # the view_start and view_end must be the format of standard Ruby time format
     view_start = Time.at(params[:view_start].to_i / 1000)
     view_end = Time.at(params[:view_end].to_i / 1000)
-    events = Event.where("created_at BETWEEN :view_start and :view_end OR updated_at BETWEEN :view_start AND :view_end OR (created_at <= :view_start AND updated_at >= :view_end)",
+    events = Event.where("started_at BETWEEN :view_start and :view_end OR ended_at BETWEEN :view_start AND :view_end OR (started_at <= :view_start AND ended_at >= :view_end)",
       {view_start: view_start, view_end: view_end})
     @events_time_structure = Event.events_time_period(events, view_start, view_end)
     respond_to do |format|

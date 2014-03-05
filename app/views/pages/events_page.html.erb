@@ -1,10 +1,9 @@
-<%= render '/layouts/event_date_form' %>
-<h1>Events</h1>
 
+<h1>Events</h1>
+<%= render '/layouts/event_jquery_date_form' %>
+<button data-type="" id="single-trace" class="btn event-trace-single-btn">Single Day</button>&nbsp
+<button data-type="" id="multiple-trace" class="btn event-trace-multiple-btn">Multiple days</button><br><br>
 <button id="category-time-show" class="btn event-save-btn">Trace Your Time</button><br><br>
-<span>Please enter the date period(mm/dd/yyyy)...</span><br>
-<input id="start-event-input" placeholder="enter start time"/>
-<input id="end-event-input" placeholder="enter end time"/><br>
 
 <div class="user-data">
 <ul id='category-time'>
