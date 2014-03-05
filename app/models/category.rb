@@ -11,19 +11,11 @@ class Category < ActiveRecord::Base
   validates :title, uniqueness: { scope: [:user, :active] },
     unless: Proc.new { |category| !category.active }
 
-  def inactivate(time=Time.new)
+  def deactivate(time=Time.new)
     self.active = false
     self.inactive_at = time
-  end
-
-  # This means calling tag.active = false also deactivates associated tags
-  def active=(value, time=Time.new)
-    if !value
-      self.inactive_at = time
-      # Update all the child tags to false
-      Tag.where(category: self).update_all(active: false)
-    end
-    self[:active] = value
+    self.color = "#7f8c8d"
+    Tag.where(category: self).update_all(active: false)
     self.save
   end
 end
