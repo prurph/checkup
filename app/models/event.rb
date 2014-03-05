@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
 
   # this method will handle the SINGLE event for different duration of different day
   def self.event_handler(event, view_start, view_end)
-    # find the create time, end time(which is equal to update time) of the specific event
+    # find the create time, end time(which is equal to update time) of the specific events
     create_time = event.started_at
     end_time = event.ended_at
     # starting handle the event time, check if event span muliple days

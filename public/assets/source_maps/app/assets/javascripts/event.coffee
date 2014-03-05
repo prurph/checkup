@@ -1,5 +1,6 @@
 class CheckUp.Event
 
+  # the start and end time must in timestamp format, use (new Date).getTime()
   @getEventRequest: (start, end) ->
     $.ajax(
       url: "/events"
@@ -10,6 +11,10 @@ class CheckUp.Event
         view_end: end
       ).done (response) ->
       CheckUp.Event.renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
+      CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
+      CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
+      CheckUp.drawEvent.drawCategoryBars()
+      #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
 
   @dateClick: ->
     CheckUp.Event.reloadInit()
@@ -21,6 +26,35 @@ class CheckUp.Event
     else
       alert("You miss something!")
     CheckUp.Event.categoryListEmpty()
+
+  @makeEventBreakdown: (structure) ->
+    eventBreakdown = {}
+    for categoryTitle, tagObject of structure
+      eventBreakdown[categoryTitle] = eventBreakdown[categoryTitle] || {}
+      for tagName, eventsArray of tagObject
+        tagDuration = 0
+        for eventItem in eventsArray
+          tagDuration += eventItem[2]
+        eventBreakdown[categoryTitle][tagName] = tagDuration
+    eventBreakdown
+
+  @makecategoryTimes: (structure, viewStart, viewEnd) ->
+    categoryTimes = {}
+    totalDuration = 0
+    eventBreakdown = CheckUp.Event.makeEventBreakdown(structure)
+    for categoryTitle, tagsObject of eventBreakdown
+      categoryTimes[categoryTitle] = categoryTimes[categoryTitle] || 0
+      categoryDuration = 0
+      for tagName, tagDuration of tagsObject
+        categoryDuration += tagDuration
+      categoryTimes[categoryTitle] = categoryDuration
+      totalDuration += categoryDuration
+    startTime = new Date(viewStart * 1000)
+    endTime = new Date(viewEnd * 1000)
+    timeDiff = endTime.getTime() - startTime.getTime()
+    duration = Math.floor(timeDiff / (1000 * 60))
+    categoryTimes["untracked"] = duration - totalDuration
+    categoryTimes
 
   @renderCategoryTime: (structure, start, end) ->
     categoryTime = 0
@@ -35,8 +69,8 @@ class CheckUp.Event
     day = "day"
     days = "days"
     $('#category-time').before("<span>Tracing from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}...</span><br><span>Duration is: #{dayDuration} #{if (dayDuration < 2) then day else days}...</span>")
+    i = 1
     for category, tagObject of structure
-      i = 1
       for tag, tagArray of tagObject
         for eventArray in tagArray
           categoryTime += eventArray[2]
@@ -135,5 +169,6 @@ window.req = ->
         view_end: end
     ).done (response) ->
       debugger
-      CheckUp.Event.renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
+      CheckUp.Event.getEventRequest(response.structure, response.viewStart, response.viewEnd)
+
 

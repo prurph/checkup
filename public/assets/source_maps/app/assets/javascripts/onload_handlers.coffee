@@ -1,4 +1,8 @@
 $( ->
+  # this method will get Category Color from Database
+  CheckUp.Category.getCategoryColor()
+  # passing a timestamp formart and then it will give CheckUp.Event.eventBreakdown and CheckUp.Event.categoryTimes
+  # CheckUp.Event.getEventRequest(start, end)
   if $('body').attr('data-action') == 'setup_page'
     $('#save-routine').click(CheckUp.Tag.saveFullRoutine)
     $('#new-category-submit').click(CheckUp.Category.newCategoryClick)

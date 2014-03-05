@@ -33,6 +33,17 @@ class PagesController < ApplicationController
     @events = params[:events] if params[:events].present?
   end
 
+  def get_color
+    colors = {}
+    @categories.each do |category|
+      if category.active == true
+        colors[category.title] = category.color
+      end
+      colors[:untracked] = "127,140,141"
+    end
+    render json: colors
+  end
+
   private
   def update_info
     params.require(:updates).permit(:active, :color, :created_at,
