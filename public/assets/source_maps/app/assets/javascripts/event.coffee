@@ -31,7 +31,10 @@ class CheckUp.Event
     endTime = new Date(end * 1000)
     timeDiff = endTime.getTime() - startTime.getTime()
     duration = Math.floor(timeDiff / (1000 * 60))
-    $('#category-time').before("<span>Time period: from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}</span><br><span>Duration is: #{Math.ceil(duration / (60 * 24))} days...</span>")
+    dayDuration = Math.ceil(duration / (60 * 24))
+    day = "day"
+    days = "days"
+    $('#category-time').before("<span>Tracing from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}...</span><br><span>Duration is: #{dayDuration} #{if (dayDuration < 2) then day else days}...</span>")
     for category, tagObject of structure
       i = 1
       for tag, tagArray of tagObject
@@ -71,14 +74,25 @@ class CheckUp.Event
     $("#category-time").append("<li class='category-4'><ul class='category-4-tag'></ul></li>")
 
   @categoryListEmpty: ->
-    $("#end-event-input").val("")
-    $("#start-event-input").val("")
+    $("#from").val("")
+    $("#to").val("")
+    $('#cal-1').hide()
+    $('#cal-2').hide()
 
   @getStartAndEndTime: ->
     timeArray = []
+    startInput = ""
+    endInput = ""
     month = ["Zero", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    startInput = $("#start-event-input").val()
-    endInput = $("#end-event-input").val()
+    if $('#single-trace').attr("data-type") == "single"
+      startInput = $("#from").val()
+      endArray = startInput.split('/')
+      endInput = "#{endArray[0]}/#{(parseInt(endArray[1]) + 1)}/#{endArray[2]}"
+      $('#single-trace').attr("data-type", "")
+    else if $('#multiple-trace').attr("data-type") == "multiple"
+      startInput = $("#from").val()
+      endInput = $("#to").val()
+      $('#multiple-trace').attr("data-type", "")
     if startInput != "" && endInput != ""
       dateArrayStart = startInput.split('/')
       dateArrayEnd = endInput.split('/')
@@ -89,6 +103,22 @@ class CheckUp.Event
       timeArray.push startTime
       timeArray.push endTime
     timeArray
+
+  @setAttrSingle: ->
+    $('#single-trace').attr("data-type", "single")
+    $('#multiple-trace').attr("data-type", "")
+    $('#cal-1').show()
+    $('#cal-2').hide()
+
+  @setAttrMultiple: ->
+    $('#multiple-trace').attr("data-type", "multiple")
+    $('#single-trace').attr("data-type", "")
+    $('#cal-1').show()
+    $('#cal-2').show()
+
+  @hideCal: ->
+    $('#cal-1').hide()
+    $('#cal-2').hide()
 
   # debugging window request
 window.req = ->

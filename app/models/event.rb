@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
       if event.duration != 0
         tag_with_id = "#{event.tag.name}_#{event.tag.id}"
         events_time_tag_structure[tag_with_id] = [] if !events_time_tag_structure[tag_with_id].present?
-        events_time_tag_structure[tag_with_id] << [event.created_at, event.updated_at, Event.event_handler(event, view_start, view_end)]
+        events_time_tag_structure[tag_with_id] << [event.started_at, event.ended_at, Event.event_handler(event, view_start, view_end)]
       end
     end
     events_time_tag_structure.keys.each do |tag_with_id|
@@ -24,8 +24,8 @@ class Event < ActiveRecord::Base
   # this method will handle the SINGLE event for different duration of different day
   def self.event_handler(event, view_start, view_end)
     # find the create time, end time(which is equal to update time) of the specific event
-    create_time = event.created_at
-    end_time = event.updated_at
+    create_time = event.started_at
+    end_time = event.ended_at
     # starting handle the event time, check if event span muliple days
     if create_time >= view_start && end_time <= view_end
       return Event.time_convert_to_min(end_time - create_time)
