@@ -2,9 +2,10 @@ class CheckUp.Routine
   # This stores displayed timers as tagId(int): timerText
   @appendTimers: ->
     CheckUp.Routine.DISPLAYED_TIMERS =
-      JSON.parse(window.localStorage.displayedTimers) || {updatedAt: "0"}
+      JSON.parse(window.localStorage.displayedTimers) || {updatedAt: new Date()}
+    updatedDate = new Date CheckUp.Routine.DISPLAYED_TIMERS.updatedAt
     # See if the cached timers are from today, and if so append them
-    if new Date().getDate() == (CheckUp.Routine.DISPLAYED_TIMERS.updatedAt)
+    if new Date().getDate() == updatedDate.getDate()
 
       for tagId, timerText of CheckUp.Routine.DISPLAYED_TIMERS
         $tagTimer = $("[data-routine-tag-id='#{tagId}']").find('.timer')
@@ -17,20 +18,35 @@ class CheckUp.Routine
         else if parseInt(tagCurrentEventId) != -1
           CheckUp.Routine.eventRequest(
             id: tagCurrentEventId,
+            # Must pass timerText or it goes out of scope not sure why I think
+            # because for loop completes while waiting on AJAX response?
+            timer_text: timerText
             # this callback just finds the relevant timer and sets its value to
             # the value from Rails, then it toggles the timer on to keep going
             (response) ->
-              tagClickedId = response.tag_id
-              $tagClicked  = $("[data-routine-tag-id='#{tagClickedId}']")
-              $activeTimer = $tagClicked.find('.timer')
+              console.log(response)
+              activeTagId = response.returnedEvent.tag_id
+              $activeTag  = $("[data-routine-tag-id='#{activeTagId}']")
+              $activeTimer = $activeTag.find('.timer')
               $activeTimer.attr("data-routine-current-event-id", "-1")
-              runTime = (new Date().getTime() -
-                new Date(response.created_at).getTime()) / 60000
+              # Find out how much time has elapsed since last on this page
+              runTime = (new Date().getTime() - updatedDate.getTime()) / 60000
+              # and add it to the existing timer to find the total time this tag
+              # has been ticking today
+              runTime = runTime + CheckUp.Routine.stringToMin(response.timerText)
+
               $activeTimer.text(CheckUp.Routine.minToString(runTime))
-              CheckUp.Routine.toggleTimer($tagClicked, tagClickedId)
+              CheckUp.Routine.updateCache(activeTagId, response.timerText)
+              CheckUp.Routine.toggleTimer($activeTag, activeTagId)
             )
         else
           $tagTimer.text(timerText)
+
+  @updateCache: (tagId, timerText) ->
+    CheckUp.Routine.DISPLAYED_TIMERS[tagId] = timerText
+    CheckUp.Routine.DISPLAYED_TIMERS['updatedAt'] = new Date()
+    window.localStorage.displayedTimers =
+      JSON.stringify(CheckUp.Routine.DISPLAYED_TIMERS)
 
   @eventRequest: (attrs={}, callback) ->
     $.ajax(
@@ -40,10 +56,9 @@ class CheckUp.Routine
       data:
         event: attrs
     )
-    .done (response) ->
+    .done (response) -> # response is { returnedEvent: ..., timerText: ... }
       if callback
         callback(response)
-      console.log(response)
     .fail (error) ->
       console.log(error)
 
@@ -55,7 +70,7 @@ class CheckUp.Routine
       data:
         tag: attrs
       )
-      .done (response) ->
+      .done (response) -> # response is { returnedEvent: ..., status: ... }
         if callback
           callback(response)
         console.log(response)
@@ -75,7 +90,7 @@ class CheckUp.Routine
     matches = timerText.match(/(\d+)/g) || [0]
     minutes = if matches.length is 2
     then parseInt(matches[0] * 60) + parseInt(matches[1])
-    else matches[0]
+    else parseInt(matches[0])
 
   @minToString = (startTime) ->
     hours = Math.floor (startTime / 60)
@@ -100,10 +115,6 @@ class CheckUp.Routine
       tickTock = setInterval ->
         startTime += 1
         $timer.text CheckUp.Routine.minToString(startTime)
-        CheckUp.Routine.DISPLAYED_TIMERS[tagClickedId] =
-          CheckUp.Routine.minToString(startTime)
-        CheckUp.Routine.DISPLAYED_TIMERS.updatedAt = new Date().getDate()
-        window.localStorage.displayedTimers =
-          JSON.stringify(CheckUp.Routine.DISPLAYED_TIMERS)
+        CheckUp.Routine.updateCache(tagClickedId, $timer.text())
       ,60000 # increment by minutes
       $timer.attr('data-timer-id', tickTock)
