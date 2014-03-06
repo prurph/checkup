@@ -40,6 +40,7 @@ class CheckUp.drawEvent
         );
       leftPosition += durationPercent
       $singleLine().append($category).appendTo($allCategories)
+    $('#master-event').empty()
     $('#master-event').append($allCategories)
 
   # categoryObj is of the form {tagName: [[event], [event2], [event3]]}
@@ -53,17 +54,12 @@ class CheckUp.drawEvent
       id: "#{categoryTitle}-tags"
       )
     $categoryUl = $('<ul/>')
-    for tagName, eventArray of categoryObj
-      totalTagTime = 0
-      for singleEvent in eventArray
-        totalTagTime += singleEvent[2] # [start, end, duration]
-      console.log(totalTagTime)
-      console.log(totalCategoryTime)
-      tagPercentOfCategory = totalTagTime / totalCategoryTime * 100
+    for tagName, tagTime of categoryObj
+      tagPercentOfCategory = (tagTime / totalCategoryTime) * 100
       opacity = (tagPercentOfCategory / 200) + 0.5
       $tagLi = $('<li/>',
         id: "#{tagName}"
-        html: "#{tagName}: #{(totalTagTime / 60).toFixed(1)}"
+        html: "#{tagName}: #{(tagTime / 60).toFixed(1)}"
         class: 'tag-list-li'
         css:
           width: "#{tagPercentOfCategory}%"

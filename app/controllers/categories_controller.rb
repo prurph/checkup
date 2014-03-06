@@ -7,14 +7,13 @@ class CategoriesController < ApplicationController
 
   def update
     category = Category.find(params[:category][:id])
-    binding.pry
     if params[:category][:active] == "false"
       category.deactivate
     end
     category.update!(category_params)
     render json: category
   end
-  
+
   private
   def category_params
     params.require(:category).permit(:id, :active, :color, :created_at,

@@ -15,7 +15,8 @@ class Event < ActiveRecord::Base
     events_time_tag_structure.keys.each do |tag_with_id|
       id = tag_with_id.split('_').last
       event = Event.find_by_tag_id(id)
-      events_time_structure[event.tag.category.title] = {} if !events_time_structure.present?
+      events_time_structure[event.tag.category.title] = {} if
+        !events_time_structure[event.tag.category.title].present?
       events_time_structure[event.tag.category.title][event.tag.name] = events_time_tag_structure[tag_with_id]
     end
     events_time_structure

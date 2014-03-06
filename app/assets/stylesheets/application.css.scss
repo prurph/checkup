@@ -19,8 +19,131 @@
 
 body {
   width: 100%;
+  background-color: #ecf0f1;
 }
 
-.active-tag {
-  background-color: tomato;
+h1 {
+  text-align: center;
+}
+
+.btn {
+  color: white;
+  &:active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #2c3e50;
+  }
+  &:focus {
+    outline: none !important;
+  }
+}
+
+// .active-tag {
+//   background-color: tomato;
+// }
+
+.tags {
+  display: block;
+  height: 45px;
+  width: 100%;
+  margin-bottom: 5px;
+  position: relative;
+  color: white;
+  .routine-tag-title {
+    margin: 0;
+    height: 33px;
+    overflow: hidden;
+    line-height: 33px;
+    text-align: left;
+    padding-left: 25px;
+  }
+  &:focus {
+    opacity: 1;
+  }
+  &.active-timer {
+    border: 2px solid #e74c3c;
+  }
+}
+
+.timer {
+  float: right;
+  padding-right: 5px;
+  font-size: smaller;
+  color: #95a5a6;
+  &.active-tag {
+    color: white;
+  }
+}
+
+.routine-btn {
+  font-size: 14px;
+  width: 100%;
+}
+
+.delete-tag-btn, .routine-add-tag-btn, .routine-remove-tag-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+}
+
+.routine-add-tag-btn {
+  background-color: #27ae60;
+  float: right;
+  &:hover {
+    background-color: #2ecc71;
+  }
+}
+
+.delete-tag-btn, .routine-remove-tag-btn {
+  background-color: #c0392b;
+  float: left;
+  margin-right: 2px;
+  &:hover {
+    background-color: #e74c3c;
+  }
+}
+
+#new-category-name, #new-category-submit {
+  width: 48%;
+  display: inline-block;
+  margin-bottom: 2px;
+  height: 30px;
+}
+
+input {
+  height: 32px;
+  font-size: 16px;
+  &:active {
+    outline: none;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.new-tag-name {
+  height: 28px;
+  font-size: 10px;
+  width: 100%;
+}
+
+.category-title {
+  font-size: 16px;
+}
+
+#routine-setup {
+  padding-left: 0px;
+}
+
+.tag-title, .routine-tag-title {
+  line-height: 20px;
+  margin-bottom: 2px;
+  padding-left: 22px;
+}
+
+#all-categories {
+  padding: 0 5px;
+}
+
+.new-category-btns {
+  padding: 5px;
 }

@@ -5,9 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user = User.first
+user = User.create(email: "user@example.com", password: "foobar55",
+  password_confirmation: "foobar55")
 
-category_1 = Category.create(user: user, title: 'Work', color: '192,57,43'))
+user.categories.destroy_all
+
+category_1 = Category.create(user: user, title: 'Work', color: '192,57,43')
 
 tag_1 = Tag.create(category: category_1, name: 'Commute')
 tag_2 = Tag.create(category: category_1, name: 'Team Meetings')
@@ -63,7 +66,7 @@ event_28 = Event.create(tag: tag_6, started_at: Time.at(1392220800), ended_at: T
 event_29 = Event.create(tag: tag_6, started_at: Time.at(1392294600), ended_at: Time.at(1392298200), duration: 60)
 event_30 = Event.create(tag: tag_6, started_at: Time.at(1392381000), ended_at: Time.at(1392384600), duration: 60)
 
-category_3 = Category.create(user: user, title: 'Vacation', color '142,68,173')
+category_3 = Category.create(user: user, title: 'Vacation', color: '142,68,173')
 
 tag_7 = Tag.create(category: category_3, name: "Bahamas Trip")
 

@@ -82,14 +82,15 @@ class CheckUp.Category
   renderNode: ->
     $categoryDiv  = $('<div/>',
       'data-category-id': this.id
+      class: "main-category"
       html: "<p class='category-title'>#{this.title}</p>"
       )
     $deleteButton = $('<button/>',
-      class: 'btn delete-category-btn'
-      text: 'Delete Category'
+      class: 'btn delete-category-btn routine-btn'
+      html: "Delete Category"
       )
     $addTagButton = $('<button/>',
-      class: 'btn add-tag-btn'
+      class: 'btn add-tag-btn routine-btn'
       text: 'Add Tag'
       )
     $addTagForm = $('<input>',
@@ -100,8 +101,10 @@ class CheckUp.Category
     $tagList = $('<ul/>',
       class: "category-tag-list"
       )
-    $categoryDiv.append($deleteButton).append($addTagForm)
-    $categoryDiv.append($addTagButton).append($tagList)
+    $categoryDiv.append($deleteButton).append($tagList).append($addTagForm).
+      append($addTagButton)
+    # $categoryDiv.append($addTagButton).append($tagList)
+    # $categoryDiv.append($deleteButton).append($addTagForm)
     $categoryDiv.click(CheckUp.Category.categoryClicked.bind($categoryDiv))
 
   attachSorted: ->

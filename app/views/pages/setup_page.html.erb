@@ -1,44 +1,43 @@
 <h1>All the Categories</h1>
-<div class="container">
-  <div id="all-categories" class="col-xs-6">
-    <% @categories.each do |category| %>
-      <div data-category-id="<%= category.id %>">
-        <p class="category-title"><%= category.title %></p>
-        <button class="btn delete-category-btn">Delete Category</button>
-        <input type="text" class="new-tag-name" placeholder="Tag Name">
-        <button class="btn add-tag-btn">Add Tag</button>
-        <ul class="category-tag-list">
-          <% category.tags.sort_by(&:name).each do |tag| %>
-            <% if tag.active %>
-              <li data-tag-id="<%= tag.id %>">
-                <p class="tag-title"><%= tag.name %></p>
-                <button class="btn delete-tag-btn">Delete Tag</button>
-                <% if tag.routine == -1 %>
-                  <button class="btn routine-add-tag-btn">Add to Routine</button>
-                <% end %>
-              </li>
-            <% end %>
+<div class="col-xs-12 new-category-btns">
+  <input type="text" id="new-category-name" placeholder="Category Name">
+  <button class="btn routine-btn" id="new-category-submit">Create Category</button>
+</div>
+<div id="all-categories" class="col-xs-6">
+  <% @categories.each do |category| %>
+    <div data-category-id="<%= category.id %>" class="main-category">
+      <p class="category-title"><%= category.title %></p>
+      <button class="btn delete-category-btn routine-btn">Delete Category</button>
+      <ul class="category-tag-list">
+        <% category.tags.sort_by(&:name).each do |tag| %>
+          <% if tag.active %>
+            <li data-tag-id="<%= tag.id %>">
+              <button class="btn delete-tag-btn routine-btn glyphicon glyphicon-remove"></button>
+              <% if tag.routine == -1 %>
+                <button class="btn routine-add-tag-btn routine-btn glyphicon glyphicon-chevron-right"></button>
+              <% end %>
+              <p class="tag-title"><%= tag.name %></p>
+            </li>
           <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <input type="text" id="new-category-name" placeholder="Category Name">
-    <input type="submit" id="new-category-submit" value="Add Category">
-  </div>
-
-  <div id="routine-setup" class="col-xs-6">
-  <!-- Class sortable for jQuery UI -->
-    <ul class="sortable">
-      <% @tags.each do |tag| %>
-        <% unless tag.routine == -1 %>
-          <li data-routine-tag-id="<%= tag.id %>"
-          data-routine-category-id="<%= tag.category.id %>">
-            <p class="routine-tag-title"><%= tag.name %></p>
-            <button class="btn routine-remove-tag-btn">Remove from Routine</button>
-          </li>
         <% end %>
+      </ul>
+      <input type="text" class="new-tag-name" placeholder="Tag Name">
+      <button class="btn add-tag-btn routine-btn">Add Tag</button>
+    </div>
+  <% end %>
+</div>
+<div id="routine-setup" class="col-xs-6">
+<!-- Class sortable for jQuery UI -->
+  <ul class="sortable">
+    <% @tags.each do |tag| %>
+      <% unless tag.routine == -1 %>
+        <li data-routine-tag-id="<%= tag.id %>"
+        data-routine-category-id="<%= tag.category.id %>">
+          <button class="btn routine-btn routine-remove-tag-btn glyphicon glyphicon-chevron-left"></button>
+          <p class="routine-tag-title"><%= tag.name %></p>
+        </li>
       <% end %>
-    </ul>
-    <button id="save-routine" class="btn routine-save-btn">Save Routine</button>
-  </div>
+    <% end %>
+  </ul>
+  <button id="save-routine" class="btn routine-save-btn routine-btn">Save Routine</button>
 </div>
