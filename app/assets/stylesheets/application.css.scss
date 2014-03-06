@@ -249,7 +249,7 @@ input {
     border-radius: 0 4px 4px 0;
 }
 
-.category-outer-bar:only-child .category-inner-bar {
+.category-outer-bar:only-child .categPory-inner-bar {
   border-radius: 4px;
 }
 
@@ -347,7 +347,6 @@ input {
   position: absolute;
   top: -30px;
   right: 5px;
-  z-index: 100;
   border-radius: 4px;
   height: 25px;
   font-size: 90%;

@@ -1,6 +1,5 @@
 class CheckUp.Event
 
-<<<<<<< HEAD
  @dateClick: ->
     CheckUp.Event.reloadInit()
     timeArray = CheckUp.Event.getStartAndEndTime()
@@ -12,9 +11,6 @@ class CheckUp.Event
     CheckUp.Event.categoryListEmpty()
 
   # the start and end time must in timestamp format, use (new Date).getTime()
-=======
-  # the start and end time must be in timestamp format, use (new Date).getTime()
->>>>>>> prescott_event_styling
   @getEventRequest: (start, end) ->
     $.ajax(
       url: "/events"
@@ -27,18 +23,17 @@ class CheckUp.Event
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
       CheckUp.drawEvent.drawCategoryBars()
-      $('#master-event').prepend($('<h3/>',
-        class: 'time-period-title'
-        text: "#{CheckUp.Event.timePeriod[0].toString().slice(0,10)} to
-          #{CheckUp.Event.timePeriod[1].toString().slice(0,10)}"
-        )
-      )
+      # $('#master-event').prepend($('<h3/>',
+      #   class: 'time-period-title'
+      #   text: "#{CheckUp.Event.timePeriod[0].toString().slice(0,10)} to
+      #     #{CheckUp.Event.timePeriod[1].toString().slice(0,10)}"
+      #   )
+      # )
 
-<<<<<<< HEAD
-=======
   @dateClick: ->
     CheckUp.Event.reloadInit()
     timeArray = CheckUp.Event.getStartAndEndTime()
+    debugger
     if timeArray.length == 2
       start = timeArray[0].getTime()
       end = timeArray[1].getTime()
@@ -48,7 +43,6 @@ class CheckUp.Event
       alert("Enter dates!")
     CheckUp.Event.categoryListEmpty()
 
->>>>>>> prescott_event_styling
   @makeEventBreakdown: (structure) ->
     eventBreakdown = {}
     for categoryTitle, tagObject of structure
@@ -77,10 +71,6 @@ class CheckUp.Event
     duration = Math.floor(timeDiff / (1000 * 60))
     categoryTimes["untracked"] = duration - totalDuration
     categoryTimes
-
-<<<<<<< HEAD
-=======
-
 
   @renderCategoryTime: (structure, start, end) ->
     categoryTime = 0
@@ -124,7 +114,6 @@ class CheckUp.Event
     timeStr = time.toString()
     timeStr.split("GMT")[0]
 
->>>>>>> prescott_event_styling
   @reloadInit: ->
     day = new Date()
     yesterday = "#{day.getMonth() + 1}/#{day.getDate() - 1}/#{day.getFullYear()}"
@@ -186,64 +175,3 @@ class CheckUp.Event
   @hideCal: ->
     $('#cal-1').hide()
     $('#cal-2').hide()
-
-
-#   @renderCategoryTime: (structure, start, end) ->
-#     categoryTime = 0
-#     tagTime = 0
-#     timeAllCategory = 0
-#     eventArray = []
-#     startTime = new Date(start * 1000)
-#     endTime = new Date(end * 1000)
-#     timeDiff = endTime.getTime() - startTime.getTime()
-#     duration = Math.floor(timeDiff / (1000 * 60))
-#     dayDuration = Math.ceil(duration / (60 * 24))
-#     day = "day"
-#     days = "days"
-#     $('#category-time').before("<span>Tracing from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}...</span><br><span>Duration is: #{dayDuration} #{if (dayDuration < 2) then day else days}...</span>")
-#     i = 1
-#     for category, tagObject of structure
-#       for tag, tagArray of tagObject
-#         for eventArray in tagArray
-#           categoryTime += eventArray[2]
-#           tagTime += eventArray[2]
-#           timeAllCategory += eventArray[2]
-#         # render each of tag time for category
-#         tagTime = CheckUp.Event.renderTagTime(i, category, tag, tagTime)
-#         # render each of the event time for a tag
-#         CheckUp.Event.renderEventTime(tagArray, category, tag)
-#       $(".category-#{i}").html("#{category} Time: #{categoryTime} minutes in #{duration} minutes, percentage: #{((categoryTime / duration) * 100).toFixed(2)}%" + $(".category-1").html())
-#       categoryTime = 0
-#       i++
-#     $('#category-time').append("<li>Untracked Time: #{duration - timeAllCategory} minutes, percentage: #{(((duration - timeAllCategory) / duration) * 100).toFixed(2)}%</li>")
-
-
-#   @renderTagTime: (categoryIndex, category, tag, tagTime) ->
-#     $(".category-#{categoryIndex}-tag").append("<li>#{tag} time: #{tagTime} minutes<ol class='#{category}_#{tag}'></ol></li>")
-#     0
-#   @renderEventTime: (tagArray, category, tag) ->
-#     for eventArray in tagArray
-#       time = new Date(eventArray[0])
-#       $(".#{category}_#{tag}").append("<li>From #{CheckUp.Event.renderTimeformat(time)} , duration is #{eventArray[2]} minutes </li>")
-
-#   @renderTimeformat: (time) ->
-#     timeStr = time.toString()
-#     timeStr.split("GMT")[0]
-
-#   # debugging window request
-# window.req = ->
-#   endTime = new Date("March 4, 2014 11:00:00")
-#   startTime = new Date("March 1, 2014 11:13:00")
-#   end = endTime.getTime()
-#   start = startTime.getTime()
-#   $.ajax(
-#     url: '/events'
-#     type: 'GET'
-#     dataType: 'json'
-#     data:
-#         view_start: start
-#         view_end: end
-#     ).done (response) ->
-#       debugger
-#       CheckUp.Event.getEventRequest(response.structure, response.viewStart, response.viewEnd)
-

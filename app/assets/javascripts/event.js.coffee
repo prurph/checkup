@@ -23,12 +23,12 @@ class CheckUp.Event
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
       CheckUp.drawEvent.drawCategoryBars()
-      $('#master-event').prepend($('<h3/>',
-        class: 'time-period-title'
-        text: "#{CheckUp.Event.timePeriod[0].toString().slice(0,10)} to
-          #{CheckUp.Event.timePeriod[1].toString().slice(0,10)}"
-        )
-      )
+      # $('#master-event').prepend($('<h3/>',
+      #   class: 'time-period-title'
+      #   text: "#{CheckUp.Event.timePeriod[0].toString().slice(0,10)} to
+      #     #{CheckUp.Event.timePeriod[1].toString().slice(0,10)}"
+      #   )
+      # )
 
   @dateClick: ->
     CheckUp.Event.reloadInit()

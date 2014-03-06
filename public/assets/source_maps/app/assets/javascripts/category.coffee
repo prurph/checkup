@@ -88,17 +88,7 @@ class CheckUp.Category
       newCategory.attachSorted()
       CheckUp.Category.defaultColors.splice(0,1)
 
-<<<<<<< HEAD
     if CheckUp.Error.isCategoryValid($categoryNameForm, $allCategoryDivs)
-=======
-    # Don't even send the AJAX request if the name is < 3 characters or 5 cats
-    # already exist
-    # Put an error handler in here later
-    isCategoryValid = ($form, $existingCategories) ->
-      $form.val().length >= 3 and $existingCategories.length < 5
-        #MMMMMMMMMMMMMMMMMMMMMMMMMMM
-    if isCategoryValid($categoryNameForm, $allCategoryDivs)
->>>>>>> prescott_event_styling
       CheckUp.Category.categoryRequest
         title: $categoryNameForm.val(),
         color: CheckUp.Category.defaultColors[0]
