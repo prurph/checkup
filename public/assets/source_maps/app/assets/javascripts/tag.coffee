@@ -103,7 +103,7 @@ class CheckUp.Tag
         tag_ids_ordered_by_routine: tagIdsOrderedByRoutine
       )
       .done (response) ->
-        console.log(response)
+        CheckUp.Error.drawError(response.status, '.notice')
       .fail (error) ->
         console.log(error)
 

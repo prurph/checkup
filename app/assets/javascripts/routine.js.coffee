@@ -71,9 +71,9 @@ class CheckUp.Routine
         tag: attrs
       )
       .done (response) -> # response is { returnedEvent: ..., status: ... }
+        CheckUp.Error.drawError(response.status, '.notice')
         if callback
           callback(response)
-        console.log(response)
       .fail (error) ->
         console.log(error)
 
