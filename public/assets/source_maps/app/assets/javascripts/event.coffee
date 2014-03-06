@@ -13,7 +13,6 @@ class CheckUp.Event
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
       CheckUp.drawEvent.drawCategoryBars()
-      debugger
       #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
 
   @dateClick: ->
@@ -101,6 +100,8 @@ class CheckUp.Event
     timeStr.split("GMT")[0]
 
   @reloadInit: ->
+    day = new Date()
+    yesterday = "#{day.getMonth() + 1}/#{day.getDate() - 1}/#{day.getFullYear()}"
     $(".user-data span").remove()
     $(".user-data br").remove()
     $("#category-time").empty()
@@ -108,6 +109,10 @@ class CheckUp.Event
     $("#category-time").append("<li class='category-2'><ul class='category-2-tag'></ul></li>")
     $("#category-time").append("<li class='category-3'><ul class='category-3-tag'></ul></li>")
     $("#category-time").append("<li class='category-4'><ul class='category-4-tag'></ul></li>")
+    $( "#from" ).datepicker( "option", "maxDate", yesterday );
+    $( "#to" ).datepicker( "option", "maxDate", yesterday );
+    $( "#to" ).datepicker( "option", "minDate", yesterday );
+    $( "#to" ).datepicker( "option", "minDate", $("#single-trace").attr("data-user-create") );
 
   @categoryListEmpty: ->
     $("#from").val("")

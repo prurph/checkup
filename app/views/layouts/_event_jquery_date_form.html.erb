@@ -1,44 +1,45 @@
+
 <div id="cal-1" class="input-group date">
   <input type="text" id="from" name="from" placeholder="From">
 </div>
 <div id="cal-2" class="input-group date">
   <input type="text" id="to" name="to" placeholder="To">
 </div>
+
 <script>
   $(function() {
-    $('#datepicker').datepicker({  
-            inline: true,  
-            showOtherMonths: true,  
-            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],  
-    }); 
+    var userDate = "<%= @create_date %>".split(" ")[0].split('-'),
+        userDay = userDate[1] + '/' + userDate[2] + '/' + userDate[0]
+    $("#single-trace").attr("data-user-create", userDay)
     $( "#from" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 2,
+      maxDate: -1,
+      minDate: userDay,
       showOtherMonths: true,
       selectOtherMonths: true,
-      maxDate: -1,
       showOn: "both",
       buttonImage: "<%= asset_path('calendar.gif') %>",
       buttonImageOnly: true,
       autoclose: true,
       onClose: function( selectedDate ) {
-        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+        var dayArray = selectedDate.split('/');
+        var day = dayArray[0] + '/' + (parseInt(dayArray[1]) + 1) + '/' + dayArray[2];
+        $( "#to" ).datepicker( "option", "minDate", day );
+        $( "#to" ).datepicker( "option", "defaultDate", selectedDate);
       }
     });
     $( "#to" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 2,
-      showOtherMonths: true,
-      selectOtherMonths: true,
       maxDate: -1,
       showOn: "both",
+      minDate: userDay,
+      showOtherMonths: true,
+      selectOtherMonths: true,
       buttonImage: "<%= asset_path('calendar.gif') %>",
       buttonImageOnly: true,
       autoclose: true,
       onClose: function( selectedDate ) {
-        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+        var dayArray = selectedDate.split('/');
+        var day = dayArray[0] + '/' + (parseInt(dayArray[1]) - 1) + '/' + dayArray[2];
+        $( "#from" ).datepicker( "option", "maxDate", day );
       }
     });
   });

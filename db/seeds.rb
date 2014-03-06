@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 user = User.create(email: "user@example.com", password: "foobar55",
-  password_confirmation: "foobar55")
+  password_confirmation: "foobar55", created_at: Time.at(1387724400))
 
 user.categories.destroy_all
 category_1 = Category.create(user: user, title: 'Work', color: '192,57,43')
