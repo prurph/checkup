@@ -10,8 +10,10 @@
 <body data-controller="<%= controller.controller_path %>"
   data-action="<%= controller.action_name %>">
   <div class="nav-bar"><%= render 'layouts/nav_bar' %></div>
-  <div class="notice"><%= notice %></div>
-  <div class="alert"><%= alert %></div>
+  <div class="messages">
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
+  </div>
   <div class="container">
     <%= yield %>
 
