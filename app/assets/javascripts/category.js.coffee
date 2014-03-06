@@ -88,7 +88,7 @@ class CheckUp.Category
       newCategory.attachSorted()
       CheckUp.Category.defaultColors.splice(0,1)
 
-    if CheckUp.Error.isCategoryValid($categoryNameForm, $allCategoryDivs)
+    if isCategoryValid($categoryNameForm, $allCategoryDivs)
       CheckUp.Category.categoryRequest
         title: $categoryNameForm.val(),
         color: CheckUp.Category.defaultColors[0]
