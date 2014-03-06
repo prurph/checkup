@@ -148,6 +148,9 @@ class CheckUp.Tag
       'data-routine-tag-id': this.id
       'data-routine-category-id': this.category_id
       html: "<p class='routine-tag-title'>#{this.name}</p>"
+      class: "tag-routine-li"
+      css:
+        "background-color": "rgb(#{this.color})"
     )
     $removeButton = $('<button/>',
       class: 'btn routine-btn routine-remove-tag-btn glyphicon glyphicon-chevron-left'

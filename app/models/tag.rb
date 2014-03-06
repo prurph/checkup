@@ -1,11 +1,10 @@
 class Tag < ActiveRecord::Base
   belongs_to :category, touch: true
   has_many :events
+  before_create :set_tag_color
 
   validates :name, uniqueness: { scope: [:category, :active] },
     unless: Proc.new { |category| !category.active }
-
-  delegate :color, to: :category
 
   def self.handleRoutine(tag_to_be_active, tag_now_active, event_now_active, event_to_be_active)
     if event_now_active.present?
@@ -21,5 +20,11 @@ class Tag < ActiveRecord::Base
       tag_to_be_active.save!
     end
     event_to_be_active
+  end
+
+  def set_tag_color
+    unless self.color.present?
+      self.color = self.category.color
+    end
   end
 end

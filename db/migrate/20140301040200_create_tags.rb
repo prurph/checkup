@@ -6,6 +6,7 @@ class CreateTags < ActiveRecord::Migration
       t.integer :routine, default: -1
       t.text    :name
       t.integer :current_event_id, default: -1
+      t.text    :color
       t.timestamps
     end
   end

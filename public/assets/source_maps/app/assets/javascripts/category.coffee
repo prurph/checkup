@@ -14,8 +14,7 @@ class CheckUp.Category
         CheckUp.Category.colors = colors
         CheckUp.Category.setSetupCategoryDivColors()
 
-  @defaultColors: ["52,152,219", "230,126,34", "230,126,34",
-    "241,196,15", "142,68,73"]
+  @defaultColors: ["41,128,185","39,174,96","241,196,15","211,84,0","192,57,43"]
 
   @setSetupCategoryDivColors: ->
     takenColors = []
@@ -27,7 +26,6 @@ class CheckUp.Category
     # set the defaultColors to only have the not taken ones
     CheckUp.Category.defaultColors = $(CheckUp.Category.defaultColors)
       .not(takenColors).get()
-
 
   # This is used for all AJAX requests to create/deactivate/update a category
   # Pass an object of attributes, an HTTP method type ('GET') and a callback

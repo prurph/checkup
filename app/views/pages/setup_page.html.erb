@@ -31,14 +31,16 @@
 </div>
 <div id="routine-setup" class="col-xs-6">
   <h3 class="subheader">Routine
-  <button id="save-routine" class="btn routine-save-btn routine-btn">Save</button>
+  <button id="save-routine" class="btn btn-success routine-save-btn routine-btn">Save</button>
   </h3>
   <h6 class="miniheader">Drag tags to reorder use arrows to remove</h6>
   <ul class="sortable">
     <% @tags.each do |tag| %>
       <% unless tag.routine == -1 %>
         <li data-routine-tag-id="<%= tag.id %>"
-        data-routine-category-id="<%= tag.category.id %>">
+        data-routine-category-id="<%= tag.category.id %>"
+        class="tag-routine-li"
+        style="background-color:<%= "rgb(#{tag.color})" %>">
           <button class="btn routine-btn routine-remove-tag-btn glyphicon glyphicon-chevron-left"></button>
           <p class="routine-tag-title"><%= tag.name %></p>
         </li>
