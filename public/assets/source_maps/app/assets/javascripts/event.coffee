@@ -12,17 +12,13 @@ class CheckUp.Event
       ).done (response) ->
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
-<<<<<<< HEAD
-      debugger
-=======
       CheckUp.drawEvent.drawCategoryBars()
->>>>>>> 2d12aa2e9c08b3b0d146b5b7d2279b59550fbb1d
+      debugger
       #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
 
   @dateClick: ->
     CheckUp.Event.reloadInit()
     timeArray = CheckUp.Event.getStartAndEndTime()
-    debugger
     if timeArray.length == 2
       start = timeArray[0].getTime()
       end = timeArray[1].getTime()

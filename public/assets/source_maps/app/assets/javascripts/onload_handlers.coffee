@@ -17,6 +17,5 @@ $( ->
   CheckUp.Event.hideCal()
   $('#single-trace').click(CheckUp.Event.setAttrSingle)
   $('#multiple-trace').click(CheckUp.Event.setAttrMultiple)
-  debugger
   $('#category-time-show').click(CheckUp.Event.dateClick)
 )
