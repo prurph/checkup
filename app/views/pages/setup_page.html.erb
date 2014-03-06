@@ -1,14 +1,16 @@
-<h1>All the Categories</h1>
+<h1>CheckUp Setup</h1>
 <div class="col-xs-12 new-category-btns">
   <input type="text" id="new-category-name" placeholder="Category Name">
   <button class="btn routine-btn" id="new-category-submit">Create Category</button>
 </div>
 <div id="all-categories" class="col-xs-6">
+  <h3 class="subheader">Categories</h3>
+  <h6 class="miniheader">Click titlebar to show or hide</h6>
   <% @categories.each do |category| %>
-    <div data-category-id="<%= category.id %>" class="main-category">
+    <div data-category-id="<%= category.id %>" class="main-category"
+      data-category-title="<%= category.title %>">
       <p class="category-title"><%= category.title %></p>
-      <button class="btn delete-category-btn routine-btn">Delete Category</button>
-      <ul class="category-tag-list">
+      <ul class="category-tag-list hideme">
         <% category.tags.sort_by(&:name).each do |tag| %>
           <% if tag.active %>
             <li data-tag-id="<%= tag.id %>">
@@ -21,13 +23,17 @@
           <% end %>
         <% end %>
       </ul>
-      <input type="text" class="new-tag-name" placeholder="Tag Name">
-      <button class="btn add-tag-btn routine-btn">Add Tag</button>
+      <input type="text" class="new-tag-name hideme" placeholder="Tag Name">
+      <button class="btn add-tag-btn routine-btn hideme">Add Tag</button>
+      <button class="btn delete-category-btn routine-btn hideme">Delete Category</button>
     </div>
   <% end %>
 </div>
 <div id="routine-setup" class="col-xs-6">
-<!-- Class sortable for jQuery UI -->
+  <h3 class="subheader">Routine
+  <button id="save-routine" class="btn routine-save-btn routine-btn">Save</button>
+  </h3>
+  <h6 class="miniheader">Drag tags to reorder use arrows to remove</h6>
   <ul class="sortable">
     <% @tags.each do |tag| %>
       <% unless tag.routine == -1 %>
@@ -39,5 +45,4 @@
       <% end %>
     <% end %>
   </ul>
-  <button id="save-routine" class="btn routine-save-btn routine-btn">Save Routine</button>
 </div>

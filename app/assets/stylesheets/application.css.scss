@@ -83,27 +83,45 @@ h1 {
   width: 20px;
   height: 20px;
   padding: 0px;
+  margin: 0 1px;
 }
 
-.routine-add-tag-btn {
+.add-tag-btn, .delete-category-btn, .routine-save-btn {
+  height: 20px;
+  margin-top: 2px;
+  padding: 0;
+}
+
+.routine-add-tag-btn, .routine-save-btn {
+  float: right
+}
+
+.routine-save-btn {
+  width: 30%;
+  margin-top: 4px;
+}
+
+.routine-add-tag-btn, .add-tag-btn, .routine-save-btn {
   background-color: #27ae60;
-  float: right;
-  &:hover {
+  &:hover, &:focus {
     background-color: #2ecc71;
   }
 }
 
 .delete-tag-btn, .routine-remove-tag-btn {
-  background-color: #c0392b;
   float: left;
   margin-right: 2px;
-  &:hover {
+}
+
+.delete-tag-btn, .routine-remove-tag-btn, .delete-category-btn {
+  background-color: #c0392b;
+  &:hover, &:focus {
     background-color: #e74c3c;
   }
 }
 
 #new-category-name, #new-category-submit {
-  width: 48%;
+  width: 49%;
   display: inline-block;
   margin-bottom: 2px;
   height: 30px;
@@ -128,22 +146,44 @@ input {
 
 .category-title {
   font-size: 16px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #routine-setup {
-  padding-left: 0px;
+  padding: 0px;
 }
 
 .tag-title, .routine-tag-title {
   line-height: 20px;
   margin-bottom: 2px;
-  padding-left: 22px;
+  font-size: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#all-categories {
-  padding: 0 5px;
+#all-categories, #routine-setup {
+  padding: 0 5px 5px;
 }
 
 .new-category-btns {
-  padding: 5px;
+  padding: 2px;
+  text-align: center;
+}
+
+.miniheader {
+  font-size: 10px;
+  margin: 2px 0;
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+.main-category {
+  padding: 3px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  color: #ecf0f1;
 }
