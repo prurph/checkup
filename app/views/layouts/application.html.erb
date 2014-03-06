@@ -5,15 +5,16 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <link href="css/normalize.css" rel="stylesheet" type="text/css"/>
-  <link href="css/datepicker.css" rel="stylesheet" type="text/css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body data-controller="<%= controller.controller_path %>"
   data-action="<%= controller.action_name %>">
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-<%= yield %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= render 'layouts/user_login_widget' %>
+    <%= yield %>
+    <%= render 'layouts/user_login_widget' %>
+  </div>
 </body>
 </html>

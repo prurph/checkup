@@ -35,7 +35,7 @@ end
 
 group :test do
   gem 'shoulda-matchers'
-  gem 'capybara'
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'faker'
@@ -47,4 +47,4 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test, git: 'https://github.com/colszowka/simplecov.git'

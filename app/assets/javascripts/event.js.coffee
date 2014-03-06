@@ -12,7 +12,7 @@ class CheckUp.Event
       ).done (response) ->
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
-      debugger
+      CheckUp.drawEvent.drawCategoryBars()
       #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
 
   @dateClick: ->

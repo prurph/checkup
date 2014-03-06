@@ -1,21 +1,35 @@
-<div id="cal-1" class="input-group date">
-  <input type="text" class="form-control" id="datepicker-from" placeholder="Date from...">
+<div class="input-group date">
+  <input type="text" class="form-control" id="datepicker-from">
   <span class="input-group-addon">
     <i class="glyphicon glyphicon-th"></i>
   </span>
 </div>
-<div id="cal-2" class="input-group date">
-  <input type="text" class="form-control" id="datepicker-to" placeholder="Date to...">
+<div class="input-group date">
+  <input type="text" class="form-control" id="datepicker-to">
   <span class="input-group-addon">
     <i class="glyphicon glyphicon-th"></i>
   </span>
 </div>
 <script>
-  var yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1)
-  $('.input-group.date').datepicker({
+  $('#datepicker-from').datepicker({
     startDate: "01-01-2014",
-    endDate: yesterday,
-    autoclose: true
+    maxDate: -1,
+    changeMonth: true,
+    numberOfMonths: 2,
+    showOtherMonths: true,
+    selectOtherMonths: true,
+    autoclose: true,
+    onClose: function(selectedDate, datepicker) {
+      console.log("hi");
+    }
+  });
+  $('#datepicker-to').datepicker({
+    startDate: "01-01-2014",
+    maxDate: -1,
+    changeMonth: true,
+    numberOfMonths: 2,
+    showOtherMonths: true,
+    selectOtherMonths: true,
+    autoclose: true,
   });
 </script>

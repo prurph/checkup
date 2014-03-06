@@ -13,7 +13,6 @@ class CheckUp.Category
       .done (colors) ->
         CheckUp.Category.colors = colors
 
-
   # This is used for all AJAX requests to create/deactivate/update a category
   # Pass an object of attributes, an HTTP method type ('GET') and a callback
   @categoryRequest: (attrs={}, type, callback) ->

@@ -17,6 +17,10 @@
 @import 'bootstrap';
 @import 'flat-ui';
 
+body {
+  width: 100%;
+}
+
 .active-tag {
   background-color: tomato;
 }

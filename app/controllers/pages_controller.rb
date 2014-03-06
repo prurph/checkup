@@ -39,6 +39,7 @@ class PagesController < ApplicationController
       if category.active == true
         colors[category.title] = category.color
       end
+      colors[:untracked] = "127,140,141"
     end
     colors[:untracked] = "127,140,141"
     render json: colors
