@@ -9,7 +9,6 @@ user = User.create(email: "user@example.com", password: "foobar55",
   password_confirmation: "foobar55")
 
 user.categories.destroy_all
-
 category_1 = Category.create(user: user, title: 'Work', color: '192,57,43')
 
 tag_1 = Tag.create(category: category_1, name: 'Commute')

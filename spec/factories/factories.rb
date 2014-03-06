@@ -6,7 +6,8 @@ FactoryGirl.define do
   end
 
   sequence(:title) do |n|
-    ["Work", "Personal", "Goals", "Family"][n % 4]
+    "#{Faker::Lorem.word} #{n}"
+    #["Work", "Personal", "Goals", "Family"][n % 4]
   end
 
   factory :user do
