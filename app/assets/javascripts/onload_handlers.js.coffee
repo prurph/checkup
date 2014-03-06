@@ -20,4 +20,5 @@ $( ->
   $('#single-trace').click(CheckUp.Event.setAttrSingle)
   $('#multiple-trace').click(CheckUp.Event.setAttrMultiple)
   $('#category-time-show').click(CheckUp.Event.dateClick)
+  $('.tag-category-btn').click(CheckUp.Tag.setTagColor)
 )
