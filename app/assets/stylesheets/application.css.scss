@@ -116,23 +116,6 @@ h1, .center {
   }
 }
 
-// .delete-category-btn, .add-tag-btn {
-//   background-color: transparent;
-//   &:focus, &:active {
-//     background-color: transparent;
-//   }
-// }
-
-// .delete-tag-btn, .routine-remove-tag-btn {
-//   background-color: transparent;
-//   &:hover {
-//     background-color: transparent;
-//   }
-//   &:focus {
-//     background-color: transparent;
-//   }
-// }
-
 .delete-tag-btn, .routine-remove-tag-btn {
   float: left;
   margin-right: 2px;
@@ -221,6 +204,7 @@ input {
   color: #ecf0f1;
 }
 
+<<<<<<< HEAD
 .category-outer-bar {
   height: 40px;
   background-color: #2c3e50;
@@ -351,4 +335,26 @@ input {
   height: 25px;
   font-size: 90%;
   font-weight: bold;
+}
+
+.nav-bar {
+  text-align: center;
+  background-color: #2c3e50;
+  color: white;
+  font-size: 17px;
+  height: 30px;
+  padding-top: 5px;
+}
+
+.notice, .alert {
+  position: absolute;
+  text-align: center;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #2980b9;
 }

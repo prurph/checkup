@@ -9,11 +9,12 @@
 </head>
 <body data-controller="<%= controller.controller_path %>"
   data-action="<%= controller.action_name %>">
+  <div class="nav-bar"><%= render 'layouts/nav_bar' %></div>
   <div class="notice"><%= notice %></div>
   <div class="alert"><%= alert %></div>
   <div class="container">
     <%= yield %>
-    <%= render 'layouts/user_login_widget' %>
+
   </div>
 </body>
 </html>
