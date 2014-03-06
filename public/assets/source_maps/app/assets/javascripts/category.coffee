@@ -12,12 +12,12 @@ class CheckUp.Category
       )
       .done (colors) ->
         CheckUp.Category.colors = colors
+        CheckUp.Category.setSetupCategoryDivColors()
 
   @defaultColors: ["52,152,219", "230,126,34", "230,126,34",
     "241,196,15", "142,68,73"]
 
   @setSetupCategoryDivColors: ->
-    # CheckUp.Category.getCategoryColor
     takenColors = []
     for categoryTitle, color of CheckUp.Category.colors
       $categoryDiv = $("[data-category-title='#{categoryTitle}']")

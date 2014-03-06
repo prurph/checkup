@@ -12,7 +12,6 @@ $( ->
     $('.hideme').hide()
     $(".sortable").sortable()
     $(".sortable").disableSelection()
-    CheckUp.Category.setSetupCategoryDivColors()
   else if $('body').attr('data-action') == 'events_page'
 
   else if $('body').attr('data-action') == 'routines_page'

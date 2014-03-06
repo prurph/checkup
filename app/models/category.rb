@@ -13,9 +13,9 @@ class Category < ActiveRecord::Base
 
   def self.defaults
     default_categories = []
-    default_work = Category.create(title: "Work", color: "192,57,43")
-    default_personal = Category.create(title: "Personal", color: "41,128,185")
-    default_family = Category.create(title: "Family", color: "39,174,96")
+    default_work = Category.create(title: "Work", color: "52,152,219")
+    default_personal = Category.create(title: "Personal", color: "230,126,34")
+    default_family = Category.create(title: "Family", color: "230,126,34")
     default_categories << default_work << default_personal << default_family
   end
 
