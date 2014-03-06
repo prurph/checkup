@@ -21,6 +21,7 @@ CheckUp.ready = ->
     $('#routines-list').click(CheckUp.Routine.routineClicked)
     # Append any active timers from today
     CheckUp.Routine.appendTimers()
+    $(".tag-category-btn").click(CheckUp.Tag.setTagColor)
 
 $(document).ready(CheckUp.ready)
 $(document).on('page:load', CheckUp.ready)

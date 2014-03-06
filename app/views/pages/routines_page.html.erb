@@ -1,5 +1,9 @@
+<ul class='category-of-tags'>
+  <% @categories.each do |category| %>
+    <li class="btn tag-category-btn" data-category-id="<%=category.id%>" style='background-color: rgb(<%=category.color%>)'><%= category.title %></li>
+  <% end %>
+</ul>
 <h1>CheckUp Routines</h1>
-
 <ul id="routines-list">
   <% @active_sort_tags.each do |tag| %>
     <li>
@@ -11,3 +15,4 @@
     </li>
   <% end %>
 </ul>
+

@@ -3,6 +3,16 @@ class CheckUp.Tag
     for own key, value of railsTag
       this[key] = value
 
+  @setTagColor: ->
+    $matchedElements = $("[data-routine-category-id='#{$(this).attr("data-category-id")}']")
+    defaultColor = "rgb(52, 73, 94)"
+    if $matchedElements.eq(0).css("background-color") == defaultColor
+      $("[data-routine-category-id='#{$(this).attr("data-category-id")}']").css("background-color",
+        $(this).css("background-color"))
+    else $("[data-routine-category-id='#{$(this).attr("data-category-id")}']").css("background-color",
+      defaultColor)
+        #$(this).toggleClass()
+
   @tagRequest: (attrs={}, type, callback) ->
     $.ajax(
       url: "/setup/tag/"
