@@ -1,6 +1,6 @@
 class CheckUp.Event
 
-  # the start and end time must in timestamp format, use (new Date).getTime()
+  # the start and end time must be in timestamp format, use (new Date).getTime()
   @getEventRequest: (start, end) ->
     $.ajax(
       url: "/events"
@@ -13,7 +13,12 @@ class CheckUp.Event
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
       CheckUp.drawEvent.drawCategoryBars()
-      #renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
+      $('#master-event').prepend($('<h3/>',
+        class: 'time-period-title'
+        text: "#{CheckUp.Event.timePeriod[0].toString().slice(0,10)} to
+          #{CheckUp.Event.timePeriod[1].toString().slice(0,10)}"
+        )
+      )
 
   @dateClick: ->
     CheckUp.Event.reloadInit()
@@ -22,8 +27,9 @@ class CheckUp.Event
       start = timeArray[0].getTime()
       end = timeArray[1].getTime()
       CheckUp.Event.getEventRequest(start, end)
+      CheckUp.Event.timePeriod = timeArray
     else
-      alert("You miss something!")
+      alert("Enter dates!")
     CheckUp.Event.categoryListEmpty()
 
   @makeEventBreakdown: (structure) ->
@@ -69,7 +75,7 @@ class CheckUp.Event
     dayDuration = Math.ceil(duration / (60 * 24))
     day = "day"
     days = "days"
-    $('#category-time').before("<span>Tracing from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}...</span><br><span>Duration is: #{dayDuration} #{if (dayDuration < 2) then day else days}...</span>")
+    #$('#category-time').before("<span>Tracing from #{CheckUp.Event.renderTimeformat(startTime)} to #{CheckUp.Event.renderTimeformat(endTime)}...</span><br><span>Duration is: #{dayDuration} #{if (dayDuration < 2) then day else days}...</span>")
     i = 1
     for category, tagObject of structure
       for tag, tagArray of tagObject

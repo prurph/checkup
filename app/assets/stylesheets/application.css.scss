@@ -26,7 +26,7 @@ body {
   max-width: 700px;
 }
 
-h1 {
+h1, .center {
   text-align: center;
 }
 
@@ -171,6 +171,13 @@ input {
   text-overflow: ellipsis;
 }
 
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 70%;
+}
+
 #routine-setup {
   padding: 0px;
 }
@@ -201,7 +208,7 @@ input {
 }
 
 .miniheader {
-  font-size: 60%;
+  font-size: 70%;
   margin: 2px 0;
   margin-bottom: 10px;
   padding-left: 2px;
@@ -214,3 +221,135 @@ input {
   color: #ecf0f1;
 }
 
+.category-outer-bar {
+  height: 40px;
+  background-color: #2c3e50;
+  border-radius: 4px;
+  position: relative;
+  padding: 0;
+  margin: 2px 0;
+  opacity: 0.8;
+  &:hover, &:active {
+    opacity: 1;
+  }
+}
+
+.category-inner-bar {
+  height: 100%;
+}
+
+/* Jedi CSS tricks to round only the inner bar corners that are on the left and
+   right ends */
+
+.category-outer-bar:first-child .category-inner-bar {
+  border-radius: 4px 0 0 4px;
+}
+
+.category-outer-bar:last-child .category-inner-bar {
+    border-radius: 0 4px 4px 0;
+}
+
+.category-outer-bar:only-child .category-inner-bar {
+  border-radius: 4px;
+}
+
+.category-event-title {
+  position: absolute;
+  margin: 0;
+  left: 5%;
+  color: #ecf0f1;
+  padding-left: 10px;
+  height: 40px;
+  line-height: 40px;
+  z-index: 100;
+}
+
+.tag-list-div {
+  opacity: 1;
+  position: relative;
+  height: 30px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  ul {
+    margin: none;
+    height: 100%;
+  }
+}
+
+.tag-list-li {
+  padding-left: 4px;
+  line-height: 30px;
+  overflow: hidden;
+  color: #ecf0f1;
+  height: 100%;
+  font-size: 80%;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+  &:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  &:not(last-child) {
+    border-right: 1px solid #ecf0f1;
+  }
+  &:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+  &:only-child { /* If only one list item both ends need to be rounded */
+    border-radius: 4px;
+  }
+}
+
+#master-event {
+  margin-top: 10px;
+}
+
+.time-period-title {
+  font-size: 20px;
+}
+
+.input-group-date {
+  display: inline-block;
+}
+
+.event-trace-btn, .input-group.date {
+  width: 49%;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+.event-save-btn {
+  width: 100%%;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+  margin-right: 3px;
+}
+
+.hasDatepicker {
+  width: 100%;
+  display: block;
+}
+
+.ui-datepicker-trigger {
+  display: none;
+}
+
+.tag-overflow {
+  width: 50%;
+  display: block;
+  position: absolute;
+  top: -30px;
+  right: 5px;
+  z-index: 100;
+  border-radius: 4px;
+  height: 25px;
+  font-size: 90%;
+  font-weight: bold;
+}

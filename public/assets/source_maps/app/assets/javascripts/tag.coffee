@@ -102,7 +102,7 @@ class CheckUp.Tag
       data:
         tag_ids_ordered_by_routine: tagIdsOrderedByRoutine
       )
-      .done (response) ->
+      .done (response) -> # Response will be {Status: "Routine updated"}
         console.log(response)
       .fail (error) ->
         console.log(error)

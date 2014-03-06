@@ -11,25 +11,32 @@ class CheckUp.drawEvent
       class: "category-outer-bar"
       position: "relative"
       width: "100%"
+      click: (event) ->
+        CheckUp.drawEvent.toggleTagBars(event)
       )
     totalTime = 0
     categoryArray = []
+    titleArray = []
     for title, duration of categoryTimes
       $innerCategory = $('<div/>',
         class: "category-inner-bar"
-        html: "#{title}: #{(duration / 60).toFixed(1)}" # Duration in hours
         id: "#{title}"
         "data-duration": duration
         css:
           "background-color": "rgb(#{CheckUp.Category.colors[title]})"
-        click: (event) ->
-          CheckUp.drawEvent.toggleTagBars(event)
+        # click: (event) ->
+        #   CheckUp.drawEvent.toggleTagBars(event)
       )
+      $categoryEventTitle = $('<p/>',
+        class: "category-event-title",
+        text: "#{title} #{(duration / 60).toFixed(1)} hr"
+        )
       totalTime += duration
       categoryArray.push($innerCategory)
+      titleArray.push($categoryEventTitle)
     widthPercent = 0
     leftPosition = 0
-    for $category in categoryArray
+    for $category, index in categoryArray
       durationPercent = $category.attr("data-duration") / totalTime * 100
       $category.css(
         # opacity: (durationPercent / 200) + 0.5
@@ -39,7 +46,7 @@ class CheckUp.drawEvent
         width: "#{durationPercent}%"
         );
       leftPosition += durationPercent
-      $singleLine().append($category).appendTo($allCategories)
+      $singleLine().append(titleArray[index]).append($category).appendTo($allCategories)
     $('#master-event').empty()
     $('#master-event').append($allCategories)
 
@@ -53,31 +60,44 @@ class CheckUp.drawEvent
       position: "relative"
       id: "#{categoryTitle}-tags"
       )
-    $categoryUl = $('<ul/>')
+    $categoryUl = $('<ul/>',
+      mouseenter: (event) ->
+        console.log('hi')
+    )
+    $categoryBreakdown.prepend("<div class=tag-overflow></div>")
     for tagName, tagTime of categoryObj
       tagPercentOfCategory = (tagTime / totalCategoryTime) * 100
-      opacity = (tagPercentOfCategory / 200) + 0.5
+      opacity = (tagPercentOfCategory / 200) + 0.6
       $tagLi = $('<li/>',
         id: "#{tagName}"
-        html: "#{tagName}: #{(tagTime / 60).toFixed(1)}"
+        html: "<p class='ellipsis float-left'>#{tagName}</p>
+          <p class='float-right'>#{(tagTime / 60).toFixed(1)}</p>"
         class: 'tag-list-li'
         css:
           width: "#{tagPercentOfCategory}%"
           display: "inline-block"
           "background-color":
             "rgba(#{CheckUp.Category.colors[categoryTitle]},#{opacity})"
-        )
+        click: (event) ->
+          thisHTML = $(this).html()
+          $overflow = $(this).closest('ul').prev()
+          if $overflow.html() == thisHTML and !$overflow.is(":hidden")
+            $overflow.hide()
+          else
+            $overflow.html("#{thisHTML}").css("color",
+              $(this).css("background-color")).show()
+      )
       $categoryUl.append($tagLi)
-    $categoryBreakdown.append($categoryUl).
-      appendTo($("##{categoryTitle}").parent())
+    $categoryBreakdown.append($categoryUl).hide()
+      # appendTo($("##{categoryTitle}").parents('.category-outer-bar'))
+    ($("##{categoryTitle}").parents('.category-outer-bar')).after($categoryBreakdown)
+    $categoryBreakdown.slideToggle()
 
-  @toggleTagBars: (event) ->
-    clickedCategoryTitle = $(event.target).attr('id')
+  @toggleTagBars: (event) -> # (event.currentTarget is the outer-bar)
+    clickedCategoryTitle = $(event.target).children('[id]').attr('id')
     return false if clickedCategoryTitle == "untracked"
     $clickedCategoryTagBar = $("##{clickedCategoryTitle}-tags")
     if $clickedCategoryTagBar?.length > 0
-      $clickedCategoryTagBar.fadeToggle()
+      $clickedCategoryTagBar.slideToggle()
     else
-      CheckUp.drawEvent.drawTagBars clickedCategoryTitle
-
-
+      CheckUp.drawEvent.drawTagBars(clickedCategoryTitle)
