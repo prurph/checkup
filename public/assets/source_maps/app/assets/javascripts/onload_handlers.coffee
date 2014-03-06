@@ -1,7 +1,8 @@
- CheckUp.ready = ->
+CheckUp.ready = ->
   # this method will get Category Color from Database
   CheckUp.Category.getCategoryColor()
   if $('body').attr('data-action') == 'setup_page'
+    CheckUp.Category.getCategoryColor()
     $('#save-routine').click(CheckUp.Tag.saveFullRoutine)
     $('#new-category-submit').click(CheckUp.Category.newCategoryClick)
     $('[data-category-id]').click(CheckUp.Category.categoryClicked)
@@ -22,5 +23,5 @@
     CheckUp.Routine.appendTimers()
     $(".tag-category-btn").click(CheckUp.Tag.setTagColor)
 
-# $(document).ready(CheckUp.ready)
-# $(document).on('page:load', CheckUp.ready)
+$(document).ready(CheckUp.ready)
+$(document).on('page:load', CheckUp.ready)

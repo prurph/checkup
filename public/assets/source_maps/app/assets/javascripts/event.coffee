@@ -23,12 +23,12 @@ class CheckUp.Event
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
       CheckUp.drawEvent.drawCategoryBars()
-      # $('#master-event').prepend($('<h3/>',
-      #   class: 'time-period-title'
-      #   text: "#{CheckUp.Event.timePeriod[0].toString().slice(0,10)} to
-      #     #{CheckUp.Event.timePeriod[1].toString().slice(0,10)}"
-      #   )
-      # )
+      $('#master-event').prepend($('<h3/>',
+        class: 'time-period-title'
+        text: "#{CheckUp.Event.timePeriod[0].toString().slice(0,10)} to
+          #{CheckUp.Event.timePeriod[1].toString().slice(0,10)}"
+        )
+      )
 
   @dateClick: ->
     CheckUp.Event.reloadInit()
@@ -123,10 +123,6 @@ class CheckUp.Event
     $("#category-time").append("<li class='category-2'><ul class='category-2-tag'></ul></li>")
     $("#category-time").append("<li class='category-3'><ul class='category-3-tag'></ul></li>")
     $("#category-time").append("<li class='category-4'><ul class='category-4-tag'></ul></li>")
-    # $( "#from" ).datepicker( "option", "maxDate", yesterday );
-    # $( "#to" ).datepicker( "option", "maxDate", yesterday );
-    # $( "#to" ).datepicker( "option", "minDate", yesterday );
-    # $( "#to" ).datepicker( "option", "minDate", $("#single-trace").attr("data-user-create") );
 
   @categoryListEmpty: ->
     $("#from").val("")
