@@ -10,7 +10,7 @@ user = User.create(email: "user@example.com", password: "foobar55",
   password_confirmation: "foobar55", created_at: Time.at(1387724400))
 
 user.categories.destroy_all
-category_1 = Category.create(user: user, title: 'Work', color: '192,57,43')
+category_1 = Category.create(user: user, title: 'Work', color: "41,128,185")
 
 tag_1 = Tag.create(category: category_1, name: 'Commute')
 tag_2 = Tag.create(category: category_1, name: 'Team Meetings')
@@ -53,7 +53,7 @@ event_22 = Event.create(tag: tag_4, started_at: Time.at(1392386400), ended_at: T
 event_23 = Event.create(tag: tag_4, started_at: Time.at(1392406200), ended_at: Time.at(1392411600), duration: 90)
 
 
-category_2 = Category.create(user: user, title: 'Personal', color: '39,174,96')
+category_2 = Category.create(user: user, title: 'Personal', color: "39,174,96")
 
 tag_5 = Tag.create(category: category_2, name: 'Shopping')
 tag_6 = Tag.create(category: category_2, name: 'Gym')
@@ -67,7 +67,7 @@ event_28 = Event.create(tag: tag_6, started_at: Time.at(1392220800), ended_at: T
 event_29 = Event.create(tag: tag_6, started_at: Time.at(1392294600), ended_at: Time.at(1392298200), duration: 60)
 event_30 = Event.create(tag: tag_6, started_at: Time.at(1392381000), ended_at: Time.at(1392384600), duration: 60)
 
-category_3 = Category.create(user: user, title: 'Vacation', color: '142,68,173')
+category_3 = Category.create(user: user, title: 'Vacation', color: "241,196,15")
 
 tag_7 = Tag.create(category: category_3, name: "Bahamas Trip")
 
