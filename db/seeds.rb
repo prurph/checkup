@@ -5,8 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 user = User.create(email: "user@example.com", password: "foobar55",
-  password_confirmation: "foobar55")
+  password_confirmation: "foobar55", created_at: Time.at(1387724400))
 
 user.categories.destroy_all
 category_1 = Category.create(user: user, title: 'Work', color: '192,57,43')
@@ -31,7 +32,7 @@ event_8 = Event.create(tag: tag_1, started_at: Time.at(1392240780), ended_at: Ti
 event_9 = Event.create(tag: tag_1, started_at: Time.at(1392331380), ended_at: Time.at(1392335820), duration: 74)
 event_10 = Event.create(tag: tag_1, started_at: Time.at(1392415440), ended_at: Time.at(1392420840), duration: 90)
 
-#Team Meetings tag - Happens only 1-2 times a week, but the length of the event varies
+#Team Meetings tag - Happens a few times a week, but the length of the event varies
 event_11 = Event.create(tag: tag_2, started_at: Time.at(1392042600), ended_at: Time.at(1392046200), duration: 60)
 event_12 = Event.create(tag: tag_2, started_at: Time.at(1392318000), ended_at: Time.at(1392326700), duration: 145)
 
@@ -43,6 +44,7 @@ event_14 = Event.create(tag: tag_4, started_at: Time.at(1392037200), ended_at: T
 event_15 = Event.create(tag: tag_4, started_at: Time.at(1392055200), ended_at: Time.at(1392066000), duration: 180)
 event_16 = Event.create(tag: tag_4, started_at: Time.at(1392123600), ended_at: Time.at(1392134400), duration: 180)
 event_17 = Event.create(tag: tag_4, started_at: Time.at(1392145200), ended_at: Time.at(1392151500), duration: 105)
+
 event_18 = Event.create(tag: tag_4, started_at: Time.at(1392210000), ended_at: Time.at(1392217200), duration: 120)
 event_19 = Event.create(tag: tag_4, started_at: Time.at(1392234300), ended_at: Time.at(1392238800), duration: 75)
 event_20 = Event.create(tag: tag_4, started_at: Time.at(1392300000), ended_at: Time.at(1392308700), duration: 145)

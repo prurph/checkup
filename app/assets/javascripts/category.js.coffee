@@ -92,8 +92,8 @@ class CheckUp.Category
     # already exist
     # Put an error handler in here later
     isCategoryValid = ($form, $existingCategories) ->
-      $form.val().length >= 3 and $existingCategories.length < 5
-
+      if $form.val().length >= 3 and $existingCategories.length < 5
+        #MMMMMMMMMMMMMMMMMMMMMMMMMMM
     if isCategoryValid($categoryNameForm, $allCategoryDivs)
       CheckUp.Category.categoryRequest
         title: $categoryNameForm.val(),

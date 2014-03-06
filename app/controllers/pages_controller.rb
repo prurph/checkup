@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   end
 
   def events_page
+    @create_date = current_user.created_at
     # I'll mark here because the data format convert from Javascript to Ruby, besides,
     # the view_start and view_end must be the format of standard Ruby time format
     view_start = Time.at(params[:view_start].to_i / 1000)
@@ -41,6 +42,7 @@ class PagesController < ApplicationController
       end
       colors[:untracked] = "127,140,141"
     end
+    colors[:untracked] = "127,140,141"
     render json: colors
   end
 

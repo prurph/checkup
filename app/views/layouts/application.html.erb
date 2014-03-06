@@ -9,10 +9,9 @@
 </head>
 <body data-controller="<%= controller.controller_path %>"
   data-action="<%= controller.action_name %>">
+  <div class="notice"><%= notice %></div>
+  <div class="alert"><%= alert %></div>
   <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <%= yield %>
     <%= render 'layouts/user_login_widget' %>
   </div>
