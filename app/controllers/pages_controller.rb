@@ -40,6 +40,7 @@ class PagesController < ApplicationController
         colors[category.title] = category.color
       end
     end
+    colors[:untracked] = "127,140,141"
     render json: colors
   end
 

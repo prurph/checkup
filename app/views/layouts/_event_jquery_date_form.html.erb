@@ -1,4 +1,3 @@
-
 <div id="cal-1" class="input-group date">
   <input type="text" id="from" name="from" placeholder="From">
 </div>
@@ -6,9 +5,14 @@
   <input type="text" id="to" name="to" placeholder="To">
 </div>
 
-
+<div id="datepicker"></div>  
 <script>
   $(function() {
+    $('#datepicker').datepicker({  
+            inline: true,  
+            showOtherMonths: true,  
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],  
+    }); 
     $( "#from" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
