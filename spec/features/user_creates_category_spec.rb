@@ -10,7 +10,7 @@ feature 'User can add and view categories on Setup page', :js do
 
   scenario 'successfully adds a category' do
     fill_in('Category Name', with: 'School')
-    click_button 'Add Category'
+    click_button 'Create Category'
 
     expect(page).to have_content 'School'
     expect(page).to_not have_content 'Muffins'
