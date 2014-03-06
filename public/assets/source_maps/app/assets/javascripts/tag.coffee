@@ -3,16 +3,6 @@ class CheckUp.Tag
     for own key, value of railsTag
       this[key] = value
 
-  # This is Yiyang's
-  # @setEventRequest: (id) ->
-  #   $.ajax(
-  #     url: "/routines/set-event/#{id}"
-  #     type: 'POST'
-  #     dataType: 'json'
-  #     ).done (response) ->
-  #       # some CSS issue for changing the color of this tag
-  #       $("##{response.tag_id}").css("background-color", "grey")
-
   @tagRequest: (attrs={}, type, callback) ->
     $.ajax(
       url: "/setup/tag/"
@@ -86,13 +76,12 @@ class CheckUp.Tag
     tagId = $tagLi.attr('data-routine-tag-id')
     # Refactor the below if time it's repeated in attachToCategory
     $addRoutineButton = $('<button/>',
-      class: 'btn routine-add-tag-btn',
-      text: 'Add to Routine'
+      class: 'btn routine-add-tag-btn routine-btn glyphicon glyphicon-chevron-right'
     )
     callback = (response) ->
       $("[data-routine-tag-id='#{response.id}']").remove()
       # Add the 'Add to Routine' button again
-      $("[data-tag-id='#{response.id}']").append($addRoutineButton)
+      $("[data-tag-id='#{response.id}']").prepend($addRoutineButton)
 
     CheckUp.Tag.tagRequest
       id: tagId
@@ -125,14 +114,13 @@ class CheckUp.Tag
       html: "<p class='tag-title'>#{this.name}</p>"
     )
     $deleteButton = $('<button/>',
-      class: 'btn delete-tag-btn'
-      text: 'Delete Tag'
+      class: 'btn delete-tag-btn routine-btn glyphicon glyphicon-remove'
     )
     $addRoutineButton = $('<button/>',
-      class: 'btn routine-add-tag-btn'
-      text: 'Add to Routine'
+      class: 'btn routine-add-tag-btn routine-btn glyphicon glyphicon-chevron-right'
     )
-    $tagLi.append($deleteButton).append($addRoutineButton)
+    $tagLi.prepend($deleteButton).prepend($addRoutineButton)
+    $addRoutineButton.prependTo($tagLi.prepend($deleteButton))
     # Find the matching category and append the tag list item to it in order
     $thisCategory = $("[data-category-id='#{this.category_id}']")
     $tagNames = $thisCategory.find('.tag-title')
@@ -162,8 +150,7 @@ class CheckUp.Tag
       html: "<p class='routine-tag-title'>#{this.name}</p>"
     )
     $removeButton = $('<button/>',
-      class: 'btn routine-remove-tag-btn'
-      text: 'Remove from Routine'
+      class: 'btn routine-btn routine-remove-tag-btn glyphicon glyphicon-chevron-left'
     )
-    $tagLi.append($removeButton).appendTo($routineUl)
+    $tagLi.prepend($removeButton).appendTo($routineUl)
 

@@ -1,11 +1,13 @@
-<h1>Routine Page</h1>
+<h1>CheckUp Routines</h1>
 
 <ul id="routines-list">
   <% @active_sort_tags.each do |tag| %>
-    <li class='tags' data-routine-tag-id="<%= tag.id %>"
+    <li>
+      <button class='tags btn' data-routine-tag-id="<%= tag.id %>"
       data-routine-category-id="<%= tag.category_id %>">
-      <p class="routine-tag-title"><%= tag.name %></p>
-      <div class="timer" data-routine-current-event-id="<%= tag.current_event_id %>"></div>
+      <p class="routine-tag-title"><%= tag.name %>
+      <span class="timer" data-routine-current-event-id="<%= tag.current_event_id %>"></span></p>
+      </button>
     </li>
   <% end %>
 </ul>

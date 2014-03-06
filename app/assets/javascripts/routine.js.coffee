@@ -95,8 +95,8 @@ class CheckUp.Routine
   @minToString = (startTime) ->
     hours = Math.floor (startTime / 60)
     minutes = Math.floor (startTime % 60)
-    if hours > 0 then "#{hours} hr #{minutes} min" else
-      "#{minutes} min"
+    if hours > 0 then "#{hours} h #{minutes} m" else
+      "#{minutes} m"
 
   @toggleTimer: ($tagClicked, tagClickedId) ->
     $timer  = $tagClicked.find('.timer')

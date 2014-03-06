@@ -5,7 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user = User.create(email: "song@gmail.com", password: "password", password_confirmation: "password")
+
+user = User.create(email: "user@example.com", password: "foobar55",
+  password_confirmation: "foobar55")
+
 user.categories.destroy_all
 category_1 = Category.create(user: user, title: 'Work', color: '192,57,43')
 

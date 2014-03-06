@@ -7,7 +7,6 @@ class CategoriesController < ApplicationController
 
   def update
     category = Category.find(params[:category][:id])
-    binding.pry
     if params[:category][:active] == "false"
       category.deactivate
     end
