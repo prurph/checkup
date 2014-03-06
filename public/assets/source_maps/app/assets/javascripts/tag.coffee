@@ -102,8 +102,13 @@ class CheckUp.Tag
       data:
         tag_ids_ordered_by_routine: tagIdsOrderedByRoutine
       )
+<<<<<<< HEAD
       .done (response) ->
         CheckUp.Error.drawError(response.status, '.notice')
+=======
+      .done (response) -> # Response will be {Status: "Routine updated"}
+        console.log(response)
+>>>>>>> prescott_event_styling
       .fail (error) ->
         console.log(error)
 

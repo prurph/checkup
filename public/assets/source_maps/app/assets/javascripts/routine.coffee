@@ -80,11 +80,12 @@ class CheckUp.Routine
   @routineClicked: (event) ->
     $tagClicked  = $(event.target).parents("[data-routine-tag-id]")
     tagClickedId = $tagClicked.attr("data-routine-tag-id")
-    CheckUp.Routine.toggleTimer($tagClicked, tagClickedId)
-    CheckUp.Routine.tagEventRequest
-      id: tagClickedId,
-      # Check to see if it's a new day and append timers any time request sent
-      CheckUp.Routine.appendTimers
+    if tagClickedId
+      CheckUp.Routine.toggleTimer($tagClicked, tagClickedId)
+      CheckUp.Routine.tagEventRequest
+        id: tagClickedId,
+        # Check to see if it's a new day and append timers any time request sent
+        CheckUp.Routine.appendTimers
 
   @stringToMin = (timerText) ->
     matches = timerText.match(/(\d+)/g) || [0]
