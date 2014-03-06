@@ -10,7 +10,6 @@ class CheckUp.Event
         view_start: start
         view_end: end
       ).done (response) ->
-      CheckUp.Event.renderCategoryTime(response.structure, response.viewStart, response.viewEnd)
       CheckUp.Event.eventBreakdown = CheckUp.Event.makeEventBreakdown(response.structure)
       CheckUp.Event.categoryTimes = CheckUp.Event.makecategoryTimes(response.structure, response.viewStart, response.viewEnd)
       CheckUp.drawEvent.drawCategoryBars()
@@ -55,6 +54,8 @@ class CheckUp.Event
     duration = Math.floor(timeDiff / (1000 * 60))
     categoryTimes["untracked"] = duration - totalDuration
     categoryTimes
+
+
 
   @renderCategoryTime: (structure, start, end) ->
     categoryTime = 0
@@ -154,6 +155,7 @@ class CheckUp.Event
     $('#cal-1').hide()
     $('#cal-2').hide()
 
+
   # debugging window request
 window.req = ->
   endTime = new Date("March 4, 2014 11:00:00")
@@ -170,5 +172,4 @@ window.req = ->
     ).done (response) ->
       debugger
       CheckUp.Event.getEventRequest(response.structure, response.viewStart, response.viewEnd)
-
 

@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = User.first
 
-category_1 = Category.create(user: user, title: 'Work', color: '192,57,43'))
+category_1 = Category.create(user: user, title: 'Work', color: '192,57,43')
 
 tag_1 = Tag.create(category: category_1, name: 'Commute')
 tag_2 = Tag.create(category: category_1, name: 'Team Meetings')
