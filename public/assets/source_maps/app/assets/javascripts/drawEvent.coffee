@@ -23,7 +23,13 @@ class CheckUp.drawEvent
         id: "#{title}"
         "data-duration": duration
         css:
-          "background-color": "rgb(#{CheckUp.Category.colors[title]})"
+          # If the color doesn't exist (because category has been deleted)
+          # Use gray
+          "background-color":
+            if CheckUp.Category.colors[title]
+              "rgb(#{CheckUp.Category.colors[title]})"
+            else
+              "#95a5a6"
         # click: (event) ->
         #   CheckUp.drawEvent.toggleTagBars(event)
       )
@@ -60,10 +66,7 @@ class CheckUp.drawEvent
       position: "relative"
       id: "#{categoryTitle}-tags"
       )
-    $categoryUl = $('<ul/>',
-      mouseenter: (event) ->
-        console.log('hi')
-    )
+    $categoryUl = $('<ul/>')
     $categoryBreakdown.prepend("<div class=tag-overflow></div>")
     for tagName, tagTime of categoryObj
       tagPercentOfCategory = (tagTime / totalCategoryTime) * 100
@@ -77,15 +80,17 @@ class CheckUp.drawEvent
           width: "#{tagPercentOfCategory}%"
           display: "inline-block"
           "background-color":
-            "rgba(#{CheckUp.Category.colors[categoryTitle]},#{opacity})"
+            if !CheckUp.Category.colors[categoryTitle]
+              "#95a5a6"
+            else
+              "rgba(#{CheckUp.Category.colors[categoryTitle]},#{opacity})"
         click: (event) ->
           thisHTML = $(this).html()
           $overflow = $(this).closest('ul').prev()
           if $overflow.html() == thisHTML and !$overflow.is(":hidden")
             $overflow.hide()
           else
-            $overflow.html("#{thisHTML}").css("color",
-              $(this).css("background-color")).show()
+            $overflow.html("#{thisHTML}").show()
       )
       $categoryUl.append($tagLi)
     $categoryBreakdown.append($categoryUl).hide()

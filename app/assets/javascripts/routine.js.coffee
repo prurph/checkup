@@ -105,6 +105,7 @@ class CheckUp.Routine
 
     clearTimeout $activeTimer.attr('data-timer-id')
     $activeTimer.removeAttr('data-timer-id').removeClass('active-tag')
+    $timer.siblings('.glyphicon').toggle()
 
     # Compare DOM nodes to see if user just turned off existing or clicked on
     # a different tag
@@ -112,6 +113,7 @@ class CheckUp.Routine
       startTime = parseInt (CheckUp.Routine.stringToMin $timer.text()) || 0
       $timer.text CheckUp.Routine.minToString(startTime)
       $timer.addClass('active-tag')
+      $activeTimer.siblings('.glyphicon').toggle()
 
       tickTock = setInterval ->
         startTime += 1
@@ -119,3 +121,10 @@ class CheckUp.Routine
         CheckUp.Routine.updateCache(tagClickedId, $timer.text())
       ,60000 # increment by minutes
       $timer.attr('data-timer-id', tickTock)
+
+  @setRoutineNavWidth: ->
+    $list = $('.category-of-tags').remove()
+    $list.insertAfter($('.nav-bar'))
+    listLength = $list.children().length
+    $('.category-of-tags li').css("width", "#{100/listLength}%");
+

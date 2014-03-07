@@ -14,5 +14,5 @@ CheckUp::Application.routes.draw do
   get '/setup',    to: 'pages#setup_page',    as: 'setup'
   get '/events',   to: 'pages#events_page',   as: 'events', defaults: { events: true }
   get '/routines', to: 'pages#routines_page', as: 'routines'
-  root 'static_pages#home'
+  root 'pages#setup_page'
 end
