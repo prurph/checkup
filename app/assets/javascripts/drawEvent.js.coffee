@@ -99,7 +99,7 @@ class CheckUp.drawEvent
     $categoryBreakdown.slideToggle()
 
   @toggleTagBars: (event) -> # (event.currentTarget is the outer-bar)
-    clickedCategoryTitle = $(event.target).children('[id]').attr('id')
+    clickedCategoryTitle = $(event.currentTarget).children('[id]').attr('id')
     return false if clickedCategoryTitle == "untracked"
     $clickedCategoryTagBar = $("##{clickedCategoryTitle}-tags")
     if $clickedCategoryTagBar?.length > 0
