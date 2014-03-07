@@ -1,11 +1,11 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/praggya/Code/checkup/app/helpers/application_helper.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/support/database_cleaner.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/support/database_cleaner.rb": [
         1,
         1,
         1,
@@ -28,7 +28,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/support/session_helpers.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/support/session_helpers.rb": [
         1,
         1,
         7,
@@ -39,7 +39,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/app/models/category.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/models/category.rb": [
         1,
         1,
         1,
@@ -70,7 +70,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/app/models/tag.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/models/tag.rb": [
         1,
         1,
         1,
@@ -102,7 +102,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/app/models/event.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/models/event.rb": [
         1,
         1,
         1,
@@ -150,7 +150,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/features/user_views_events_page_spec.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/features/user_views_events_page_spec.rb": [
         1,
         null,
         1,
@@ -191,7 +191,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/features/user_views_routines_spec.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/features/user_views_routines_spec.rb": [
         1,
         null,
         1,
@@ -212,7 +212,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/features/user_views_setup_page_spec.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/features/user_views_setup_page_spec.rb": [
         1,
         null,
         1,
@@ -311,7 +311,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/models/category_spec.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/models/category_spec.rb": [
         1,
         null,
         1,
@@ -332,7 +332,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/models/event_spec.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/models/event_spec.rb": [
         1,
         null,
         1,
@@ -375,7 +375,7 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/models/tag_spec.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/models/tag_spec.rb": [
         1,
         null,
         1,
@@ -401,28 +401,29 @@
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/spec/models/user_spec.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/spec/models/user_spec.rb": [
         1,
         null,
         1,
         2,
         null
       ],
-      "/Users/praggya/Code/checkup/app/controllers/static_pages_controller.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/controllers/static_pages_controller.rb": [
         null,
         1,
         1,
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/app/controllers/application_controller.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
         null
       ],
-      "/Users/praggya/Code/checkup/app/controllers/pages_controller.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/controllers/pages_controller.rb": [
+        1,
         1,
         1,
         null,
@@ -460,15 +461,15 @@
         null,
         null,
         1,
-        4,
-        4,
-        8,
-        8,
+        3,
+        3,
+        12,
+        12,
         null,
-        8,
+        12,
         null,
-        2,
-        2,
+        3,
+        3,
         null,
         null,
         1,
@@ -478,15 +479,15 @@
         null,
         null,
         1,
-        11,
-        11,
-        11,
+        10,
+        10,
+        10,
         1,
         null,
         null,
         null
       ],
-      "/Users/praggya/Code/checkup/app/controllers/categories_controller.rb": [
+      "/Users/Prescott/Code/GA Projects/check_up/app/controllers/categories_controller.rb": [
         1,
         null,
         1,
@@ -511,6 +512,6 @@
         null
       ]
     },
-    "timestamp": 1394118270
+    "timestamp": 1394168219
   }
 }

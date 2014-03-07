@@ -1,19 +1,115 @@
 <div class="col-xs-12">
 <h1>CheckUp</h1>
-<h6>Lightweight Mobile Metrics</h6>
+<h3 class="main-subheader">CheckUp is a new way to track how you spend your time. Getting
+started is easy!</h3>
 
-<h3 class="subheader">What is CheckUp?</h3>
-<p>CheckUp is a new way to keep track of how you spend your time with its easy to use layout.</p>
+<div class="row">
+  <div class="step-divs col-xs-6">
+    <div data-category-id="19" class="main-category" style="background-color: rgb(241,196,15)"
+      data-category-title="Family">
+      <p class="category-title">Family</p>
+    </div>
+    <div data-category-id="18" class="main-category" style="background-color: rgb(39,174,96)"
+          data-category-title="Personal">
+      <p class="category-title">Personal</p>
+      <ul class="category-tag-list hideme">
+            <li data-tag-id="17">
+              <button class="btn delete-tag-btn routine-btn glyphicon glyphicon-remove"></button>
+              <button class="btn routine-add-tag-btn routine-btn glyphicon glyphicon-chevron-right"></button>
+              <p class="tag-title">Yoga</p>
+            </li>
+      </ul>
+      <input type="text" class="new-tag-name hideme" placeholder="Tag Name">
+      <button class="btn add-tag-btn routine-btn hideme">Add Tag</button>
+      <button class="btn delete-category-btn routine-btn hideme">Delete Category</button>
+    </div>
+      <p class="step">
+        Your <span class="embolden">routine</span> lists
+        the order of your activities. Drag to reorder and don't forget to save!
+      </p>
+  </div>
+  <div class="step-divs col-xs-6">
+    <p class="step">
+      <span class="embolden">Setup</span> categories and tags for the things you do.
+    </p>
+    <p class="step">
+      Deleted categories and tags are gone forever, but will still appear in your
+      time reports.
+    </p>
+    <p class="step">
+      Add <span class="glyphicon glyphicon-chevron-right"></span> and
+      remove <span class="glyphicon glyphicon-chevron-left"></span> tags from your Routine
+      using the arrows.
+    </p>
+  </div>
 
-<h2>Using CheckUp is easy!</h2>
-<div class=""
-  <li><span class='steps'>Step 1:<span>setup things you do by category and tags.</li>
-  <li>Add Tags to your Routine.</li>
-  <li>Use the Routine buttons to track Events throughout the day.</li>
-  <li>See your Events tracked over a day, a week, or even a month to see where your time is going.</li>
-</ul>
+  <div id="routine-setup" class="step-divs col-xs-6">
+    <ul class="sortable">
+      <li data-routine-tag-id="17" data-routine-category-id="18" class="tag-routine-li"
+        style="background-color:rgb(39,174,96)">
+        <button class="btn routine-btn routine-remove-tag-btn glyphicon glyphicon-chevron-left"></button>
+        <p class="routine-tag-title">Yoga</p>
+      </li>
+      <li data-routine-tag-id="15" data-routine-category-id="19" class="tag-routine-li"
+        style="background-color:rgb(241,196,15)">
+        <button class="btn routine-btn routine-remove-tag-btn glyphicon glyphicon-chevron-left"></button>
+        <p class="routine-tag-title">Wife</p>
+      </li>
+      <li data-routine-tag-id="19" data-routine-category-id="17" class="tag-routine-li"
+        style="background-color:rgb(41,128,185)">
+        <button class="btn routine-btn routine-remove-tag-btn glyphicon glyphicon-chevron-left"></button>
+        <p class="routine-tag-title">Smith Account</p>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row step-2">
+  <div class="col-xs-12">
+    <p class="step">
+      Just press a tag on the <span class="embolden">routine page</span> each time
+      you start a new event. It only takes a second!
+    </p>
+    <p class="step">
+      The active event is indicated by a timer. Clicking the sub-nav at the top
+      lets you colorize the tags by category. Numbers appear on tags to indicate
+      how long you've spent on that tag today.
+    </p>
+    <ul id="routines-list">
+      <li>
+        <button class='tags btn' data-routine-tag-id="18"
+        data-routine-category-id="17">
+        <p class="routine-tag-title">Jones Account
+        <span class="glyphicon glyphicon-time float-right"></span>
+        <span class="timer float-right" data-routine-current-event-id="-1"></span></p>
+        </button>
+      </li>
+      <li>
+        <button class='tags btn' data-routine-tag-id="14"
+        data-routine-category-id="19" style="background-color: rgb(241, 196, 15)">
+        <p class="routine-tag-title">Parents</p>
+      </li>
+    </ul>
+    <p class="step">
+      Timers keep ticking even if you refresh or close your browser, so be sure to
+      switch events. A tag for "sleep" is essential!
+    </p>
+  </div>
+</div>
 
-<h2>How do I get started?</h2>
-
-<p>It's simple to get started! Just click <%= link_to 'Sign Up', new_user_registration_path %> and give your life a CheckUp.</p>
+<div class="row step-3">
+  <div class="col-xs-12">
+    <p class="step">
+      Data is available on the <span class="embolden">events page</span> at the
+      end of each day. Just specify a single date or a range, and search away!
+      Click on bars to get a more detailed breakdown of how you're living your life!
+    </p>
+    <div class="category-outer-bar" style="width: 100%;"><p class="category-event-title">Work 7.6 hr</p><div class="category-inner-bar" id="Work" data-duration="454" style="background-color: rgb(41, 128, 185); left: 0%; display: inline-block; position: relative; width: 31.52777777777778%; border-radius: 4px 0 0 4px"></div></div>
+    <div class="tag-list-div" id="Work-tags" style=""><div class="tag-overflow"><p class="ellipsis float-left">Team Meetings</p> <p class="float-right">2.4</p></div><ul><li id="Commute" class="tag-list-li" style="width: 29.515418502202646%; display: inline-block; background-color: rgba(41, 128, 185, 0.74902);"><p class="ellipsis float-left">Commute</p> <p class="float-right">2.2</p></li><li id="Team Meetings" class="tag-list-li" style="width: 31.938325991189426%; display: inline-block; background-color: rgba(41, 128, 185, 0.760784);"><p class="ellipsis float-left">Team Meetings</p> <p class="float-right">2.4</p></li><li id="Client Calls" class="tag-list-li" style="width: 38.54625550660793%; display: inline-block; background-color: rgba(41, 128, 185, 0.792157);"><p class="ellipsis float-left">Client Calls</p> <p class="float-right">2.9</p></li></ul></div>
+    <p class="step">
+      Any time during the range when no event was active is "untracked" and labelled
+      as such. When you delete a tag or category, the data persists but is colored
+      in gray to let you know it's from old stuff!
+    </p>
+    <h3><%= link_to "Intrigued? Sign up!", new_user_registration_path, class: 'main-subheader devise-link' %></h3>
+  </div>
 </div>

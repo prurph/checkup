@@ -226,6 +226,7 @@ input {
 
 .category-inner-bar {
   height: 100%;
+  z-index: 0;
 }
 
 /* Jedi CSS tricks to round only the inner bar corners that are on the left and
@@ -251,7 +252,7 @@ input {
   padding-left: 10px;
   height: 40px;
   line-height: 40px;
-  z-index: 100;
+  z-index: 1;
 }
 
 .tag-list-div {
@@ -357,12 +358,12 @@ input {
   width: 100%;
   text-align: center;
   font-weight: bold;
-  color: #27ae60;
+  color: #ecf0f1;
   border-radius: 0;
 }
 
 .notice {
-  background-color: #1abc9c;
+  background-color: #27ae60;
 }
 
 .alert {
@@ -381,7 +382,7 @@ input {
 .nav-ul li {
   display: inline-block;
   font-size: 80%;
-  padding: 0 5%;
+  padding: 0 10px;
   a {
     text-decoration: none;
     color: #ecf0f1;
@@ -411,5 +412,52 @@ h4 {
   margin: 2px;
   &:hover {
     color: #3498db;
+  }
+}
+
+.step {
+  text-align: justify;
+}
+
+.step-2, .step-3 {
+  margin-top: 20px;
+}
+
+.embolden {
+  font-weight: bold;
+}
+
+#main-save {
+  position: relative;
+  bottom: 15px;
+  margin-top: 6px;
+}
+
+.step-divs {
+  padding: 0 4px;
+}
+
+.main-subheader {
+  font-size: 90%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@media all and (max-width: 699px) {
+  .step {
+    font-size: 70%;
+    margin-bottom: 4px;
+  }
+}
+
+@media all and (min-width: 700px) {
+  .category-of-tags {
+    li {
+      font-size: 100%;
+    }
+  }
+  .nav-ul li {
+    display: inline-block;
+    padding: 0 5%;
   }
 }

@@ -23,6 +23,10 @@ CheckUp.ready = ->
     CheckUp.Routine.appendTimers()
     $('#routines-list').click(CheckUp.Routine.routineClicked)
     $(".tag-category-btn").click(CheckUp.Tag.setTagColor)
+  else if $('body').attr('data-action') == 'home'
+    $(".sortable").sortable()
+    $(".sortable").disableSelection()
+
 
 $(document).ready(CheckUp.ready)
 $(document).on('page:load', CheckUp.ready)
