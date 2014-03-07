@@ -41,10 +41,6 @@ h1, .center {
   }
 }
 
-// .active-tag {
-//   background-color: tomato;
-// }
-
 .tags {
   display: block;
   height: 45px;
@@ -73,9 +69,10 @@ h1, .center {
   padding-right: 5px;
   font-size: smaller;
   color: #95a5a6;
-  &.active-tag {
-    color: white;
-  }
+}
+
+.active-tag {
+  color: #ecf0f1;
 }
 
 .routine-btn {
@@ -205,9 +202,17 @@ input {
   color: #ecf0f1;
 }
 
-.category-of-tags li {
-  display: inline;
-  margin-right: 10px;
+.category-of-tags {
+  margin: 0;
+  margin-bottom: 30px;
+  li {
+    display: inline-block;
+    font-size: 70%;
+    padding: 6px 2px;
+    height: 30px;
+    border-radius: 0;
+    float: left;
+  }
 }
 
 .category-outer-bar {
@@ -234,7 +239,7 @@ input {
     border-radius: 0 4px 4px 0;
 }
 
-.category-outer-bar:only-child .categPory-inner-bar {
+.category-outer-bar:only-child .category-inner-bar {
   border-radius: 4px;
 }
 
@@ -335,21 +340,13 @@ input {
   border-radius: 4px;
   height: 25px;
   font-size: 90%;
+  color: #ecf0f1;
   font-weight: bold;
-}
-
-.nav-bar {
-  text-align: center;
-  background-color: #2c3e50;
-  color: white;
-  font-size: 17px;
-  height: 30px;
-  padding-top: 5px;
 }
 
 .messages {
   position: relative;
-  height: 30px;
+  height: 20px;
   width: 100%;
 }
 
@@ -360,7 +357,7 @@ input {
   width: 100%;
   text-align: center;
   font-weight: bold;
-  color: #ecf0f1;
+  color: #27ae60;
   border-radius: 0;
 }
 
@@ -372,10 +369,47 @@ input {
   background-color: #e74c3c;
 }
 
-nav a {
-  text-decoration: none;
+.nav-bar {
+  text-align: center;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  font-size: 17px;
+  height: 30px;
+  padding-top: 5px;
 }
 
-nav a:hover {
-  color: #2980b9;
+.nav-ul li {
+  display: inline-block;
+  font-size: 80%;
+  padding: 0 5%;
+  a {
+    text-decoration: none;
+    color: #ecf0f1;
+    &:hover {
+      color: #bdc3c7;
+    }
+  }
+}
+
+.glyphicon-time {
+  padding-right: 2px;
+  top: 10px;
+}
+
+.form-control {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+h4 {
+  text-align: center;
+}
+
+.devise-link {
+  text-decoration: none;
+  color: #2c3e50;
+  margin: 2px;
+  &:hover {
+    color: #3498db;
+  }
 }
