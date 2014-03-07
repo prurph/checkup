@@ -16,7 +16,7 @@ class TagsController < ApplicationController
     # the paused event
     if event_to_be_active.present?
       render json:
-        { event: event_to_be_active, status: "Replaced active event." }
+        { event: event_to_be_active, status: "New event started." }
     else
       render json:
         { event: event_now_active,

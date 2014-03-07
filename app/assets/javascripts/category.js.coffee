@@ -70,7 +70,9 @@ class CheckUp.Category
       # $("[data-category-id='#{response.id}']").remove()
       $deletedCategory.remove()
     oneCategoryLeft = ->
-      $('[data-category-id]').length == 1
+      if $('[data-category-id]').length == 1
+        CheckUp.Error.drawError("Must have at least one category.", ".alert")
+        return true;
     unless oneCategoryLeft()
       CheckUp.Category.categoryRequest
         id: categoryId

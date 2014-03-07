@@ -27,9 +27,9 @@ class CheckUp.Error
     if $form.val().length >= 3 and $existingCategories.length < 5
       bool = true
     else if $existingCategories.length >= 5
-      CheckUp.Error.drawError("You have reach your category bound, buy our full version and get unlimit categories!", '.alert')
+      CheckUp.Error.drawError("Buy our full version for unlimitted categories!", '.alert')
     else if $form.val().length == 0
       CheckUp.Error.drawError("Please input title for category!", '.alert')
     else if $form.val().length > 0 and $form.val().length < 3
-      CheckUp.Error.drawError("Please input a valid title name(at least 3 characters)!", '.alert')
+      CheckUp.Error.drawError("Category titles must be 3+ characters!", '.alert')
     bool

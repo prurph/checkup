@@ -1,13 +1,20 @@
+<ul class='category-of-tags'>
+  <% @categories.each do |category| %>
+    <li class="btn tag-category-btn ellipsis" data-category-id="<%=category.id%>"
+    style='background-color: rgb(<%=category.color%>)'><%= category.title %></li>
+  <% end %>
+</ul>
 <h1>CheckUp Routines</h1>
-
 <ul id="routines-list">
   <% @active_sort_tags.each do |tag| %>
     <li>
       <button class='tags btn' data-routine-tag-id="<%= tag.id %>"
       data-routine-category-id="<%= tag.category_id %>">
       <p class="routine-tag-title"><%= tag.name %>
-      <span class="timer" data-routine-current-event-id="<%= tag.current_event_id %>"></span></p>
+      <span class="glyphicon glyphicon-time float-right"></span>
+      <span class="timer float-right" data-routine-current-event-id="<%= tag.current_event_id %>"></span></p>
       </button>
     </li>
   <% end %>
 </ul>
+
