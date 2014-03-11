@@ -122,11 +122,12 @@ h1, .center {
 
 #new-category-name, #new-category-submit {
   width: 49%;
-  display: inline-block;
   margin-bottom: 2px;
   height: 30px;
 }
-
+#new-category-submit{
+  float:right;
+}
 input {
   height: 32px;
   font-size: 16px;
