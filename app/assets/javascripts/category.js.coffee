@@ -55,7 +55,7 @@ class CheckUp.Category
       CheckUp.Tag.addToRoutine $(event.target)
     else if $(event.target).hasClass('category-title')
       CheckUp.Category.toggleDetails $(event.target)
-    return false;
+    return false
 
   # This makes a request to update the category to active: false
   # It currently does nothing to deactivate the relevant tags
@@ -72,7 +72,7 @@ class CheckUp.Category
     oneCategoryLeft = ->
       if $('[data-category-id]').length == 1
         CheckUp.Error.drawError("Must have at least one category.", ".alert")
-        return true;
+        return true
     unless oneCategoryLeft()
       CheckUp.Category.categoryRequest
         id: categoryId
@@ -97,11 +97,11 @@ class CheckUp.Category
         'POST',
         callback
       $categoryNameForm.val("")
-    return false;
+    return false
 
   @toggleDetails: ($eventTarget) ->
     $eventTarget.siblings().fadeToggle()
-    return false;
+    return false
 
   # Use this to render a category node from a CheckUpCategory instance
   renderNode: ->

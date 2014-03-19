@@ -36,14 +36,14 @@ class PagesController < ApplicationController
   end
 
   def get_color
-    colors = {}
+    colors = {untracked: "127,140,141"}
     @categories.each do |category|
       if category.active == true
         colors[category.title] = category.color
       end
-      colors[:untracked] = "127,140,141"
+      # colors[:untracked] = "127,140,141"
     end
-    colors[:untracked] = "127,140,141"
+    # colors[:untracked] = "127,140,141"
     render json: colors
   end
 

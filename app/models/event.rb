@@ -1,23 +1,33 @@
 class Event < ActiveRecord::Base
   belongs_to :tag, touch: true
   delegate :color, to: :tag
+  delegate :name, to: :tag
+
+  def cat_title
+    tag.category.title
+  end
 
   def self.events_time_period(events, view_start, view_end)
-    events_time_structure = {}
     events_time_tag_structure = {}
     events.each do |event|
       if event.duration != 0
-        tag_with_id = "#{event.tag.name}_#{event.tag.id}"
-        events_time_tag_structure[tag_with_id] = [] if !events_time_tag_structure[tag_with_id].present?
+        tag_with_id = "#{event.name}_#{event.tag.id}"
+        events_time_tag_structure[tag_with_id] ||= []
         events_time_tag_structure[tag_with_id] << [event.started_at, event.ended_at, Event.event_handler(event, view_start, view_end)]
       end
     end
+    create_time_structure(events_time_tag_structure)
+  end
+
+  def self.create_time_structure(events_time_tag_structure)
+    events_time_structure = {}
     events_time_tag_structure.keys.each do |tag_with_id|
       id = tag_with_id.split('_').last
       event = Event.find_by_tag_id(id)
-      events_time_structure[event.tag.category.title] = {} if
-        !events_time_structure[event.tag.category.title].present?
-      events_time_structure[event.tag.category.title][event.tag.name] = events_time_tag_structure[tag_with_id]
+      event_title = event.cat_title
+      events_time_structure[event_title] ||= {}
+      events_time_structure[event_title][event.name] =
+        events_time_tag_structure[tag_with_id]
     end
     events_time_structure
   end
