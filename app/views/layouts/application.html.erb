@@ -2,13 +2,15 @@
 <html>
 <head>
   <title>CheckUp</title>
+  <meta property="og:image" content="<%= image_url('checkup-og.png') %>">
+  <meta property="og:site_name", content="CheckUp">
+  <meta property="og:description", content="Lightweight mobile metrics to see where you spend your time each day.">
+  <meta property="og:title", content="CheckUp">
+  <meta property="og:url", content="http://checkupapp.herokuapp.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <meta property="og:image" content="<%= image_url('checkup.png') %>">
-  <meta property="og:site_name", content="CheckUp">
-  <meta property="og:description", content="Lightweight mobile metrics to see where you spend your time each day.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body data-controller="<%= controller.controller_path %>"
   data-action="<%= controller.action_name %>">
